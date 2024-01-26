@@ -12,7 +12,14 @@ namespace GroceryAppAPI.Repository.Interfaces
         /// </summary>
         /// <param name="userId">The user identifier.</param>
         /// <returns>The cart.</returns>
-        public Cart Get(int userId);
+        public Cart GetByUser(int userId);
+
+        /// <summary>
+        /// Gets the specified cart.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>The cart.</returns>
+        public Cart Get(int id);
 
         /// <summary>
         /// Adds the specified cart.

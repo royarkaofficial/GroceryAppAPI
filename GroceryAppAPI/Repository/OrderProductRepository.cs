@@ -35,11 +35,21 @@ namespace GroceryAppAPI.Repository
         public IEnumerable<OrderProduct> GetAll(int orderId)
         {
             const string query = @"SELECT *
-                                   FROM [order_Products]
+                                   FROM [Orders_Products]
                                    WHERE [OrderId] = @OrderId";
-            var parameters = new { orderid = orderId };
+            var parameters = new { OrderId = orderId };
 
             return GetAll(query, parameters);
+        }
+
+        /// <inheritdoc/>
+        public void Delete(int orderId)
+        {
+            const string query = @"DELETE FROM [Orders_Products] 
+                                   WHERE [OrderId] = @OrderId";
+            var parameters = new {OrderId = orderId};
+
+            Execute(query, parameters);
         }
     }
 }

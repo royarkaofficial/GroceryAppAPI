@@ -43,7 +43,18 @@ namespace GroceryAppAPI.Repository
         }
 
         /// <inheritdoc/>
-        public Cart Get(int userId)
+        public Cart Get(int id)
+        {
+            const string query = @"SELECT * 
+                                   FROM [Carts]
+                                   WHERE [Id] = @Id";
+            var parameters = new { Id = id };
+
+            return GetAll(query, parameters).FirstOrDefault();
+        }
+
+        /// <inheritdoc/>
+        public Cart GetByUser(int userId)
         {
             string query = @"SELECT * 
                              FROM [Carts]

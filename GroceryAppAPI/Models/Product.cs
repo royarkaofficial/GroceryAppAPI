@@ -1,4 +1,6 @@
-﻿namespace GroceryAppAPI.Models
+﻿using GroceryAppAPI.Enumerations;
+
+namespace GroceryAppAPI.Models
 {
     /// <summary>
     /// Represents a product.
@@ -36,5 +38,13 @@
         /// The image URL.
         /// </value>
         public string ImageUrl { get; set; }
+
+        /// <summary>
+        /// Gets or sets the status.
+        /// </summary>
+        /// <value>
+        /// The status.
+        /// </value>
+        public ProductStatus Status { get; set; } = ProductStatus.Existing;
     }
 }

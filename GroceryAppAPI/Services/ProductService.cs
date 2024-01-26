@@ -32,8 +32,8 @@ namespace GroceryAppAPI.Services
 
         /// <inheritdoc/>
         public void Delete(int id)
-        {
-            _productRepository.Delete(id);
+        { 
+            _productRepository.UpdateStatus(id);
         }
 
         /// <inheritdoc/>
@@ -45,7 +45,20 @@ namespace GroceryAppAPI.Services
         /// <inheritdoc/>
         public void Update(int id, Product product)
         {
+            var existingProduct = _productRepository.Get(id);
+
+            if (existingProduct is null) 
+            {
+                throw new EntityNotFoundException(id, "Product");
+            }
+
             Validate(product);
+
+            if(string.IsNullOrWhiteSpace(product.ImageUrl))
+            {
+                product.ImageUrl = existingProduct.ImageUrl;
+            }
+
             _productRepository.Update(id, product);
         }
 

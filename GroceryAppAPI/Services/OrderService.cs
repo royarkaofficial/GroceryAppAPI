@@ -106,10 +106,11 @@ namespace GroceryAppAPI.Services
             {
                 paymentId = _paymentService.Add(paymentRequest.Payment);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                _orderProductRepository.Delete(orderId);
                 _orderRepository.Delete(orderId);
-                throw new PaymentFailedException();
+                throw new PaymentFailedException(ex.Message);
             }
 
             if (paymentId > 0)

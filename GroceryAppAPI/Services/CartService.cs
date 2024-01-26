@@ -42,7 +42,7 @@ namespace GroceryAppAPI.Services
             }
 
             var user = _userService.Get(cart.UserId);
-            var existingCart = _cartRepository.Get(userId: cart.UserId);
+            var existingCart = _cartRepository.GetByUser(userId: cart.UserId);
 
             if (existingCart != null)
             {
@@ -50,6 +50,12 @@ namespace GroceryAppAPI.Services
             }
 
             var product = _productRepository.Get(cart.ProductId);
+
+            if (product is null)
+            {
+                throw new EntityNotFoundException(cart.ProductId, "Product");
+            }
+
             var cartId = _cartRepository.Add(cart);
             
             var cartProduct = new CartProduct()
@@ -66,7 +72,7 @@ namespace GroceryAppAPI.Services
         public Models.Response.Cart Get(int userId)
         {
             var user = _userService.Get(userId);
-            var cart = _cartRepository.Get(userId);
+            var cart = _cartRepository.GetByUser(userId);
             
             if (cart is null)
             {
@@ -93,8 +99,39 @@ namespace GroceryAppAPI.Services
         /// <inheritdoc/>
         public void Update(int id, Cart cart)
         {
+            if (cart is null)
+            {
+                throw new ArgumentNullException("Cart is either null or invalid.");
+            }
+
+            var existingCart = _cartRepository.Get(id);
+
+            if (existingCart is null)
+            {
+                throw new EntityNotFoundException(id, "Cart");
+            }
+
+            _userService.Get(cart.UserId);
+
+            var product = _productRepository.Get(cart.ProductId);
+
+            if (product is null)
+            {
+                throw new EntityNotFoundException(cart.ProductId, "Product");
+            }
+
+            var operationSucceeded = false;
+
             if (cart.OperationType is CartOperationType.Add)
             {
+                operationSucceeded = true;
+                var existingCartProducts = _cartProductRepository.GetAll(id);
+
+                if (existingCartProducts.Select(x => x.ProductId).Contains(cart.ProductId))
+                {
+                    throw new InvalidRequestDataException("Product is already added to the cart.");
+                }
+
                 var cartProduct = new CartProduct()
                 {
                     CartId = id,
@@ -106,10 +143,16 @@ namespace GroceryAppAPI.Services
 
             if (cart.OperationType is CartOperationType.Delete)
             {
+                operationSucceeded = true;
                 _cartProductRepository.Delete(id, cart.ProductId);
             }
 
-            var cartProducts = _cartProductRepository.GetAll(cart.Id);
+            if (!operationSucceeded)
+            {
+                throw new InvalidRequestDataException("OperationType is either not given or invalid.");
+            }
+
+            var cartProducts = _cartProductRepository.GetAll(id);
 
             if (!(cartProducts != null && cartProducts.Any()))
             {

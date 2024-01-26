@@ -9,8 +9,9 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentFailedException"/> class.
         /// </summary>
-        public PaymentFailedException()
-            : base("Payment failed for the order. Order can't be placed")
+        /// <param name="message">Message related to payment failure.</param>
+        public PaymentFailedException(string message)
+            : base("Payment failed for the order. Order can't be placed. " + message)
         {
         }
     }

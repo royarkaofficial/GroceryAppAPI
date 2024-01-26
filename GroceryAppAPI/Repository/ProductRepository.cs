@@ -1,4 +1,5 @@
 ﻿using GroceryAppAPI.Configurations;
+using GroceryAppAPI.Enumerations;
 using GroceryAppAPI.Models;
 using GroceryAppAPI.Repository.Interfaces;
 using Microsoft.Extensions.Options;
@@ -24,11 +25,19 @@ namespace GroceryAppAPI.Repository
         /// <inheritdoc/>
         public int Add(Product product)
         {
-            const string query = @"INSERT INTO [Products] ([Name], [Price], [Stock], [ImageUrl])
+            const string query = @"INSERT INTO [Products] ([Name], [Price], [Stock], [ImageUrl], [Status])
                                    OUTPUT INSERTED.Id
-                                   VALUES (@Name, @Price, @Stock, @ImageUrl)";
+                                   VALUES (@Name, @Price, @Stock, @ImageUrl, @Status)";
+            var parameters = new
+            {
+                Name = product.Name,
+                Price = product.Price,
+                Stock = product.Stock,
+                ImageUrl = product.ImageUrl,
+                Status = (int)ProductStatus.Existing
+            };
 
-            return Add(query, product);
+            return Add(query, parameters);
         }
 
         /// <inheritdoc/>
@@ -71,6 +80,17 @@ namespace GroceryAppAPI.Repository
                                    [ImageUrl] = @ImageUrl";
 
             Execute(query, product);
+        }
+
+        /// <inheritdoc/>
+        public void UpdateStatus(int id)
+        {
+            const string query = @"UPDATE [Products]
+                                   SET [Status] = @Status
+                                   WHERE [Id] = @Id";
+            var parameters = new { Id = id, Status = (int)ProductStatus.Removed };
+
+            Execute(query, parameters);
         }
     }
 }

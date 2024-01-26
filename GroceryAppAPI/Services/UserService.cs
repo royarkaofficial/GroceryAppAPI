@@ -43,6 +43,8 @@ namespace GroceryAppAPI.Services
         /// <exception cref="InvalidRequestDataException">If any invalid user property is given.</exception>
         public void Update(int id, string password)
         {
+            Get(id);
+
             if (string.IsNullOrWhiteSpace(password))
             {
                 throw new InvalidRequestDataException("Password is either not given or invalid.");

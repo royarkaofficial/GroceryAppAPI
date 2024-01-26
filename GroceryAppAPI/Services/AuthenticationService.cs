@@ -37,6 +37,12 @@ namespace GroceryAppAPI.Services
             }
 
             var user = _userRepository.Get(request.Username);
+
+            if (user is null)
+            {
+                throw new EntityNotFoundException("User with the given username not found.");
+            }
+
             var actualHash = user.Password;
             var expectedHash = EncodingHelper.HashPassword(request.Password);
 

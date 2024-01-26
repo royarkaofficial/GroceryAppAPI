@@ -15,5 +15,14 @@
             :base($"{entityName} with id {id} is not found")
         {
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EntityNotFoundException"/> class.
+        /// </summary>
+        /// <param name="message">The message that describes the error.</param>
+        public EntityNotFoundException(string message)
+            :base(message)
+        {            
+        }
     }
 }

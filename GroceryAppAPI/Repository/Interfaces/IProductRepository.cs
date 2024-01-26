@@ -39,5 +39,11 @@ namespace GroceryAppAPI.Repository.Interfaces
         /// </summary>
         /// <param name="id">The identifier.</param>
         public void Delete(int id);
+
+        /// <summary>
+        /// Updates the status of a specified product
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        public void UpdateStatus(int id);
     }
 }

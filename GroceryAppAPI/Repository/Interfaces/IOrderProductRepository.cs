@@ -20,5 +20,11 @@ namespace GroceryAppAPI.Repository.Interfaces
         /// <param name="orderProduct">The order product.</param>
         /// <returns>The newly inserted identifier.</returns>
         public int Add(OrderProduct orderProduct);
+
+        /// <summary>
+        /// Deletes the order product mapping for specified order.
+        /// </summary>
+        /// <param name="orderId">The order identifier.</param>
+        public void Delete(int orderId);
     }
 }
