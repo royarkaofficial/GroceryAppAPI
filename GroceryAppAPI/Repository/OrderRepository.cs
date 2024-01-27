@@ -6,10 +6,10 @@ using Microsoft.Extensions.Options;
 namespace GroceryAppAPI.Repository
 {
     /// <summary>
-    /// Implements database utilities for order entity.
+    /// Implements database utilities for <see cref="Order"/> entity.
     /// </summary>
-    /// <seealso cref="GroceryAppAPI.Repository.BaseRepository&lt;GroceryAppAPI.Models.Order&gt;" />
-    /// <seealso cref="GroceryAppAPI.Repository.Interfaces.IOrderRepository" />
+    /// <seealso cref="BaseRepository{Order}" />
+    /// <seealso cref="IOrderRepository" />
     public class OrderRepository : BaseRepository<Order>, IOrderRepository
     {
         /// <summary>
@@ -39,7 +39,7 @@ namespace GroceryAppAPI.Repository
                                    WHERE [Id] = @Id";
             var parameters = new { Id = id };
 
-            Execute(query, parameters);
+            Delete(query, parameters);
         }
 
         /// <inheritdoc/>
@@ -62,7 +62,7 @@ namespace GroceryAppAPI.Repository
                                    WHERE [Id] = @Id";
             var parameters = new {Id = id, PaymentId = paymentId };
 
-            Execute(query, parameters);
+            Update(query, parameters);
         }
     }
 }

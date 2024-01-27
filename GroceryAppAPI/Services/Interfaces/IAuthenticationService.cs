@@ -8,7 +8,7 @@ namespace GroceryAppAPI.Services.Interfaces
     public interface IAuthenticationService
     {
         /// <summary>
-        /// Does the login functionality for a specific user.
+        /// Does the login functionality for a specified user.
         /// </summary>
         /// <param name="loginRequest">The login request.</param>
         public void Login(LoginRequest loginRequest);

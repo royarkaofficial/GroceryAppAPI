@@ -6,10 +6,10 @@ using Microsoft.Extensions.Options;
 namespace GroceryAppAPI.Repository
 {
     /// <summary>
-    /// Implements database utilities for payment entity.
+    /// Implements database utilities for <see cref="Payment"/> entity.
     /// </summary>
-    /// <seealso cref="GroceryAppAPI.Repository.BaseRepository&lt;GroceryAppAPI.Models.Payment&gt;" />
-    /// <seealso cref="GroceryAppAPI.Repository.Interfaces.IPaymentRepository" />
+    /// <seealso cref="BaseRepository{Payment}" />
+    /// <seealso cref="IPaymentRepository" />
     public class PaymentRepository : BaseRepository<Payment>, IPaymentRepository
     {
         /// <summary>

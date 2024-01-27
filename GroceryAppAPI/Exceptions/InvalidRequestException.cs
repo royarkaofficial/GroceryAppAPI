@@ -1,7 +1,7 @@
 ﻿namespace GroceryAppAPI.Exceptions
 {
     /// <summary>
-    /// Represents an error which occurs when a service is requested with invalid credentials.
+    /// Represents an error which occurs when a service is requested with invalid request data.
     /// </summary>
     /// <seealso cref="System.Exception" />
     public class InvalidRequestException : Exception

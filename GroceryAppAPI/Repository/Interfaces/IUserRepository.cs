@@ -3,7 +3,7 @@
 namespace GroceryAppAPI.Repository.Interfaces
 {
     /// <summary>
-    /// Abstracts database utilities for user entity.
+    /// Abstracts database utilities for <see cref="User"/> entity.
     /// </summary>
     public interface IUserRepository
     {

@@ -6,26 +6,30 @@ using Microsoft.Extensions.Options;
 namespace GroceryAppAPI.Repository
 {
     /// <summary>
-    /// Implements database operations for cart product mapping.
+    /// Implements database operations for cart product mapping (represented by <see cref="CartProduct"/>).
     /// </summary>
-    /// <seealso cref="GroceryAppAPI.Repository.BaseRepository&lt;GroceryAppAPI.Models.DbModels.CartProduct&gt;" />
-    /// <seealso cref="GroceryAppAPI.Repository.Interfaces.ICartProductRepository" />
+    /// <seealso cref="BaseRepository{CartProduct}" />
+    /// <seealso cref="ICartProductRepository" />
     public class CartProductRepository : BaseRepository<CartProduct>, ICartProductRepository
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CartProductRepository"/> class.
+        /// </summary>
+        /// <param name="connectionString">The connection string.</param>
         public CartProductRepository(IOptions<ConnectionString> connectionString)
             : base(connectionString.Value.DefaultConnection)
         {
         }
 
         /// <inheritdoc/>
-        public void Delete(int id, int productId)
+        public void Delete(int cartId, int productId)
         {
             const string query = @"DELETE FROM [Carts_Products] 
-                                   WHERE [CartId] = @Id
+                                   WHERE [CartId] = @CartId
                                    AND [ProductId] = @ProductId";
-            var parameters = new { Id = id, ProductId = productId };
+            var parameters = new { CartId = cartId, ProductId = productId };
 
-            Execute(query, parameters);
+            Update(query, parameters);
         }
 
         /// <inheritdoc/>
@@ -50,13 +54,13 @@ namespace GroceryAppAPI.Repository
         }
 
         /// <inheritdoc/>
-        public void Delete(int id)
+        public void Delete(int cartId)
         {
             const string query = @"DELETE FROM [Carts_Products]
                                    WHERE [CartId] = @CartId";
-            var parameters = new { CartId = id };
+            var parameters = new { CartId = cartId };
 
-            Execute(query, parameters);
+            Delete(query, parameters);
         }
     }
 }

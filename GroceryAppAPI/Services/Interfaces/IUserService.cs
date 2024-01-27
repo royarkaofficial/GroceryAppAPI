@@ -8,14 +8,14 @@ namespace GroceryAppAPI.Services.Interfaces
     public interface IUserService
     {
         /// <summary>
-        /// Gets a specific user.
+        /// Gets a specified user.
         /// </summary>
         /// <param name="id">The identifier.</param>
-        /// <returns>A specific user.</returns>
+        /// <returns>A specified user.</returns>
         public User Get(int id);
 
         /// <summary>
-        /// Updates a specific user.
+        /// Updates a specified user.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <param name="password">The password.</param>

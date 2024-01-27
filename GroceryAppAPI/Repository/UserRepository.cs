@@ -6,10 +6,10 @@ using Microsoft.Extensions.Options;
 namespace GroceryAppAPI.Repository
 {
     /// <summary>
-    /// Implements database utilities for user entity.
+    /// Implements database utilities for <see cref="User"/> entity.
     /// </summary>
-    /// <seealso cref="GroceryAppAPI.Repository.BaseRepository&lt;GroceryAppAPI.Models.User&gt;" />
-    /// <seealso cref="GroceryAppAPI.Repository.Interfaces.IUserRepository" />
+    /// <seealso cref="BaseRepository{User}" />
+    /// <seealso cref="IUserRepository" />
     public class UserRepository : BaseRepository<User>, IUserRepository
     {
         /// <summary>
@@ -30,7 +30,7 @@ namespace GroceryAppAPI.Repository
                                    WHERE [Id] = @Id";
             var parameters = new { Id = id };
 
-            return GetAll(query, parameters).FirstOrDefault();
+            return Get(query, parameters);
         }
 
         /// <inheritdoc/>
@@ -52,7 +52,7 @@ namespace GroceryAppAPI.Repository
                                    WHERE [Id] = @Id";
             var parameters = new { Id = id, Password =  password };
 
-            Execute(query, parameters);
+            Update(query, parameters);
         }
 
         /// <inheritdoc/>

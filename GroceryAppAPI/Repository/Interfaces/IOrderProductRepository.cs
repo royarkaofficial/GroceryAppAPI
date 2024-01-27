@@ -3,7 +3,7 @@
 namespace GroceryAppAPI.Repository.Interfaces
 {
     /// <summary>
-    /// Abstracts database utilities for order product mapping.
+    /// Abstracts database utilities for order product mapping (represented by <see cref="OrderProduct"/>).
     /// </summary>
     public interface IOrderProductRepository
     {
@@ -22,7 +22,7 @@ namespace GroceryAppAPI.Repository.Interfaces
         public int Add(OrderProduct orderProduct);
 
         /// <summary>
-        /// Deletes the order product mapping for specified order.
+        /// Deletes all order product mappings for a specified order.
         /// </summary>
         /// <param name="orderId">The order identifier.</param>
         public void Delete(int orderId);

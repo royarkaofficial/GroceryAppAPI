@@ -3,7 +3,7 @@
 namespace GroceryAppAPI.Repository.Interfaces
 {
     /// <summary>
-    /// Abstracts database utilities for cart product mapping.
+    /// Abstracts database utilities for cart product mapping (represented by <see cref="CartProduct"/>).
     /// </summary>
     public interface ICartProductRepository
     {
@@ -23,14 +23,14 @@ namespace GroceryAppAPI.Repository.Interfaces
         /// <summary>
         /// Deletes the specified cart product mapping.
         /// </summary>
-        /// <param name="id">The identifier.</param>
+        /// <param name="cartId">The cart identifier.</param>
         /// <param name="productId">The product identifier.</param>
-        public void Delete(int id, int productId);
+        public void Delete(int cartId, int productId);
 
         /// <summary>
-        /// Deletes all product mappings for a specified cart.
+        /// Deletes all cart product mappings for a specified cart.
         /// </summary>
-        /// <param name="id">The identifier.</param>
-        public void Delete(int id);
+        /// <param name="cartId">The cart identifier.</param>
+        public void Delete(int cartId);
     }
 }

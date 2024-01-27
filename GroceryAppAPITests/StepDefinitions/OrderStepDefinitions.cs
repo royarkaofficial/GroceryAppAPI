@@ -3,6 +3,10 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace GroceryAppAPITests.StepDefinitions
 {
+    /// <summary>
+    /// Defines step definitions for Order feature.
+    /// </summary>
+    /// <seealso cref="BaseStepDefinitions" />
     [Binding]
     [Scope(Feature = "Order")]
     public class OrderStepDefinitions : BaseStepDefinitions
@@ -26,10 +30,10 @@ namespace GroceryAppAPITests.StepDefinitions
         {
         }
 
+        /// <summary>
+        /// Prepares and sets mocks.
+        /// </summary>
         [BeforeScenario]
-        public void SetMocks()
-        {
-            OrderMock.SetMocks();
-        }
+        public void SetMocks() => OrderMock.SetMocks();
     }
 }

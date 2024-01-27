@@ -7,10 +7,10 @@ using Microsoft.Extensions.Options;
 namespace GroceryAppAPI.Repository
 {
     /// <summary>
-    /// Implements database utilities for product enttity.
+    /// Implements database utilities for <see cref="Product"/> enttity.
     /// </summary>
-    /// <seealso cref="GroceryAppAPI.Repository.BaseRepository&lt;GroceryAppAPI.Models.Product&gt;" />
-    /// <seealso cref="GroceryAppAPI.Repository.Interfaces.IProductRepository" />
+    /// <seealso cref="BaseRepository{Product}" />
+    /// <seealso cref="IProductRepository" />
     public class ProductRepository : BaseRepository<Product>, IProductRepository
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace GroceryAppAPI.Repository
                                    WHERE [Id] = @Id";
             var parameters = new { Id = id };
 
-            Execute(query, parameters);
+            Delete(query, parameters);
         }
 
         /// <inheritdoc/>
@@ -58,7 +58,7 @@ namespace GroceryAppAPI.Repository
                                    WHERE [Id] = @Id";
             var parameters = new { Id = id };
 
-            return GetAll(query, parameters).FirstOrDefault();
+            return Get(query, parameters);
         }
 
         /// <inheritdoc/>
@@ -79,7 +79,7 @@ namespace GroceryAppAPI.Repository
                                    [Stock] = @Stock,
                                    [ImageUrl] = @ImageUrl";
 
-            Execute(query, product);
+            Update(query, product);
         }
 
         /// <inheritdoc/>
@@ -90,7 +90,7 @@ namespace GroceryAppAPI.Repository
                                    WHERE [Id] = @Id";
             var parameters = new { Id = id, Status = (int)ProductStatus.Removed };
 
-            Execute(query, parameters);
+            Update(query, parameters);
         }
     }
 }

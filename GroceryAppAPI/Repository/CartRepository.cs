@@ -6,10 +6,10 @@ using Microsoft.Extensions.Options;
 namespace GroceryAppAPI.Repository
 {
     /// <summary>
-    /// Implements database utilities for cart entity.
+    /// Implements database utilities for <see cref="Cart"/> entity.
     /// </summary>
-    /// <seealso cref="GroceryAppAPI.Repository.BaseRepository&lt;GroceryAppAPI.Models.Cart&gt;" />
-    /// <seealso cref="GroceryAppAPI.Repository.Interfaces.ICartRepository" />
+    /// <seealso cref="BaseRepository{Cart}" />
+    /// <seealso cref="ICartRepository" />
     public class CartRepository : BaseRepository<Cart>, ICartRepository
     {
         /// <summary>
@@ -39,7 +39,7 @@ namespace GroceryAppAPI.Repository
                                    WHERE [Id] = @Id";
             var parameters = new { Id = id };
 
-            Execute(query, parameters);
+            Update(query, parameters);
         }
 
         /// <inheritdoc/>

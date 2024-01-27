@@ -1,10 +1,12 @@
 using GroceryAppAPITests.Mocks;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using TechTalk.SpecFlow;
 
 namespace GroceryAppAPITests.StepDefinitions
 {
+    /// <summary>
+    /// Defines step definitions for User feature.
+    /// </summary>
+    /// <seealso cref="BaseStepDefinitions" />
     [Binding]
     [Scope(Feature ="User")]
     public class UserStepDefinitions : BaseStepDefinitions
@@ -24,10 +26,10 @@ namespace GroceryAppAPITests.StepDefinitions
         {
         }
 
+        /// <summary>
+        /// Prepares and sets mocks.
+        /// </summary>
         [BeforeScenario]
-        public void SetMocks()
-        {
-            UserMock.SetMocks();
-        }
+        public void SetMocks() => UserMock.SetMocks();
     }
 }

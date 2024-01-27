@@ -6,10 +6,10 @@ using Microsoft.Extensions.Options;
 namespace GroceryAppAPI.Repository
 {
     /// <summary>
-    /// Implements database utilities for order product mapping.
+    /// Implements database utilities for order product mapping (represented by <see cref="OrderProduct"/>).
     /// </summary>
-    /// <seealso cref="GroceryAppAPI.Repository.BaseRepository&lt;GroceryAppAPI.Models.DbModels.OrderProduct&gt;" />
-    /// <seealso cref="GroceryAppAPI.Repository.Interfaces.IOrderProductRepository" />
+    /// <seealso cref="BaseRepository{OrderProduct}" />
+    /// <seealso cref="IOrderProductRepository" />
     public class OrderProductRepository : BaseRepository<OrderProduct>, IOrderProductRepository
     {
         /// <summary>
@@ -49,7 +49,7 @@ namespace GroceryAppAPI.Repository
                                    WHERE [OrderId] = @OrderId";
             var parameters = new {OrderId = orderId};
 
-            Execute(query, parameters);
+            Delete(query, parameters);
         }
     }
 }

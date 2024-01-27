@@ -1,12 +1,13 @@
 ﻿using GroceryAppAPI.Models;
 using GroceryAppAPI.Repository.Interfaces;
+using GroceryAppAPI.Services;
 using Moq;
 using Newtonsoft.Json;
 
 namespace GroceryAppAPITests.Mocks
 {
     /// <summary>
-    /// Mocks the repositories used by <see cref=""/>
+    /// Mocks the repositories used by <see cref="AuthenticationService"/>.
     /// </summary>
     public static class AuthenticationMock
     {

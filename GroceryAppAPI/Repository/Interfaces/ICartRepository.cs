@@ -3,7 +3,7 @@
 namespace GroceryAppAPI.Repository.Interfaces
 {
     /// <summary>
-    /// Abstract database utilities for cart entity.
+    /// Abstract database utilities for <see cref="Cart"/> entity.
     /// </summary>
     public interface ICartRepository
     {

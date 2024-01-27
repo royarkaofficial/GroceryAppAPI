@@ -14,7 +14,7 @@ namespace GroceryAppAPI.Services.Interfaces
         public IEnumerable<Product> GetAll();
 
         /// <summary>
-        /// Adds a specific product.
+        /// Adds a specified product.
         /// </summary>
         /// <param name="product">The product.</param>
         /// <returns>The newly inserted identifier.</returns>

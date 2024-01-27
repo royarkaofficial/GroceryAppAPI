@@ -3,6 +3,10 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace GroceryAppAPITests.StepDefinitions
 {
+    /// <summary>
+    /// Defines step definitions for Cart feature.
+    /// </summary>
+    /// <seealso cref="BaseStepDefinitions" />
     [Binding]
     [Scope(Feature = "Cart")]
     public class CartStepDefinitions : BaseStepDefinitions
@@ -25,10 +29,10 @@ namespace GroceryAppAPITests.StepDefinitions
         {
         }
 
+        /// <summary>
+        /// Prepares and sets mocks.
+        /// </summary>
         [BeforeScenario]
-        public void SetMocks()
-        {
-            CartMock.SetMocks();
-        }
+        public void SetMocks() => CartMock.SetMocks();
     }
 }

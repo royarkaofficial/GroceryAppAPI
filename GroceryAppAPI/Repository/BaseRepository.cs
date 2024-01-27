@@ -21,7 +21,7 @@ namespace GroceryAppAPI.Repository
         }
 
         /// <summary>
-        /// Gets all the entities of a specific type.
+        /// Gets all the entities of a specified type.
         /// </summary>
         /// <param name="query">The query.</param>
         /// <param name="parameters">The parameters. Default value is <c>null</c>.</param>
@@ -34,9 +34,19 @@ namespace GroceryAppAPI.Repository
             }
         }
 
+        /// <summary>
+        /// Gets a specified entity of a particular type.
+        /// </summary>
+        /// <param name="query">The query.</param>
+        /// <param name="parameters">The parameters.</param>
+        /// <returns>A specified entity.</returns>
+        public T Get(string query, object parameters)
+        {
+            return GetAll(query, parameters).FirstOrDefault();
+        }
 
         /// <summary>
-        /// Adds a specific entity to the table.
+        /// Adds a specified entity.
         /// </summary>
         /// <param name="query">The query.</param>
         /// <param name="parameters">The parameters.</param>
@@ -50,15 +60,28 @@ namespace GroceryAppAPI.Repository
         }
 
         /// <summary>
-        /// Executes the specified query.
+        /// Updates a specified entity.
         /// </summary>
         /// <param name="query">The query.</param>
         /// <param name="parameters">The parameters.</param>
-        public void Execute(string query, object parameters)
+        public void Update(string query, object parameters)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-                connection.QueryFirstOrDefault<int>(query, parameters);
+                connection.Execute(query, parameters);
+            }
+        }
+
+        /// <summary>
+        /// Deletes a specified entity.
+        /// </summary>
+        /// <param name="query">The query.</param>
+        /// <param name="parameters">The parameters.</param>
+        public void Delete(string query, object parameters)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                connection.Execute(query, parameters);
             }
         }
     }

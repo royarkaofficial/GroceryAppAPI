@@ -3,7 +3,7 @@
 namespace GroceryAppAPI.Repository.Interfaces
 {
     /// <summary>
-    /// Abstracts database utilities for order entity.
+    /// Abstracts database utilities for <see cref="Order"/> entity.
     /// </summary>
     public interface IOrderRepository
     {
@@ -29,7 +29,7 @@ namespace GroceryAppAPI.Repository.Interfaces
         public void Update(int id, int paymentId);
 
         /// <summary>
-        /// Deletes the specified payment.
+        /// Deletes the specified order.
         /// </summary>
         /// <param name="id">The identifier.</param>
         public void Delete(int id);

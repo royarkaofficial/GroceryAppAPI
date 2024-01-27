@@ -3,6 +3,10 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace GroceryAppAPITests.StepDefinitions
 {
+    /// <summary>
+    /// Defines step definitions for Authentication feature.
+    /// </summary>
+    /// <seealso cref="BaseStepDefinitions" />
     [Binding]
     [Scope(Feature = "Authentication")]
     public class AuthenticationStepDefinitions : BaseStepDefinitions
@@ -22,10 +26,10 @@ namespace GroceryAppAPITests.StepDefinitions
         {
         }
 
+        /// <summary>
+        /// Prepares and sets mocks.
+        /// </summary>
         [BeforeScenario]
-        public void SetupMock()
-        {
-            AuthenticationMock.SetMocks();
-        }
+        public void SetMocks() => AuthenticationMock.SetMocks();
     }
 }

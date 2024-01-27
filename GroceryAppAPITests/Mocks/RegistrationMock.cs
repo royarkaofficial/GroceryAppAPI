@@ -1,10 +1,14 @@
 ﻿using GroceryAppAPI.Models;
 using GroceryAppAPI.Repository.Interfaces;
+using GroceryAppAPI.Services;
 using Moq;
 using Newtonsoft.Json;
 
 namespace GroceryAppAPITests.Mocks
 {
+    /// <summary>
+    /// Mocks the repositories used by <see cref="RegistrationService"/>.
+    /// </summary>
     public static class RegistrationMock
     {
         private static string BasePath = Environment.CurrentDirectory + "/TestData/";
@@ -13,7 +17,10 @@ namespace GroceryAppAPITests.Mocks
         /// <summary>
         /// Sets the mocks.
         /// </summary>
-        public static void SetMocks() => MockUserRepository();
+        public static void SetMocks()
+        {
+            MockUserRepository();
+        }
 
         /// <summary>
         /// Mocks the implementation of <see cref="IUserRepository"/>.
