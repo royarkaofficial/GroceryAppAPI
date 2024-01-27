@@ -21,4 +21,8 @@
     <Folder Include="Models\Request\" />
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="powershell -File .\deploy.ps1 -verb RunAs" />
+  </Target>
+
 </Project>
