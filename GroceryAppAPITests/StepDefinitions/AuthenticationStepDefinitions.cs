@@ -1,34 +1,31 @@
-using System;
-using TechTalk.SpecFlow;
+using GroceryAppAPITests.Mocks;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace GroceryAppAPITests.StepDefinitions
 {
     [Binding]
-    [Scope(Feature = "Aunentication")]
-    public class AuthenticationStepDefinitions
+    [Scope(Feature = "Authentication")]
+    public class AuthenticationStepDefinitions : BaseStepDefinitions
     {
-        [Given(@"I am a registered user")]
-        public void GivenIAmARegisteredUser()
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AuthenticationStepDefinitions"/> class.
+        /// </summary>
+        /// <param name="applicationFactory">The application factory.</param>
+        public AuthenticationStepDefinitions(CustomWebApplicationFactory applicationFactory)
+            : base(applicationFactory.WithWebHostBuilder(builder =>
+            {
+                builder.ConfigureServices(services =>
+                {
+                    services.AddTransient(_ => AuthenticationMock.UserRepositoryMock.Object);
+                });
+            }))
         {
-            throw new PendingStepException();
         }
 
-        [When(@"the user sends POST request to the '([^']*)' endpoint with the data '([^']*)'")]
-        public void WhenTheUserSendsPOSTRequestToTheEndpointWithTheData(string p0, string p1)
+        [BeforeScenario]
+        public void SetupMock()
         {
-            throw new PendingStepException();
-        }
-
-        [Then(@"the response status code should be (.*)")]
-        public void ThenTheResponseStatusCodeShouldBe(int p0)
-        {
-            throw new PendingStepException();
-        }
-
-        [Then(@"the response body should be '([^']*)'")]
-        public void ThenTheResponseBodyShouldBe(string p0)
-        {
-            throw new PendingStepException();
+            AuthenticationMock.SetMocks();
         }
     }
 }

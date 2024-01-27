@@ -1,34 +1,35 @@
-using System;
-using TechTalk.SpecFlow;
+using GroceryAppAPITests.Mocks;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace GroceryAppAPITests.StepDefinitions
 {
     [Binding]
     [Scope(Feature = "Order")]
-    public class OrderStepDefinitions
+    public class OrderStepDefinitions : BaseStepDefinitions
     {
-        [When(@"the user sends GET request to the '([^']*)' endpoint")]
-        public void WhenTheUserSendsGETRequestToTheEndpoint(string p0)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OrderStepDefinitions"/> class.
+        /// </summary>
+        /// <param name="applicationFactory">The application factory.</param>
+        public OrderStepDefinitions(CustomWebApplicationFactory applicationFactory)
+            : base(applicationFactory.WithWebHostBuilder(builder =>
+            {
+                builder.ConfigureServices(services =>
+                {
+                    services.AddTransient(_ => OrderMock.OrderRepositoryMock.Object);
+                    services.AddTransient(_ => OrderMock.UserRepositoryMock.Object);
+                    services.AddTransient(_ => OrderMock.PaymentRepositoryMock.Object);
+                    services.AddTransient(_ => OrderMock.ProductRepositoryMock.Object);
+                    services.AddTransient(_ => OrderMock.OrderProductRepositoryMock.Object);
+                });
+            }))
         {
-            throw new PendingStepException();
         }
 
-        [Then(@"the response status code should be (.*)")]
-        public void ThenTheResponseStatusCodeShouldBe(int p0)
+        [BeforeScenario]
+        public void SetMocks()
         {
-            throw new PendingStepException();
-        }
-
-        [Then(@"the response body should be '([^']*)'")]
-        public void ThenTheResponseBodyShouldBe(string p0)
-        {
-            throw new PendingStepException();
-        }
-
-        [When(@"the user sends POST request to the '([^']*)' endpoint with the data '([^']*)'")]
-        public void WhenTheUserSendsPOSTRequestToTheEndpointWithTheData(string p0, string p1)
-        {
-            throw new PendingStepException();
+            OrderMock.SetMocks();
         }
     }
 }

@@ -1,42 +1,33 @@
 using GroceryAppAPI.Configurations;
-using GroceryAppAPI.Repository;
 using GroceryAppAPI.Repository.Interfaces;
-using GroceryAppAPI.Services;
+using GroceryAppAPI.Repository;
 using GroceryAppAPI.Services.Interfaces;
+using GroceryAppAPI.Services;
 
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
-builder.Services.Configure<ConnectionString>(builder.Configuration.GetSection("AppSettings").GetSection("ConnectionString"));
-builder.Services.AddTransient<ICartProductRepository, CartProductRepository>();
-builder.Services.AddTransient<IOrderProductRepository, OrderProductRepository>();
-builder.Services.AddTransient<ICartRepository, CartRepository>();
-builder.Services.AddTransient<IOrderRepository, OrderRepository>();
-builder.Services.AddTransient<IPaymentRepository, PaymentRepository>();
-builder.Services.AddTransient<IProductRepository, ProductRepository>();
-builder.Services.AddTransient<IUserRepository, UserRepository>();
-builder.Services.AddTransient<IPaymentService, PaymentService>();
-builder.Services.AddTransient<IUserService, UserService>();
-builder.Services.AddTransient<IRegistrationService, RegistrationService>();
-builder.Services.AddTransient<IAuthenticationService, AuthenticationService>();
-builder.Services.AddTransient<IProductService, ProductService>();
-builder.Services.AddTransient<ICartService, CartService>();
-builder.Services.AddTransient<IOrderService, OrderService>();
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+namespace GroceryAppAPI
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    /// <summary>
+    /// Initializes the API project.
+    /// </summary>
+    public class Program
+    {
+        /// <summary>
+        /// Defines the entry point of the application.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
+        public static void Main(string[] args)
+        {
+            CreateHostBuilder(args).Build().Run();
+        }
+
+        /// <summary>
+        /// Creates the host builder.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
+        /// <returns>A host builder object.</returns>
+        public static IHostBuilder CreateHostBuilder(string[] args)
+        {
+            return Host.CreateDefaultBuilder(args).ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>());
+        }
+    }
 }
-
-app.MapControllers();
-
-app.Run();

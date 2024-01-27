@@ -115,15 +115,15 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 10
-testRunner.When("the user sends POST request to the \'registration\' endpoint with the data \'{\"First" +
-                        "Name\": \"Arkadeep\", \"LastName\": \"Roy\", \"Email\": \"roy@gmail.com\", \"Password\": \"Ark" +
-                        "a123\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("the user sends POST request to the \'registration\' endpoint with the data \'{\"first" +
+                        "Name\":\"Arkadeep\",\"lastName\":\"Roy\",\"email\":\"roy@gmail.com\",\"password\":\"Arka123\"}\'" +
+                        "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 11
 testRunner.Then("the response status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 12
-testRunner.And("the response body should be \'{\"Message\": \"User registered successfully.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the response body should be \'{\"message\":\"User registered successfully.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -162,16 +162,15 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 16
-testRunner.When("the user sends POST request to the \'registration\' endpoint with the data \'{\"First" +
-                        "Name\": \" \", \"LastName\": \"Roy\", \"Email\": \"roy@gmail.com\", \"Password\": \"Arka123\"}\'" +
-                        "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("the user sends POST request to the \'registration\' endpoint with the data \'{\"first" +
+                        "Name\":\" \",\"lastName\":\"Roy\",\"email\":\"roy1@gmail.com\",\"password\":\"Arka123\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 17
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 18
-testRunner.And("the response body should be \'{\"Message\": \"FirstName is either not given or invali" +
-                        "d.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the response body should be \'{\"message\":\"FirstName is either not given or invalid" +
+                        ".\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -210,16 +209,15 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 22
-testRunner.When("the user sends POST request to the \'registration\' endpoint with the data \'{\"First" +
-                        "Name\": \"Arkadeep\", \"LastName\": \" \", \"Email\": \"roy@gmail.com\", \"Password\": \"Arka1" +
-                        "23\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("the user sends POST request to the \'registration\' endpoint with the data \'{\"first" +
+                        "Name\":\"Arkadeep\",\"lastName\":\" \",\"email\":\"roy2@gmail.com\",\"password\":\"Arka123\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 23
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 24
-testRunner.And("the response body should be \'{\"Message\": \"LastName is either not given or invalid" +
-                        ".\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the response body should be \'{\"message\":\"LastName is either not given or invalid." +
+                        "\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -258,15 +256,15 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 28
-testRunner.When("the user sends POST request to the \'registration\' endpoint with the data \'{\"First" +
-                        "Name\": \"Arkadeep\", \"LastName\": \"Roy\", \"Email\": \" \", \"Password\": \"Arka123\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("the user sends POST request to the \'registration\' endpoint with the data \'{\"first" +
+                        "Name\":\"Arkadeep\",\"lastName\":\"Roy\",\"email\":\" \",\"password\":\"Arka123\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 29
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 30
-testRunner.And("the response body should be \'{\"Message\": \"Email is either not given or invalid.\"}" +
-                        "\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the response body should be \'{\"message\":\"Email is either not given or invalid.\"}\'" +
+                        "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -305,16 +303,15 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 34
-testRunner.When("the user sends POST request to the \'registration\' endpoint with the data \'{\"First" +
-                        "Name\": \"Arkadeep\", \"LastName\": \"Roy\", \"Email\": \"roy@gmail.com\", \"Password\": \"\"}\'" +
-                        "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("the user sends POST request to the \'registration\' endpoint with the data \'{\"first" +
+                        "Name\":\"Arkadeep\",\"lastName\":\"Roy\",\"email\":\"roy3@gmail.com\",\"password\":\"\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 35
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 36
-testRunner.And("the response body should be \'{\"Message\": \"Password is either not given or invalid" +
-                        ".\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the response body should be \'{\"message\":\"Password is either not given or invalid." +
+                        "\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -74,6 +74,15 @@ namespace GroceryAppAPITests.Features
             testRunner.CollectScenarioErrors();
         }
         
+        public virtual void FeatureBackground()
+        {
+#line 7
+#line hidden
+#line 8
+testRunner.Given("I am a registered user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+        }
+        
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Order history retrieved successfully")]
         [NUnit.Framework.CategoryAttribute("order-history-retrived")]
@@ -83,7 +92,7 @@ namespace GroceryAppAPITests.Features
                     "order-history-retrived"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Order history retrieved successfully", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 8
+#line 11
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -103,16 +112,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 9
-testRunner.When("the user sends GET request to the \'orders?userId=1\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 7
+this.FeatureBackground();
 #line hidden
-#line 10
+#line 12
+testRunner.When("the user sends GET request to the \'users/1/orders\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 13
 testRunner.Then("the response status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 11
-testRunner.And("the response body should be \'[{\"Id\": 1, \"UserId\": 1, \"PaymentId\": 1, \"OrderedAt\":" +
-                        " \"2024-01-15\", \"ProductIds\": [1, 2]}, {\"Id\": 2, \"UserId\": 1, \"PaymentId\": 2, \"Or" +
-                        "deredAt\": \"2024-01-20\", \"ProductIds\": [3, 4]}]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 14
+testRunner.And("the response body should be \'[{\"userId\":1,\"paymentId\":1,\"orderedAt\":\"2024-01-15T0" +
+                        "0:00:00\",\"productIds\":[1,2],\"id\":1},{\"userId\":1,\"paymentId\":2,\"orderedAt\":\"2024-" +
+                        "01-20T00:00:00\",\"productIds\":[1],\"id\":2}]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -127,7 +139,7 @@ testRunner.And("the response body should be \'[{\"Id\": 1, \"UserId\": 1, \"Paym
                     "order-history-retrived-failed"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Order history retrieve failed due to user not found", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 14
+#line 17
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -147,14 +159,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 15
-testRunner.When("the user sends GET request to the \'orders?userId=7\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 7
+this.FeatureBackground();
 #line hidden
-#line 16
+#line 18
+testRunner.When("the user sends GET request to the \'users/7/orders\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 19
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 17
-testRunner.And("the response body should be \'{\"Message\": \"User with id 7 is not found.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 20
+testRunner.And("the response body should be \'{\"message\":\"User with id 7 is not found.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -169,7 +184,7 @@ testRunner.And("the response body should be \'{\"Message\": \"User with id 7 is 
                     "order-placed-successfully"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Order placed successfully", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 20
+#line 23
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -189,61 +204,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 21
-testRunner.When("the user sends POST request to the \'orders/payments\' endpoint with the data \'{\"Pa" +
-                        "yment\": {\"Amount\": 3000, \"PaymentType\": 1}, \"Order\": { \"UserId\": 1, \"ProductIds\"" +
-                        ": [1,2]}}\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 7
+this.FeatureBackground();
 #line hidden
-#line 22
+#line 24
+testRunner.When("the user sends POST request to the \'users/1/orders/payments\' endpoint with the da" +
+                        "ta \'{\"payment\":{\"amount\":3000,\"paymentType\":1},\"order\":{ \"userId\":1,\"productIds\"" +
+                        ":[1,2]}}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 25
 testRunner.Then("the response status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 23
-testRunner.And("the response body should be \'{\"OrderId\": 3, \"PaymentId\": 3}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Order placing failed due to payment failures")]
-        [NUnit.Framework.CategoryAttribute("order-placing-failed")]
-        public virtual void OrderPlacingFailedDueToPaymentFailures()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "order-placing-failed"};
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Order placing failed due to payment failures", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 26
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 27
-testRunner.When("the user sends POST request to the \'orders/payments\' endpoint with the data \'{\"Pa" +
-                        "yment\": {\"Amount\": 3000, \"PaymentType\": 1}, \"Order\": { \"UserId\": 1, \"ProductIds\"" +
-                        ": [1,2]}}\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 28
-testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 29
-testRunner.And("the response body should be \'{\"Message\": \"Payment request is either not given or " +
-                        "invalid.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the response body should be \'{\"orderId\":3,\"paymentId\":3}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -258,7 +231,7 @@ testRunner.And("the response body should be \'{\"Message\": \"Payment request is
                     "order-placing-failed"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Order placing failed due to user not found", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 32
+#line 29
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -278,16 +251,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 33
-testRunner.When("the user sends POST request to the \'orders/payments\' endpoint with the data \'{\"Pa" +
-                        "yment\": {\"Amount\": 3000, \"PaymentType\": 1}, \"Order\": { \"UserId\": 11, \"ProductIds" +
-                        "\": [1,2]}}\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 7
+this.FeatureBackground();
 #line hidden
-#line 34
+#line 30
+testRunner.When("the user sends POST request to the \'users/11/orders/payments\' endpoint with the d" +
+                        "ata \'{\"payment\":{\"amount\":3000,\"paymentType\":1},\"order\":{ \"userId\":11,\"productId" +
+                        "s\":[1,2]}}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 31
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 35
-testRunner.And("the response body should be \'{\"Message\": \"User with id 11 is not found.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 32
+testRunner.And("the response body should be \'{\"message\":\"User with id 11 is not found.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -302,7 +278,7 @@ testRunner.And("the response body should be \'{\"Message\": \"User with id 11 is
                     "order-placing-failed"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Order placing failed due to product not found", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 38
+#line 35
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -322,16 +298,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 39
-testRunner.When("the user sends POST request to the \'orders/payments\' endpoint with the data \'{\"Pa" +
-                        "yment\": {\"Amount\": 3000, \"PaymentType\": 1}, \"Order\": { \"UserId\": 1, \"ProductIds\"" +
-                        ": [0]}}\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 7
+this.FeatureBackground();
 #line hidden
-#line 40
+#line 36
+testRunner.When("the user sends POST request to the \'users/1/orders/payments\' endpoint with the da" +
+                        "ta \'{\"payment\":{\"amount\":3000,\"paymentType\":1},\"order\":{ \"userId\":1,\"productIds\"" +
+                        ":[0]}}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 37
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 41
-testRunner.And("the response body should be \'{\"Message\": \"Product with id 0 is not found.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 38
+testRunner.And("the response body should be \'{\"message\":\"Product with id 0 is not found.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -346,7 +325,7 @@ testRunner.And("the response body should be \'{\"Message\": \"Product with id 0 
                     "order-placing-failed"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Order placing failed due to no products are passed", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 44
+#line 41
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -366,17 +345,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 45
-testRunner.When("the user sends POST request to the \'orders/payments\' endpoint with the data \'{\"Pa" +
-                        "yment\": {\"Amount\": 3000, \"PaymentType\": 1}, \"Order\": { \"UserId\": 1, \"ProductIds\"" +
-                        ": []}}\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 7
+this.FeatureBackground();
 #line hidden
-#line 46
+#line 42
+testRunner.When("the user sends POST request to the \'users/1/orders/payments\' endpoint with the da" +
+                        "ta \'{\"payment\":{\"amount\":3000,\"paymentType\":1},\"order\":{ \"userId\":1,\"productIds\"" +
+                        ":[]}}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 43
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 47
-testRunner.And("the response body should be \'{\"Message\": \"ProductIds are either not given or inva" +
-                        "lid.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 44
+testRunner.And("the response body should be \'{\"message\":\"ProductIds are either not given or inval" +
+                        "id.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -391,7 +373,7 @@ testRunner.And("the response body should be \'{\"Message\": \"ProductIds are eit
                     "order-placing-failed"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Order placing failed due to invalid payment type", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 50
+#line 47
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -411,17 +393,20 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 51
-testRunner.When("the user sends POST request to the \'orders/payments\' endpoint with the data \'{\"Pa" +
-                        "yment\": {\"Amount\": 3000, \"PaymentType\": 10}, \"Order\": { \"UserId\": 11, \"ProductId" +
-                        "s\": [1, 2]}}\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 7
+this.FeatureBackground();
 #line hidden
-#line 52
+#line 48
+testRunner.When("the user sends POST request to the \'users/1/orders/payments\' endpoint with the da" +
+                        "ta \'{\"payment\":{\"amount\":3000,\"paymentType\":10},\"order\":{ \"userId\":1,\"productIds" +
+                        "\":[1, 2]}}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 49
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 53
-testRunner.And("the response body should be \'{\"Message\": \"PaymentType are either not given or inv" +
-                        "alid.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 50
+testRunner.And("the response body should be \'{\"message\":\"Payment failed for the order. Order cann" +
+                        "ot be placed. PaymentType is either not given or invalid.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -436,7 +421,7 @@ testRunner.And("the response body should be \'{\"Message\": \"PaymentType are ei
                     "order-placing-failed"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Order placing failed due to less payment amount", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 56
+#line 53
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -456,17 +441,21 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 57
-testRunner.When("the user sends POST request to the \'orders/payments\' endpoint with the data \'{\"Pa" +
-                        "yment\": {\"Amount\": 2000, \"PaymentType\": 10}, \"Order\": { \"UserId\": 11, \"ProductId" +
-                        "s\": [1, 2]}}\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 7
+this.FeatureBackground();
 #line hidden
-#line 58
+#line 54
+testRunner.When("the user sends POST request to the \'users/1/orders/payments\' endpoint with the da" +
+                        "ta \'{\"payment\":{\"amount\":2000,\"paymentType\":1},\"order\":{ \"userId\":1,\"productIds\"" +
+                        ":[1, 2]}}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 55
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 59
-testRunner.And("the response body should be \'{\"Message\": \"Payment amount is less than total amonu" +
-                        "t of the purchased items.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 56
+testRunner.And("the response body should be \'{\"message\":\"Payment failed for the order. Order cann" +
+                        "ot be placed. Payment amount is less than total amonut of the purchased items.\"}" +
+                        "\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

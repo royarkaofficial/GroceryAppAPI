@@ -116,13 +116,13 @@ this.FeatureBackground();
 #line hidden
 #line 10
 testRunner.When("the user sends POST request to the \'authentication/login\' endpoint with the data " +
-                        "\'{\"Username\": \"testuser@app.com\", \"Password\": \"test123\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+                        "\'{\"username\":\"testuser@app.com\",\"password\":\"test123\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 11
 testRunner.Then("the response status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 12
-testRunner.And("the response body should be \'{\"Message\": \"User logged in successsfully.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the response body should be \'{\"message\":\"User logged in successfully.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -162,14 +162,14 @@ this.FeatureBackground();
 #line hidden
 #line 16
 testRunner.When("the user sends POST request to the \'authentication/login\' endpoint with the data " +
-                        "\'{\"Username\": \"xyz@app.com\", \"Password\": \"test123\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+                        "\'{\"username\":\"xyz@app.com\",\"password\":\"test123\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 17
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 18
-testRunner.And("the response body should be \'{\"Message\": \"User with the given username not found." +
-                        "\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the response body should be \'{\"message\":\"User with the given username not found.\"" +
+                        "}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -209,13 +209,13 @@ this.FeatureBackground();
 #line hidden
 #line 22
 testRunner.When("the user sends POST request to the \'authentication/login\' endpoint with the data " +
-                        "\'{\"Username\": \"testuser@app.com\", \"Password\": \"test456\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+                        "\'{\"username\":\"testuser@app.com\",\"password\":\"test456\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 23
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 24
-testRunner.And("the response body should be \'{\"Message\": \"Password is incorrect.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the response body should be \'{\"message\":\"Password is incorrect.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -255,14 +255,14 @@ this.FeatureBackground();
 #line hidden
 #line 28
 testRunner.When("the user sends POST request to the \'authentication/login\' endpoint with the data " +
-                        "\'{\"Username\": \"\", \"Password\": \"test456\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+                        "\'{\"username\":\"\",\"password\":\"test456\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 29
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 30
-testRunner.And("the response body should be \'{\"Message\": \"Username is either not given or invalid" +
-                        ".\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the response body should be \'{\"message\":\"Username is either not given or invalid." +
+                        "\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -302,14 +302,14 @@ this.FeatureBackground();
 #line hidden
 #line 34
 testRunner.When("the user sends POST request to the \'authentication/login\' endpoint with the data " +
-                        "\'{\"Username\": \"testuser@app.com\", \"Password\": \"\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+                        "\'{\"username\":\"testuser@app.com\",\"password\":\"\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 35
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 36
-testRunner.And("the response body should be \'{\"Message\": \"Password is either not given or invalid" +
-                        ".\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the response body should be \'{\"message\":\"Password is either not given or invalid." +
+                        "\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

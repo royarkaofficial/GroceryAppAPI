@@ -74,6 +74,15 @@ namespace GroceryAppAPITests.Features
             testRunner.CollectScenarioErrors();
         }
         
+        public virtual void FeatureBackground()
+        {
+#line 8
+#line hidden
+#line 9
+testRunner.Given("I am a registered user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+        }
+        
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Cart retrieved successfully")]
         [NUnit.Framework.CategoryAttribute("cart-retrived-successfully")]
@@ -83,7 +92,7 @@ namespace GroceryAppAPITests.Features
                     "cart-retrived-successfully"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cart retrieved successfully", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 9
+#line 12
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -103,14 +112,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 10
+#line 8
+this.FeatureBackground();
+#line hidden
+#line 13
 testRunner.When("the user sends GET request to the \'users/1/carts\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 11
+#line 14
 testRunner.Then("the response status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 12
-testRunner.And("the response body should be \'{\"Id\": 1, \"UserId\": 1, \"ProductIds\": [1,2]}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 15
+testRunner.And("the response body should be \'{\"userId\":1,\"productIds\":[1,2],\"id\":1}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -125,7 +137,7 @@ testRunner.And("the response body should be \'{\"Id\": 1, \"UserId\": 1, \"Produ
                     "no-cart"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User does not have any cart", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 15
+#line 18
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -145,14 +157,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 16
+#line 8
+this.FeatureBackground();
+#line hidden
+#line 19
 testRunner.When("the user sends GET request to the \'users/2/carts\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 17
+#line 20
 testRunner.Then("the response status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 18
-testRunner.And("the response body should be \'{\"Message\": \"User does not have any cart.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 21
+testRunner.And("the response body should be \'{\"message\":\"User does not have any cart.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -167,7 +182,7 @@ testRunner.And("the response body should be \'{\"Message\": \"User does not have
                     "cart-retrieve-failed"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cart retrived failed user not found", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 21
+#line 24
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -187,14 +202,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 22
+#line 8
+this.FeatureBackground();
+#line hidden
+#line 25
 testRunner.When("the user sends GET request to the \'users/12/carts\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 23
+#line 26
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 24
-testRunner.And("the response body should be \'{\"Message\": \"User with id 12 is not found.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 27
+testRunner.And("the response body should be \'{\"message\":\"User with id 12 is not found.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -202,14 +220,14 @@ testRunner.And("the response body should be \'{\"Message\": \"User with id 12 is
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("User creates cart successfully")]
-        [NUnit.Framework.CategoryAttribute("create-cart")]
+        [NUnit.Framework.CategoryAttribute("cart-creation-successfull")]
         public virtual void UserCreatesCartSuccessfully()
         {
             string[] tagsOfScenario = new string[] {
-                    "create-cart"};
+                    "cart-creation-successfull"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User creates cart successfully", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 27
+#line 30
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -229,15 +247,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 28
-testRunner.When("the user sends POST request to the \'users/1/carts\' endpoint with the data \'{\"User" +
-                        "Id\": 1, \"ProductId\": 1}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
+this.FeatureBackground();
 #line hidden
-#line 29
+#line 31
+testRunner.When("the user sends POST request to the \'users/2/carts\' endpoint with the data \'{\"user" +
+                        "Id\":1,\"productId\":1,\"operationType\":1}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 32
 testRunner.Then("the response status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 30
-testRunner.And("the response body should be \'{\"Id\": 2}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 33
+testRunner.And("the response body should be \'{\"id\":3}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -252,7 +273,7 @@ testRunner.And("the response body should be \'{\"Id\": 2}\'", ((string)(null)), 
                     "cart-creation-failed"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cart creation failed due to user not found", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 33
+#line 36
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -272,15 +293,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 34
-testRunner.When("the user sends POST request to the \'users/5/carts\' endpoint with the data \'{\"User" +
-                        "Id\": 5, \"ProductId\": 1}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
+this.FeatureBackground();
 #line hidden
-#line 35
+#line 37
+testRunner.When("the user sends POST request to the \'users/5/carts\' endpoint with the data \'{\"user" +
+                        "Id\":5,\"productId\":1}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 38
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 36
-testRunner.And("the response body should be \'{\"Message\": \"User with id 5 is not found.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 39
+testRunner.And("the response body should be \'{\"message\":\"User with id 5 is not found.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -295,7 +319,7 @@ testRunner.And("the response body should be \'{\"Message\": \"User with id 5 is 
                     "cart-creation-failed"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cart creation failed due to product not found", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 39
+#line 42
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -315,15 +339,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 40
-testRunner.When("the user sends POST request to the \'users/1/carts\' endpoint with the data \'{\"User" +
-                        "Id\": 1, \"ProductId\": 0}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
+this.FeatureBackground();
 #line hidden
-#line 41
+#line 43
+testRunner.When("the user sends POST request to the \'users/2/carts\' endpoint with the data \'{\"user" +
+                        "Id\":1,\"productId\":0}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 44
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 42
-testRunner.And("the response body should be \'{\"Message\": \"Product with id 0 is not found.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 45
+testRunner.And("the response body should be \'{\"message\":\"Product with id 0 is not found.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -338,7 +365,7 @@ testRunner.And("the response body should be \'{\"Message\": \"Product with id 0 
                     "cart-updated-successfully"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("One product added to the cart and the cart updated successfully", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 45
+#line 48
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -358,15 +385,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 46
-testRunner.When("the user sends PUT request to the \'users/2/carts/3\' endpoint with the data \'{\"Use" +
-                        "rId\": 2, \"ProductId\": 2, \"OperationType\": 1}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
+this.FeatureBackground();
 #line hidden
-#line 47
+#line 49
+testRunner.When("the user sends PUT request to the \'users/1/carts/1\' endpoint with the data \'{\"use" +
+                        "rId\":1,\"productId\":3,\"OperationType\":1}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 50
 testRunner.Then("the response status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 48
-testRunner.And("the response body should be \'{\"Message\": \"Cart updated successfully.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 51
+testRunner.And("the response body should be \'{\"message\":\"Cart updated successfully.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -381,7 +411,7 @@ testRunner.And("the response body should be \'{\"Message\": \"Cart updated succe
                     "cart-updated-successfully"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("One product deleted from the cart and the cart updated successfully", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 51
+#line 54
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -401,15 +431,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 52
-testRunner.When("the user sends PUT request to the \'users/2/carts/3\' endpoint with the data \'{\"Use" +
-                        "rId\": 2, \"ProductId\": 1, \"OperationType\": 2}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
+this.FeatureBackground();
 #line hidden
-#line 53
+#line 55
+testRunner.When("the user sends PUT request to the \'users/1/carts/1\' endpoint with the data \'{\"use" +
+                        "rId\":2,\"productId\":1,\"OperationType\":2}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 56
 testRunner.Then("the response status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 54
-testRunner.And("the response body should be \'{\"Message\": \"Cart updated successfully.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 57
+testRunner.And("the response body should be \'{\"message\":\"Cart updated successfully.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -424,7 +457,7 @@ testRunner.And("the response body should be \'{\"Message\": \"Cart updated succe
                     "cart-updation-failed"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cart updation failed due to cart not found", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 57
+#line 60
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -444,15 +477,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 58
-testRunner.When("the user sends PUT request to the \'users/2/carts/14\' endpoint with the data \'{\"Us" +
-                        "erId\": 2, \"ProductId\": 3, \"OperationType\": 1}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
+this.FeatureBackground();
 #line hidden
-#line 59
+#line 61
+testRunner.When("the user sends PUT request to the \'users/1/carts/14\' endpoint with the data \'{\"us" +
+                        "erId\":1,\"productId\":3,\"OperationType\":1}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 62
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 60
-testRunner.And("the response body should be \'{\"Message\": \"Cart with id 14 is not found.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 63
+testRunner.And("the response body should be \'{\"message\":\"Cart with id 14 is not found.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -467,7 +503,7 @@ testRunner.And("the response body should be \'{\"Message\": \"Cart with id 14 is
                     "cart-updation-failed"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cart updation failed due to user not found", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 63
+#line 66
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -487,15 +523,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 64
-testRunner.When("the user sends PUT request to the \'users/17/carts/3\' endpoint with the data \'{\"Us" +
-                        "erId\": 17, \"ProductId\": 3, \"OperationType\": 1}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
+this.FeatureBackground();
 #line hidden
-#line 65
+#line 67
+testRunner.When("the user sends PUT request to the \'users/17/carts/3\' endpoint with the data \'{\"us" +
+                        "erId\":17,\"productId\":3,\"OperationType\":1}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 68
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 66
-testRunner.And("the response body should be \'{\"Message\": \"User with id 17 is not found.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 69
+testRunner.And("the response body should be \'{\"message\":\"User with id 17 is not found.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -510,7 +549,7 @@ testRunner.And("the response body should be \'{\"Message\": \"User with id 17 is
                     "cart-updation-failed"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cart updation failed due to product not found", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 69
+#line 72
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -530,15 +569,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 70
-testRunner.When("the user sends PUT request to the \'users/2/carts/3\' endpoint with the data \'{\"Use" +
-                        "rId\": 2, \"ProductId\": 18, \"OperationType\": 1}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
+this.FeatureBackground();
 #line hidden
-#line 71
+#line 73
+testRunner.When("the user sends PUT request to the \'users/1/carts/1\' endpoint with the data \'{\"use" +
+                        "rId\":1,\"productId\":18,\"OperationType\":1}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 74
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 72
-testRunner.And("the response body should be \'{\"Message\": \"Product with id 18 is not found.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 75
+testRunner.And("the response body should be \'{\"message\":\"Product with id 18 is not found.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -553,7 +595,7 @@ testRunner.And("the response body should be \'{\"Message\": \"Product with id 18
                     "cart-updation-failed"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cart updation failed due to invalid operation type", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 75
+#line 78
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -573,16 +615,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 76
-testRunner.When("the user sends PUT request to the \'users/2/carts/3\' endpoint with the data \'{\"Use" +
-                        "rId\": 2, \"ProductId\": 3, \"OperationType\": 3}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
+this.FeatureBackground();
 #line hidden
-#line 77
+#line 79
+testRunner.When("the user sends PUT request to the \'users/1/carts/1\' endpoint with the data \'{\"use" +
+                        "rId\":1,\"productId\":3,\"OperationType\":3}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 80
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 78
-testRunner.And("the response body should be \'{\"Message\": \"OperationType is either not given or in" +
-                        "valid.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 81
+testRunner.And("the response body should be \'{\"message\":\"OperationType is either not given or inv" +
+                        "alid.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -597,7 +642,7 @@ testRunner.And("the response body should be \'{\"Message\": \"OperationType is e
                     "cart-updation-failed"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cart updation failed due to it does not belong to the user", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 81
+#line 84
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -617,15 +662,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 82
-testRunner.When("the user sends PUT request to the \'users/2/carts/4\' endpoint with the data \'{\"Use" +
-                        "rId\": 2, \"ProductId\": 3, \"OperationType\": 3}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
+this.FeatureBackground();
 #line hidden
-#line 83
+#line 85
+testRunner.When("the user sends PUT request to the \'users/1/carts/2\' endpoint with the data \'{\"use" +
+                        "rId\":1,\"productId\":3,\"OperationType\":1}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 86
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 84
-testRunner.And("the response body should be \'{\"Message\": \"Cart does not belong to the user.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 87
+testRunner.And("the response body should be \'{\"message\":\"Cart does not belong to the user.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -640,7 +688,7 @@ testRunner.And("the response body should be \'{\"Message\": \"Cart does not belo
                     "cart-deletion-successfull"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cart deletion successfull", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 87
+#line 90
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -660,14 +708,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 88
-testRunner.When("the user sends DELETE request to the \'users/2/carts/4\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
+this.FeatureBackground();
 #line hidden
-#line 89
+#line 91
+testRunner.When("the user sends DELETE request to the \'users/1/carts/1\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 92
 testRunner.Then("the response status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 90
-testRunner.And("the response body should be \'{\"Message\": \"Cart deleted successfully.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 93
+testRunner.And("the response body should be \'{\"message\":\"Cart deleted successfully.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -682,7 +733,7 @@ testRunner.And("the response body should be \'{\"Message\": \"Cart deleted succe
                     "cart-deletion-failed"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cart deletion failed due to user not found", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 93
+#line 96
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -702,56 +753,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 94
+#line 8
+this.FeatureBackground();
+#line hidden
+#line 97
 testRunner.When("the user sends DELETE request to the \'users/20/carts/4\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 95
+#line 98
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 96
-testRunner.And("the response body should be \'{\"Message\": \"User with id 17 is not found.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-            }
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Cart deletion failed due to cart not found")]
-        [NUnit.Framework.CategoryAttribute("cart-deletion-failed")]
-        public virtual void CartDeletionFailedDueToCartNotFound()
-        {
-            string[] tagsOfScenario = new string[] {
-                    "cart-deletion-failed"};
-            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cart deletion failed due to cart not found", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 99
-this.ScenarioInitialize(scenarioInfo);
-#line hidden
-            bool isScenarioIgnored = default(bool);
-            bool isFeatureIgnored = default(bool);
-            if ((tagsOfScenario != null))
-            {
-                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((this._featureTags != null))
-            {
-                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
-            }
-            if ((isScenarioIgnored || isFeatureIgnored))
-            {
-                testRunner.SkipScenario();
-            }
-            else
-            {
-                this.ScenarioStart();
-#line 100
-testRunner.When("the user sends DELETE request to the \'users/2/carts/40\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 101
-testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 102
-testRunner.And("the response body should be \'{\"Message\": \"Cart with id 40 is not found.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the response body should be \'{\"message\":\"User with id 20 is not found.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -766,7 +778,7 @@ testRunner.And("the response body should be \'{\"Message\": \"Cart with id 40 is
                     "cart-deletion-failed"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Cart deletion failed due to cart does not belong to the user", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 105
+#line 102
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -786,14 +798,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 106
-testRunner.When("the user sends DELETE request to the \'users/2/carts/1\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 8
+this.FeatureBackground();
 #line hidden
-#line 107
+#line 103
+testRunner.When("the user sends DELETE request to the \'users/1/carts/2\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 104
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 108
-testRunner.And("the response body should be \'{\"Message\": \"Cart does not belong to the user.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 105
+testRunner.And("the response body should be \'{\"message\":\"Cart does not belong to the user.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

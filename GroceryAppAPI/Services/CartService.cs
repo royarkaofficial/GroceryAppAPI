@@ -107,6 +107,7 @@ namespace GroceryAppAPI.Services
                 throw new ArgumentNullException("Cart is either null or invalid.");
             }
 
+            _userService.Get(cart.UserId);
             var existingCart = _cartRepository.Get(id);
 
             if (existingCart is null)
@@ -115,7 +116,6 @@ namespace GroceryAppAPI.Services
             }
 
             IsCartBelongToTheUser(id, cart.UserId);
-            _userService.Get(cart.UserId);
 
             var product = _productRepository.Get(cart.ProductId);
 

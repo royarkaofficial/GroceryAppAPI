@@ -75,6 +75,15 @@ namespace GroceryAppAPITests.Features
             testRunner.CollectScenarioErrors();
         }
         
+        public virtual void FeatureBackground()
+        {
+#line 10
+#line hidden
+#line 11
+testRunner.Given("I am a registered user", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+        }
+        
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("All the products retrieved successfully")]
         [NUnit.Framework.CategoryAttribute("products-retrived")]
@@ -84,7 +93,7 @@ namespace GroceryAppAPITests.Features
                     "products-retrived"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("All the products retrieved successfully", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 11
+#line 14
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -104,16 +113,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 12
+#line 10
+this.FeatureBackground();
+#line hidden
+#line 15
 testRunner.When("the user sends GET request to the \'products\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 13
+#line 16
 testRunner.Then("the response status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 14
-testRunner.And("the response body should be \'[{\"Id\": 1, \"Name\": \"Product 1\", \"Price\": 1000, \"Stoc" +
-                        "k\": 50, \"ImageUrl\": \"www.productimages.com/1\"}, {\"Id\": 1, \"Name\": \"Product 2\", \"" +
-                        "Price\": 2000, \"Stock\": 80, \"ImageUrl\": \"www.productimages.com/2\"}]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 17
+testRunner.And(@"the response body should be '[{""name"":""Product 1"",""price"":1000,""stock"":50,""imageUrl"":""www.productimages.com/1"",""status"":1,""id"":1},{""name"":""Product 2"",""price"":2000,""stock"":80,""imageUrl"":""www.productimages.com/2"",""status"":1,""id"":2},{""name"":""Product 3"",""price"":4000,""stock"":90,""imageUrl"":""www.productimages.com/3"",""status"":1,""id"":3}]'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -128,7 +138,7 @@ testRunner.And("the response body should be \'[{\"Id\": 1, \"Name\": \"Product 1
                     "product-added-successfully"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Product added successfully", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 17
+#line 20
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -148,15 +158,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 18
-testRunner.When("the user sends POST request to the \'products\' endpoint with the data \'{\"Name\": \"P" +
-                        "roduct 3\", \"Price\": 3000, \"Stock\": 70, \"ImageUrl\": \"www.productimages.com/3\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 10
+this.FeatureBackground();
 #line hidden
-#line 19
+#line 21
+testRunner.When("the user sends POST request to the \'products\' endpoint with the data \'{\"name\":\"Pr" +
+                        "oduct 3\",\"price\":3000,\"stock\":70,\"imageUrl\":\"www.productimages.com/3\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 22
 testRunner.Then("the response status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 20
-testRunner.And("the response body should be \'{\"Id\": 3}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 23
+testRunner.And("the response body should be \'{\"id\":3}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -171,7 +184,7 @@ testRunner.And("the response body should be \'{\"Id\": 3}\'", ((string)(null)), 
                     "product-insertion-failed"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Product insertion failed due to blank product name", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 23
+#line 26
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -191,16 +204,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 24
-testRunner.When("the user sends POST request to the \'products\' endpoint with the data \'{\"Name\": \" " +
-                        "\", \"Price\": 3000, \"Stock\": 70, \"ImageUrl\": \"www.productimages.com/3\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 10
+this.FeatureBackground();
 #line hidden
-#line 25
+#line 27
+testRunner.When("the user sends POST request to the \'products\' endpoint with the data \'{\"name\":\" \"" +
+                        ",\"price\":3000,\"stock\":70,\"imageUrl\":\"www.productimages.com/3\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 28
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 26
-testRunner.And("the response body should be \'{\"Message\": \"Name is either not given or invalid.\"}\'" +
-                        "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 29
+testRunner.And("the response body should be \'{\"message\":\"Name is either not given or invalid.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -215,7 +230,7 @@ testRunner.And("the response body should be \'{\"Message\": \"Name is either not
                     "product-insertion-failed"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Product insertion failed due to invalid price", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 29
+#line 32
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -235,16 +250,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 30
-testRunner.When("the user sends POST request to the \'products\' endpoint with the data \'{\"Name\": \"P" +
-                        "roduct 3\", \"Price\": 0, \"Stock\": 70, \"ImageUrl\": \"www.productimages.com/3\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 10
+this.FeatureBackground();
 #line hidden
-#line 31
+#line 33
+testRunner.When("the user sends POST request to the \'products\' endpoint with the data \'{\"name\":\"Pr" +
+                        "oduct 3\",\"price\":0,\"stock\":70,\"imageUrl\":\"www.productimages.com/3\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 34
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 32
-testRunner.And("the response body should be \'{\"Message\": \"Price is either not given or invalid.\"}" +
-                        "\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 35
+testRunner.And("the response body should be \'{\"message\":\"Price is either not given or invalid.\"}\'" +
+                        "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -259,7 +277,7 @@ testRunner.And("the response body should be \'{\"Message\": \"Price is either no
                     "product-insertion-failed"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Product insertion failed due to invalid stock", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 35
+#line 38
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -279,16 +297,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 36
-testRunner.When("the user sends POST request to the \'products\' endpoint with the data \'{\"Name\": \"P" +
-                        "roduct 3\", \"Price\": 3000, \"Stock\": -1, \"ImageUrl\": \"www.productimages.com/3\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 10
+this.FeatureBackground();
 #line hidden
-#line 37
+#line 39
+testRunner.When("the user sends POST request to the \'products\' endpoint with the data \'{\"name\":\"Pr" +
+                        "oduct 3\",\"price\":3000,\"stock\":-1,\"imageUrl\":\"www.productimages.com/3\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 40
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 38
-testRunner.And("the response body should be \'{\"Message\": \"Stock is either not given or invalid.\"}" +
-                        "\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 41
+testRunner.And("the response body should be \'{\"message\":\"Stock is either not given or invalid.\"}\'" +
+                        "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -303,7 +324,7 @@ testRunner.And("the response body should be \'{\"Message\": \"Stock is either no
                     "product-updated-successfully"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Product updated successfully", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 41
+#line 44
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -323,16 +344,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 42
-testRunner.When("the user sends PUT request to the \'products/1\' endpoint with the data \'{\"Name\": \"" +
-                        "New Product 1\", \"Price\": 4000, \"Stock\": 60, \"ImageUrl\": \"www.productimages.com/1" +
-                        "\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 10
+this.FeatureBackground();
 #line hidden
-#line 43
+#line 45
+testRunner.When("the user sends PUT request to the \'products/1\' endpoint with the data \'{\"name\":\"N" +
+                        "ew Product 1\",\"price\":4000,\"stock\":60,\"imageUrl\":\"www.productimages.com/1\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 46
 testRunner.Then("the response status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 44
-testRunner.And("the response body should be \'{\"Message\": \"Product updated successfully.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 47
+testRunner.And("the response body should be \'{\"message\":\"Product updated successfully.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -347,7 +370,7 @@ testRunner.And("the response body should be \'{\"Message\": \"Product updated su
                     "product-updation-failed"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Product updation failed due to product not found", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 47
+#line 50
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -367,16 +390,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 48
-testRunner.When("the user sends PUT request to the \'products/9\' endpoint with the data \'{\"Name\": \"" +
-                        "New Product 1\", \"Price\": 4000, \"Stock\": 60, \"ImageUrl\": \"www.productimages.com/1" +
-                        "\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 10
+this.FeatureBackground();
 #line hidden
-#line 49
+#line 51
+testRunner.When("the user sends PUT request to the \'products/9\' endpoint with the data \'{\"name\":\"N" +
+                        "ew Product 1\",\"price\":4000,\"stock\":60,\"imageUrl\":\"www.productimages.com/1\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 52
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 50
-testRunner.And("the response body should be \'{\"Message\": \"Product with id 9 is not found.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 53
+testRunner.And("the response body should be \'{\"message\":\"Product with id 9 is not found.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -391,7 +416,7 @@ testRunner.And("the response body should be \'{\"Message\": \"Product with id 9 
                     "product-updation-failed"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Product updation failed due to blank name", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 53
+#line 56
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -411,16 +436,18 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 54
-testRunner.When("the user sends PUT request to the \'products/1\' endpoint with the data \'{\"Name\": \"" +
-                        " \", \"Price\": 4000, \"Stock\": 60, \"ImageUrl\": \"www.productimages.com/1\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 10
+this.FeatureBackground();
 #line hidden
-#line 55
+#line 57
+testRunner.When("the user sends PUT request to the \'products/1\' endpoint with the data \'{\"name\":\" " +
+                        "\",\"price\":4000,\"stock\":60,\"imageUrl\":\"www.productimages.com/1\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 58
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 56
-testRunner.And("the response body should be \'{\"Message\": \"Name is either not given or invalid.\"}\'" +
-                        "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 59
+testRunner.And("the response body should be \'{\"message\":\"Name is either not given or invalid.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -435,7 +462,7 @@ testRunner.And("the response body should be \'{\"Message\": \"Name is either not
                     "product-updation-failed"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Product updation failed due to invalid price", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 59
+#line 62
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -455,17 +482,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 60
-testRunner.When("the user sends PUT request to the \'products/1\' endpoint with the data \'{\"Name\": \"" +
-                        "New Product 1\", \"Price\": 0, \"Stock\": 60, \"ImageUrl\": \"www.productimages.com/1\"}\'" +
-                        "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 10
+this.FeatureBackground();
 #line hidden
-#line 61
+#line 63
+testRunner.When("the user sends PUT request to the \'products/1\' endpoint with the data \'{\"name\":\"N" +
+                        "ew Product 1\",\"price\":0,\"stock\":60,\"imageUrl\":\"www.productimages.com/1\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 64
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 62
-testRunner.And("the response body should be \'{\"Message\": \"Price is either not given or invalid.\"}" +
-                        "\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 65
+testRunner.And("the response body should be \'{\"message\":\"Price is either not given or invalid.\"}\'" +
+                        "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -480,7 +509,7 @@ testRunner.And("the response body should be \'{\"Message\": \"Price is either no
                     "product-updation-failed"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Product updation failed due to invalid stock", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 65
+#line 68
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -500,17 +529,19 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 66
-testRunner.When("the user sends PUT request to the \'products/1\' endpoint with the data \'{\"Name\": \"" +
-                        "New Product 1\", \"Price\": 4000, \"Stock\": -1, \"ImageUrl\": \"www.productimages.com/1" +
-                        "\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 10
+this.FeatureBackground();
 #line hidden
-#line 67
+#line 69
+testRunner.When("the user sends PUT request to the \'products/1\' endpoint with the data \'{\"name\":\"N" +
+                        "ew Product 1\",\"price\":4000,\"stock\":-1,\"imageUrl\":\"www.productimages.com/1\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 70
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 68
-testRunner.And("the response body should be \'{\"Message\": \"Stock is either not given or invalid.\"}" +
-                        "\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 71
+testRunner.And("the response body should be \'{\"message\":\"Stock is either not given or invalid.\"}\'" +
+                        "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -525,7 +556,7 @@ testRunner.And("the response body should be \'{\"Message\": \"Stock is either no
                     "product-deletion-successfull"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Product deleted successfully", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 71
+#line 74
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -545,14 +576,17 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 72
+#line 10
+this.FeatureBackground();
+#line hidden
+#line 75
 testRunner.When("the user sends DELETE request to the \'products/1\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 73
+#line 76
 testRunner.Then("the response status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 74
-testRunner.And("the response body should be \'{\"Message\": \"Product deleted successfully.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 77
+testRunner.And("the response body should be \'{\"message\":\"Product deleted successfully.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -1,5 +1,4 @@
 ﻿using GroceryAppAPI.Attributes;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GroceryAppAPI.Controllers

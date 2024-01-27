@@ -35,14 +35,14 @@ namespace GroceryAppAPI.Services
         }
 
         /// <inheritdoc/>
-        public int Add(Order order, bool validatePaymentId = true)
+        public int AddOrder(Order order)
         {
             if (order is null)
             {
                 throw new ArgumentNullException("Order is either null or invalid.");
             }
 
-            Validate(order, validatePaymentId);
+            Validate(order);
 
             var id = _orderRepository.Add(order);
 
@@ -99,7 +99,7 @@ namespace GroceryAppAPI.Services
                 throw new InvalidRequestDataException("Order details is either not given or invalid.");
             }
 
-            var orderId = Add(paymentRequest.Order, false);
+            var orderId = AddOrder(paymentRequest.Order);
             int paymentId = 0;
 
             try
@@ -132,10 +132,9 @@ namespace GroceryAppAPI.Services
         /// Validates an order.
         /// </summary>
         /// <param name="order">The order.</param>
-        /// <param name="validatePaymentId">Boolean flag which indicates whether to validate the payment identifier or not.</param>
         /// <exception cref="System.ArgumentNullException">If order parameter is null.</exception>
         /// <exception cref="GroceryAppAPI.Exceptions.InvalidRequestDataException">If any invalid order property is given.</exception>
-        private void Validate(Order order, bool validatePaymentId)
+        private void Validate(Order order)
         {
             if (order is null)
             {
@@ -143,18 +142,6 @@ namespace GroceryAppAPI.Services
             }
 
             var user = _userService.Get(order.UserId);
-
-            try
-            {
-                var payment = _paymentService.Get(order.PaymentId);
-            }
-            catch (Exception)
-            {
-                if (validatePaymentId)
-                {
-                    throw;
-                }
-            }
 
             if (order.ProductIds != null && order.ProductIds.Any())
             {

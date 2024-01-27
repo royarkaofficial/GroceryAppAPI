@@ -3,9 +3,6 @@ using GroceryAppAPI.Helpers;
 using GroceryAppAPI.Models;
 using GroceryAppAPI.Repository.Interfaces;
 using GroceryAppAPI.Services.Interfaces;
-using System.Security.Cryptography;
-using System.Text;
-using System.Reflection;
 
 namespace GroceryAppAPI.Services
 {

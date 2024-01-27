@@ -18,9 +18,8 @@ namespace GroceryAppAPI.Services.Interfaces
         /// Adds the specified order.
         /// </summary>
         /// <param name="order">The order.</param>
-        /// <param name="validatePaymentId">Boolean flag which indicates whether to validate the payment identifier or not.</param>
         /// <returns>The newly inserted identifier.</returns>
-        public int Add(Order order, bool validatePaymentId = true);
+        public int AddOrder(Order order);
 
         /// <summary>
         /// Adds payment for the specified order.

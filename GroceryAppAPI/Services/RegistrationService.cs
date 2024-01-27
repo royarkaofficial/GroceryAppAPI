@@ -64,7 +64,7 @@ namespace GroceryAppAPI.Services
 
             if (string.IsNullOrWhiteSpace(user.Password))
             {
-                throw new InvalidRequestDataException("Passowrd is either not given or invalid.");
+                throw new InvalidRequestDataException("Password is either not given or invalid.");
             }
         }
     }
