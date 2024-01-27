@@ -21,7 +21,7 @@ namespace GroceryAppAPI.Controllers
         public IActionResult Login([FromBody]LoginRequest loginRequest)
         {
             _authenticationService.Login(loginRequest);
-            return Ok(new {Message = "Login successfull"});
+            return Ok(new {Message = "User logged in successfully."});
         }
     }
 }

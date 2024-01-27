@@ -1,4 +1,5 @@
-﻿using GroceryAppAPI.Exceptions;
+﻿using GroceryAppAPI.Enumerations;
+using GroceryAppAPI.Exceptions;
 using GroceryAppAPI.Models;
 using GroceryAppAPI.Repository.Interfaces;
 using GroceryAppAPI.Services.Interfaces;
@@ -60,6 +61,11 @@ namespace GroceryAppAPI.Services
             if (payment.Amount <= 0)
             {
                 throw new InvalidRequestDataException("Amount is either not given or invalid.");
+            }
+
+            if (!Enum.IsDefined(typeof(PaymentType), payment.PaymentType))
+            {
+                throw new InvalidRequestDataException("PaymentType is either not given or invalid.");
             }
         }
     }

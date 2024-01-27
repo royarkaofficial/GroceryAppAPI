@@ -25,7 +25,8 @@ namespace GroceryAppAPI.Services.Interfaces
         /// Deletes the specified cart.
         /// </summary>
         /// <param name="id">The identifier.</param>
-        public void Delete(int id);
+        /// <param name="userId">The user identifier.</param>
+        public void Delete(int id, int userId);
 
         /// <summary>
         /// Updates the specified cart.

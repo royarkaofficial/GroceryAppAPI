@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GroceryAppAPI.Controllers
 {
-    [Route("[controller]")]
+    [Route("users/{userId:int}/[controller]")]
     [ApiController]
     [CommonExceptionFilter]
     public class CartsController : ControllerBase
@@ -20,14 +20,15 @@ namespace GroceryAppAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Cart cart)
+        public IActionResult Post([FromRoute] int userId, [FromBody] Cart cart)
         {
+            cart.UserId = userId;
             var id = _cartService.Add(cart);
             return Ok(new { Id = id });
         }
 
         [HttpGet]
-        public IActionResult Get([FromQuery] int userId)
+        public IActionResult Get([FromRoute] int userId)
         {
             var cart = _cartService.Get(userId);
 
@@ -40,17 +41,18 @@ namespace GroceryAppAPI.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public IActionResult Put([FromRoute] int id, [FromBody] Cart cart)
+        public IActionResult Put([FromRoute] int id, [FromRoute] int userId, [FromBody] Cart cart)
         {
+            cart.UserId = userId;
             _cartService.Update(id, cart);
-            return Ok(new { Message = "Cart updated successfully" });
+            return Ok(new { Message = "Cart updated successfully." });
         }
 
         [HttpDelete("{id:int}")]
-        public IActionResult Delete([FromRoute] int id)
+        public IActionResult Delete([FromRoute] int id, [FromRoute] int userId)
         {
-            _cartService.Delete(id);
-            return Ok(new { Message = "Cart deleted successfully" });
+            _cartService.Delete(id, userId);
+            return Ok(new { Message = "Cart deleted successfully." });
         }
     }
 }

@@ -12,7 +12,7 @@
         /// <param name="id">The identifier.</param>
         /// <param name="entityName">Name of the entity.</param>
         public EntityNotFoundException(int id, string entityName)
-            :base($"{entityName} with id {id} is not found")
+            :base($"{entityName} with id {id} is not found.")
         {
         }
 

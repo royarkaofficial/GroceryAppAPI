@@ -2,6 +2,7 @@
 using GroceryAppAPI.Exceptions;
 using GroceryAppAPI.Models;
 using GroceryAppAPI.Models.DbModels;
+using GroceryAppAPI.Models.Response;
 using GroceryAppAPI.Repository.Interfaces;
 using GroceryAppAPI.Services.Interfaces;
 
@@ -34,7 +35,7 @@ namespace GroceryAppAPI.Services
         }
 
         /// <inheritdoc/>
-        public int Add(Cart cart)
+        public int Add(Models.Cart cart)
         {
             if (cart is null)
             {
@@ -90,14 +91,16 @@ namespace GroceryAppAPI.Services
         }
 
         /// <inheritdoc/>
-        public void Delete(int id)
+        public void Delete(int id, int userId)
         {
+            _userService.Get(userId);
+            IsCartBelongToTheUser(id, userId);
             _cartProductRepository.Delete(id);
             _cartRepository.Delete(id);
         }
 
         /// <inheritdoc/>
-        public void Update(int id, Cart cart)
+        public void Update(int id, Models.Cart cart)
         {
             if (cart is null)
             {
@@ -111,6 +114,7 @@ namespace GroceryAppAPI.Services
                 throw new EntityNotFoundException(id, "Cart");
             }
 
+            IsCartBelongToTheUser(id, cart.UserId);
             _userService.Get(cart.UserId);
 
             var product = _productRepository.Get(cart.ProductId);
@@ -120,11 +124,13 @@ namespace GroceryAppAPI.Services
                 throw new EntityNotFoundException(cart.ProductId, "Product");
             }
 
-            var operationSucceeded = false;
+            if (!Enum.IsDefined(typeof(CartOperationType), cart.OperationType))
+            {
+                throw new InvalidRequestDataException("OperationType is either not given or invalid.");
+            }
 
             if (cart.OperationType is CartOperationType.Add)
             {
-                operationSucceeded = true;
                 var existingCartProducts = _cartProductRepository.GetAll(id);
 
                 if (existingCartProducts.Select(x => x.ProductId).Contains(cart.ProductId))
@@ -143,13 +149,7 @@ namespace GroceryAppAPI.Services
 
             if (cart.OperationType is CartOperationType.Delete)
             {
-                operationSucceeded = true;
                 _cartProductRepository.Delete(id, cart.ProductId);
-            }
-
-            if (!operationSucceeded)
-            {
-                throw new InvalidRequestDataException("OperationType is either not given or invalid.");
             }
 
             var cartProducts = _cartProductRepository.GetAll(id);
@@ -158,6 +158,28 @@ namespace GroceryAppAPI.Services
             {
                 _cartRepository.Delete(id);
             }
+        }
+
+        /// <summary>
+        /// Determines whether the cart belongs to the user or not.
+        /// </summary>
+        /// <param name="cartId">The cart identifier.</param>
+        /// <param name="userId">The user identifier.</param>
+        /// <returns>
+        /// <c>true</c> if the cart belongs to the user; otherwise, throws <see cref="InvalidRequestDataException"/>.
+        /// </returns>
+        /// <exception cref="GroceryAppAPI.Exceptions.InvalidRequestDataException">Cart does not belong to the user.</exception>
+        private bool IsCartBelongToTheUser(int cartId, int userId)
+        {
+            var existingCart = _cartRepository.Get(cartId);
+            var existingCartOfTheUser = _cartRepository.GetByUser(userId);
+
+            if (existingCart != null && existingCart.Id != existingCartOfTheUser.Id)
+            {
+                throw new InvalidRequestDataException("Cart does not belong to the user.");
+            }
+
+            return true;
         }
     }
 }

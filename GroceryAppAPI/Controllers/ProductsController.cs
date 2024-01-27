@@ -37,14 +37,14 @@ namespace GroceryAppAPI.Controllers
         public IActionResult Put([FromRoute] int id, [FromBody] Product product) 
         {
             _productService.Update(id, product);
-            return Ok(new {Message = "Product updated successfully"});    
+            return Ok(new {Message = "Product updated successfully."});    
         }
 
         [HttpDelete("{id:int}")]
         public IActionResult Delete([FromRoute] int id)
         {
             _productService.Delete(id);
-            return Ok(new { Message = "Product deleted successfully" });
+            return Ok(new { Message = "Product deleted successfully." });
         }
     }
 }

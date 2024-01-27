@@ -28,7 +28,7 @@ namespace GroceryAppAPI.Controllers
         public IActionResult Update([FromRoute] int id, [FromBody] string password)
         {
             _userService.Update(id, password);
-            return Ok(new {Message = "Password updated successfully"});
+            return Ok(new {Message = "Password updated successfully."});
         } 
     }
 }

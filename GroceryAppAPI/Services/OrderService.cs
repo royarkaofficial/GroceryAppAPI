@@ -104,6 +104,13 @@ namespace GroceryAppAPI.Services
 
             try
             {
+                var totalAmount = paymentRequest.Order.ProductIds.Select(id => _productRepository.Get(id)).Sum(p => p.Price);
+
+                if (totalAmount != paymentRequest.Payment.Amount)
+                {
+                    throw new InvalidRequestDataException("Payment amount is less than total amonut of the purchased items.");
+                }
+
                 paymentId = _paymentService.Add(paymentRequest.Payment);
             }
             catch (Exception ex)

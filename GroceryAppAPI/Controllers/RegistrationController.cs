@@ -22,7 +22,7 @@ namespace GroceryAppAPI.Controllers
         public IActionResult Registration([FromBody] User user)
         {
             _registrationService.Register(user);
-            return Ok(new { Message = "User registration successfully" });
+            return Ok(new { Message = "User registered successfully." });
         }
     }
 }
