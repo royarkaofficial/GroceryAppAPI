@@ -1,4 +1,4 @@
-﻿namespace GroceryAppAPI.Models
+﻿namespace GroceryAppAPI.Models.DbModels
 {
     /// <summary>
     /// Represents the base class for all the entities.

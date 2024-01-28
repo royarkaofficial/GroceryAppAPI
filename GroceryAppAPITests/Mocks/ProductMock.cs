@@ -1,4 +1,4 @@
-﻿using GroceryAppAPI.Models;
+﻿using GroceryAppAPI.Models.DbModels;
 using GroceryAppAPI.Repository.Interfaces;
 using GroceryAppAPI.Services;
 using Moq;
@@ -42,7 +42,7 @@ namespace GroceryAppAPITests.Mocks
             });
 
             ProductRepositoryMock.Setup(repo => repo.Add(It.IsAny<Product>())).Returns(3);
-            ProductRepositoryMock.Setup(repo => repo.UpdateStatus(It.IsAny<int>()));
+            ProductRepositoryMock.Setup(repo => repo.UpdateStatusAsRemoved(It.IsAny<int>()));
             ProductRepositoryMock.Setup(repo => repo.Delete(It.IsAny<int>()));
         }
     }

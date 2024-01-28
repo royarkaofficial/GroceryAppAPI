@@ -1,9 +1,11 @@
-﻿namespace GroceryAppAPI.Models.Response
+﻿using GroceryAppAPI.Models.DbModels;
+
+namespace GroceryAppAPI.Models.Response
 {
     /// <summary>
     /// Represents a cart response.
     /// </summary>
-    /// <seealso cref="GroceryAppAPI.Models.BaseEntity" />
+    /// <seealso cref="DbModels.BaseEntity" />
     public class Cart : BaseEntity
     {
         /// <summary>

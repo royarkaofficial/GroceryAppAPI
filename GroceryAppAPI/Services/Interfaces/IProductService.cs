@@ -1,4 +1,5 @@
-﻿using GroceryAppAPI.Models;
+﻿using GroceryAppAPI.Models.Request;
+using GroceryAppAPI.Models.Response;
 
 namespace GroceryAppAPI.Services.Interfaces
 {
@@ -11,21 +12,21 @@ namespace GroceryAppAPI.Services.Interfaces
         /// Gets all the products.
         /// </summary>
         /// <returns>The products.</returns>
-        public IEnumerable<Product> GetAll();
+        public IEnumerable<ProductResponse> GetAll();
 
         /// <summary>
         /// Adds a specified product.
         /// </summary>
-        /// <param name="product">The product.</param>
+        /// <param name="productRequest">The product request.</param>
         /// <returns>The newly inserted identifier.</returns>
-        public int Add(Product product);
+        public int Add(ProductRequest productRequest);
 
         /// <summary>
         /// Updates a specified product.
         /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <param name="product">The product.</param>
-        public void Update(int id, Product product);
+        /// <param name="id">The properties.</param>
+        /// <param name="productRequest">The product request.</param>
+        public void Update(int id, string properties);
 
         /// <summary>
         /// Deletes a specified product.

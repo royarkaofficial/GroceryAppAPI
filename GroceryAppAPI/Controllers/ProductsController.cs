@@ -1,8 +1,7 @@
 ﻿using GroceryAppAPI.Attributes;
-using GroceryAppAPI.Models;
-using GroceryAppAPI.Services;
+using GroceryAppAPI.Models.Request;
 using GroceryAppAPI.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GroceryAppAPI.Controllers
@@ -19,27 +18,31 @@ namespace GroceryAppAPI.Controllers
             _productService = productService;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
-        public IActionResult Post([FromBody] Product product)
+        public IActionResult Post([FromBody] ProductRequest product)
         {
             var id = _productService.Add(product);
-            return Ok(new { Id = id });
+            return Ok(new { data = new {Id = id} });
         }
 
+        [Authorize]
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetAll()
         {
             var products = _productService.GetAll();
-            return Ok(products);
+            return Ok(new { data = products });
         }
 
-        [HttpPut("{id:int}")]
-        public IActionResult Put([FromRoute] int id, [FromBody] Product product) 
+        [Authorize(Roles = "Admin")]
+        [HttpPatch("{id:int}")]
+        public IActionResult Patch([FromRoute] int id, [FromBody] string properties) 
         {
-            _productService.Update(id, product);
+            _productService.Update(id, properties);
             return Ok(new {Message = "Product updated successfully."});    
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id:int}")]
         public IActionResult Delete([FromRoute] int id)
         {

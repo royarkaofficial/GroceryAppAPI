@@ -1,9 +1,11 @@
-﻿namespace GroceryAppAPI.Models
+﻿using GroceryAppAPI.Models.DbModels;
+
+namespace GroceryAppAPI.Models
 {
     /// <summary>
     /// Represents an order.
     /// </summary>
-    /// <seealso cref="GroceryAppAPI.Models.BaseEntity" />
+    /// <seealso cref="DbModels.BaseEntity" />
     public class Order : BaseEntity
     {
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using GroceryAppAPI.Exceptions;
+﻿using GroceryAppAPI.Enumerations;
+using GroceryAppAPI.Exceptions;
 using GroceryAppAPI.Helpers;
 using GroceryAppAPI.Models.DbModels;
 using GroceryAppAPI.Models.Request;
@@ -65,7 +66,7 @@ namespace GroceryAppAPI.Services
             {
                 UserId = user.Id,
                 AccessToken = accessToken,
-                Role = user.Role
+                Role = (Role)user.Role
             };
         }
 
@@ -78,11 +79,12 @@ namespace GroceryAppAPI.Services
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["AppSettings:Authentication:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            var userRole = (Role)user.Role;
 
             var claims = new []
             {
                 new Claim(ClaimTypes.NameIdentifier, $"{user.FirstName} {user.LastName}"),
-                new Claim(ClaimTypes.Role, user.Role.ToString()),
+                new Claim(ClaimTypes.Role, userRole.ToString()),
                 new Claim(ClaimTypes.Email, user.Email)
             };
 

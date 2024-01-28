@@ -45,7 +45,7 @@ namespace GroceryAppAPI.Models.DbModels
         /// <value>
         /// The gender.
         /// </value>
-        public string Gender { get; set; }
+        public int Gender { get; set; }
 
         /// <summary>
         /// Gets or sets the role.
@@ -53,6 +53,6 @@ namespace GroceryAppAPI.Models.DbModels
         /// <value>
         /// The role.
         /// </value>
-        public Role Role { get; set; }
+        public int Role { get; set; }
     }
 }

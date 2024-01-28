@@ -1,11 +1,12 @@
 ﻿using GroceryAppAPI.Enumerations;
+using GroceryAppAPI.Models.DbModels;
 
 namespace GroceryAppAPI.Models
 {
     /// <summary>
     /// Represents a cart creation request.
     /// </summary>
-    /// <seealso cref="GroceryAppAPI.Models.BaseEntity" />
+    /// <seealso cref="DbModels.BaseEntity" />
     public class Cart : BaseEntity
     {
         /// <summary>

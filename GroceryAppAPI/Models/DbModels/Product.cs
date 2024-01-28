@@ -1,6 +1,6 @@
 ﻿using GroceryAppAPI.Enumerations;
 
-namespace GroceryAppAPI.Models
+namespace GroceryAppAPI.Models.DbModels
 {
     /// <summary>
     /// Represents a product.
@@ -45,6 +45,6 @@ namespace GroceryAppAPI.Models
         /// <value>
         /// The status.
         /// </value>
-        public ProductStatus Status { get; set; } = ProductStatus.Existing;
+        public int Status { get; set; }
     }
 }

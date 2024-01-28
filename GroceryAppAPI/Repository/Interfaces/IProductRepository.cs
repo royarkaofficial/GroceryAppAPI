@@ -1,4 +1,5 @@
-﻿using GroceryAppAPI.Models;
+﻿using GroceryAppAPI.Models.DbModels;
+using Microsoft.Data.SqlClient;
 
 namespace GroceryAppAPI.Repository.Interfaces
 {
@@ -30,9 +31,9 @@ namespace GroceryAppAPI.Repository.Interfaces
         /// <summary>
         /// Updates the specified product.
         /// </summary>
-        /// <param name="id">The identifier.</param>
+        /// <param name="query">The conditions.</param>
         /// <param name="product">The product.</param>
-        public void Update(int id, Product product);
+        public void Update(string conditions, Product product);
 
         /// <summary>
         /// Deletes the specified product.
@@ -41,9 +42,9 @@ namespace GroceryAppAPI.Repository.Interfaces
         public void Delete(int id);
 
         /// <summary>
-        /// Updates the status of a specified product
+        /// Updates the status of a specified product as removed.
         /// </summary>
         /// <param name="id">The identifier.</param>
-        public void UpdateStatus(int id);
+        public void UpdateStatusAsRemoved(int id);
     }
 }

@@ -37,7 +37,8 @@ namespace GroceryAppAPI.Services
                 LastName = registrationRequest.LastName,
                 Email = registrationRequest.Email,
                 Password = registrationRequest.Password,
-                Role = registrationRequest.Role
+                Gender = (int)registrationRequest.Gender,
+                Role = (int)registrationRequest.Role
             };
 
             var id = _userRepository.Add(user);

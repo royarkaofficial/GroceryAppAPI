@@ -3,7 +3,7 @@
     /// <summary>
     /// Repreents a cart product mapping.
     /// </summary>
-    /// <seealso cref="GroceryAppAPI.Models.BaseEntity" />
+    /// <seealso cref="DbModels.BaseEntity" />
     public class CartProduct : BaseEntity
     {
         /// <summary>

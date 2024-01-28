@@ -3,7 +3,7 @@
     /// <summary>
     /// Represents a order product mapping.
     /// </summary>
-    /// <seealso cref="GroceryAppAPI.Models.BaseEntity" />
+    /// <seealso cref="DbModels.BaseEntity" />
     public class OrderProduct : BaseEntity
     {
         /// <summary>

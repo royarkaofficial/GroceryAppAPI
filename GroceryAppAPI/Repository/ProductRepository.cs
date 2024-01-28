@@ -1,7 +1,8 @@
 ﻿using GroceryAppAPI.Configurations;
 using GroceryAppAPI.Enumerations;
-using GroceryAppAPI.Models;
+using GroceryAppAPI.Models.DbModels;
 using GroceryAppAPI.Repository.Interfaces;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
 
 namespace GroceryAppAPI.Repository
@@ -34,7 +35,7 @@ namespace GroceryAppAPI.Repository
                 Price = product.Price,
                 Stock = product.Stock,
                 ImageUrl = product.ImageUrl,
-                Status = (int)ProductStatus.Existing
+                Status = product.Status
             };
 
             return Add(query, parameters);
@@ -71,19 +72,17 @@ namespace GroceryAppAPI.Repository
         }
 
         /// <inheritdoc/>
-        public void Update(int id, Product product)
+        public void Update(string conditions, Product product)
         {
-            const string query = @"UPDATE [Products] 
-                                   SET [Name] = @Name,
-                                   [Price] = @Price,
-                                   [Stock] = @Stock,
-                                   [ImageUrl] = @ImageUrl";
+            string query = @$"UPDATE [Products] 
+                                   SET {conditions}
+                                   WHERE [Id] = @Id";
 
             Update(query, product);
         }
 
         /// <inheritdoc/>
-        public void UpdateStatus(int id)
+        public void UpdateStatusAsRemoved(int id)
         {
             const string query = @"UPDATE [Products]
                                    SET [Status] = @Status

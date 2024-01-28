@@ -1,4 +1,5 @@
-﻿using GroceryAppAPI.Exceptions;
+﻿using GroceryAppAPI.Enumerations;
+using GroceryAppAPI.Exceptions;
 using GroceryAppAPI.Helpers;
 using GroceryAppAPI.Models.Response;
 using GroceryAppAPI.Repository.Interfaces;
@@ -41,7 +42,7 @@ namespace GroceryAppAPI.Services
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
-                Role = user.Role
+                Role = (Role)user.Role
             };
         }
 
