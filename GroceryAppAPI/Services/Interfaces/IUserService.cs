@@ -1,4 +1,4 @@
-﻿using GroceryAppAPI.Models;
+﻿using GroceryAppAPI.Models.Response;
 
 namespace GroceryAppAPI.Services.Interfaces
 {
@@ -11,8 +11,8 @@ namespace GroceryAppAPI.Services.Interfaces
         /// Gets a specified user.
         /// </summary>
         /// <param name="id">The identifier.</param>
-        /// <returns>A specified user.</returns>
-        public User Get(int id);
+        /// <returns>The user response.</returns>
+        public UserResponse Get(int id);
 
         /// <summary>
         /// Updates a specified user.

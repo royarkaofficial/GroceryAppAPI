@@ -1,4 +1,6 @@
-﻿namespace GroceryAppAPI.Models
+﻿using GroceryAppAPI.Enumerations;
+
+namespace GroceryAppAPI.Models.Request
 {
     /// <summary>
     /// Represents a login request.
@@ -11,7 +13,7 @@
         /// <value>
         /// The username.
         /// </value>
-        public string Username { get; set; }
+        public string Email { get; set; }
 
         /// <summary>
         /// Gets or sets the password.

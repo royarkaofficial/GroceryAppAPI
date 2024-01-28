@@ -1,4 +1,5 @@
-﻿using GroceryAppAPI.Models;
+﻿using GroceryAppAPI.Models.Request;
+using GroceryAppAPI.Models.Response;
 
 namespace GroceryAppAPI.Services.Interfaces
 {
@@ -11,6 +12,7 @@ namespace GroceryAppAPI.Services.Interfaces
         /// Does the login functionality for a specified user.
         /// </summary>
         /// <param name="loginRequest">The login request.</param>
-        public void Login(LoginRequest loginRequest);
+        /// <returns>The login response.</returns>
+        public LoginResponse Login(LoginRequest loginRequest);
     }
 }

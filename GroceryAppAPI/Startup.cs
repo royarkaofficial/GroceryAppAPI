@@ -3,6 +3,9 @@ using GroceryAppAPI.Repository.Interfaces;
 using GroceryAppAPI.Repository;
 using GroceryAppAPI.Services.Interfaces;
 using GroceryAppAPI.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace GroceryAppAPI
 {
@@ -51,6 +54,20 @@ namespace GroceryAppAPI
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<ICartService, CartService>();
             services.AddTransient<IOrderService, OrderService>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = Configuration["AppSettings:Authentication:Issuer"],
+                    ValidAudience = Configuration["AppSettings:Authentication:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["AppSettings:Authentication:Key"]))
+                };
+            });
             services.AddControllers();
             services.AddSwaggerGen();
         }
@@ -70,7 +87,9 @@ namespace GroceryAppAPI
             }
 
             app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseRouting();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }

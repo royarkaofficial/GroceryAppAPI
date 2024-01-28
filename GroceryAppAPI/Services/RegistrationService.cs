@@ -1,9 +1,11 @@
-﻿using GroceryAppAPI.Exceptions;
+﻿using GroceryAppAPI.Enumerations;
+using GroceryAppAPI.Exceptions;
 using GroceryAppAPI.Helpers;
-using GroceryAppAPI.Models;
+using GroceryAppAPI.Models.DbModels;
+using GroceryAppAPI.Models.Response;
 using GroceryAppAPI.Repository.Interfaces;
 using GroceryAppAPI.Services.Interfaces;
-using Microsoft.AspNetCore.Mvc;
+using RegistrationRequest = GroceryAppAPI.Models.Request.RegistrationRequest;
 
 namespace GroceryAppAPI.Services
 {
@@ -14,57 +16,84 @@ namespace GroceryAppAPI.Services
     {
         private readonly IUserRepository _userRepository;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RegistrationService"/> class.
+        /// </summary>
+        /// <param name="userRepository">The user repository.</param>
         public RegistrationService(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
 
         /// <inheritdoc/>
-        public void Register(User user)
+        public RegistrationResponse Register(RegistrationRequest registrationRequest)
         {
-            var existingUser = _userRepository.Get(user.Email);
+            Validate(registrationRequest);
+            registrationRequest.Password = EncodingHelper.HashPassword(registrationRequest.Password);
 
-            if (existingUser != null)
+            var user = new User()
             {
-                throw new InvalidRequestException("User is already registered");
-            }
+                FirstName = registrationRequest.FirstName,
+                LastName = registrationRequest.LastName,
+                Email = registrationRequest.Email,
+                Password = registrationRequest.Password,
+                Role = registrationRequest.Role
+            };
 
-            Validate(user);
-            user.Password = EncodingHelper.HashPassword(user.Password);
-            _userRepository.Add(user);
+            var id = _userRepository.Add(user);
+
+            return new RegistrationResponse()
+            {
+                UserId = id
+            };
         }
 
         /// <summary>
-        /// Validates an user.
+        /// Validates a registration request.
         /// </summary>
-        /// <param name="user">The user.</param>
-        /// <exception cref="System.ArgumentNullException">If user parameter is null.</exception>
-        /// <exception cref="GroceryAppAPI.Exceptions.InvalidRequestDataException">If any invalid user property is given.</exception>
-        private void Validate(User user)
+        /// <param name="registrationRequest">The registration request.</param>
+        private void Validate(RegistrationRequest registrationRequest)
         {
-            if (user is null)
+            if (registrationRequest is null)
             {
                 throw new ArgumentNullException("User is either not given or invalid.");
             }
 
-            if (string.IsNullOrWhiteSpace(user.FirstName))
+            if (string.IsNullOrWhiteSpace(registrationRequest.FirstName))
             {
                 throw new InvalidRequestDataException("FirstName is either not given or invalid.");
             }
 
-            if (string.IsNullOrWhiteSpace(user.LastName))
+            if (string.IsNullOrWhiteSpace(registrationRequest.LastName))
             {
                 throw new InvalidRequestDataException("LastName is either not given or invalid.");
             }
 
-            if (string.IsNullOrWhiteSpace(user.Email))
+            if (string.IsNullOrWhiteSpace(registrationRequest.Email))
             {
                 throw new InvalidRequestDataException("Email is either not given or invalid.");
             }
 
-            if (string.IsNullOrWhiteSpace(user.Password))
+            if (string.IsNullOrWhiteSpace(registrationRequest.Password))
             {
                 throw new InvalidRequestDataException("Password is either not given or invalid.");
+            }
+
+            if (!Enum.IsDefined(typeof(Gender), registrationRequest.Gender))
+            {
+                throw new InvalidRequestDataException("Gender is either not given or invalid.");
+            }
+
+            if (!Enum.IsDefined(typeof(Role), registrationRequest.Role))
+            {
+                throw new InvalidRequestDataException("Role is either not given or invalid.");
+            }
+
+            var existingUser = _userRepository.Get(registrationRequest.Email);
+
+            if (existingUser != null)
+            {
+                throw new InvalidRequestException("An user is already registered with the same email.");
             }
         }
     }

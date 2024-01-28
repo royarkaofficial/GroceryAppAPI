@@ -1,11 +1,11 @@
 ﻿using GroceryAppAPI.Enumerations;
 
-namespace GroceryAppAPI.Models
+namespace GroceryAppAPI.Models.Request
 {
     /// <summary>
-    /// Represents an user.
+    /// Represents a registration request.
     /// </summary>
-    public class User : BaseEntity
+    public class RegistrationRequest
     {
         /// <summary>
         /// Gets or sets the first name.
@@ -40,11 +40,19 @@ namespace GroceryAppAPI.Models
         public string Password { get; set; }
 
         /// <summary>
+        /// Gets or sets the gender.
+        /// </summary>
+        /// <value>
+        /// The gender.
+        /// </value>
+        public Gender Gender { get; set; }
+
+        /// <summary>
         /// Gets or sets the role.
         /// </summary>
         /// <value>
         /// The role.
         /// </value>
-        public Role Role { get; set; } = Role.User; // Default role user
+        public Role Role { get; set; }
     }
 }

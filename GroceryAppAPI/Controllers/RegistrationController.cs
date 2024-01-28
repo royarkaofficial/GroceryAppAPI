@@ -1,15 +1,14 @@
-﻿using GroceryAppAPI.Attributes;
-using GroceryAppAPI.Models;
+﻿using GroceryAppAPI.Models.DbModels;
+using GroceryAppAPI.Models.Request;
 using GroceryAppAPI.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GroceryAppAPI.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [CommonExceptionFilter]
-    public class RegistrationController : ControllerBase
+    public class RegistrationController : BaseController
     {
         private readonly IRegistrationService _registrationService;
 
@@ -18,11 +17,12 @@ namespace GroceryAppAPI.Controllers
             _registrationService = registrationService;
         }
 
+        [AllowAnonymous]
         [HttpPost]
-        public IActionResult Registration([FromBody] User user)
+        public IActionResult Registration([FromBody] RegistrationRequest registrationRequest)
         {
-            _registrationService.Register(user);
-            return Ok(new { Message = "User registered successfully." });
+            var registrationResponse = _registrationService.Register(registrationRequest);
+            return Ok(new { data = registrationResponse });
         }
     }
 }

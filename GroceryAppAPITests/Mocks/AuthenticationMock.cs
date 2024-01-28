@@ -1,4 +1,4 @@
-﻿using GroceryAppAPI.Models;
+﻿using GroceryAppAPI.Models.DbModels;
 using GroceryAppAPI.Repository.Interfaces;
 using GroceryAppAPI.Services;
 using Moq;

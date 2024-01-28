@@ -1,6 +1,6 @@
 ﻿using GroceryAppAPI.Exceptions;
 using GroceryAppAPI.Helpers;
-using GroceryAppAPI.Models;
+using GroceryAppAPI.Models.Response;
 using GroceryAppAPI.Repository.Interfaces;
 using GroceryAppAPI.Services.Interfaces;
 
@@ -12,32 +12,41 @@ namespace GroceryAppAPI.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IHttpContextAccessor _contextAccessor;
 
         /// <summary>
         /// Initializes a new instance of <see cref="UserService"/> class.
         /// </summary>
         /// <param name="userRepository">The user repository.</param>
-        public UserService(IUserRepository userRepository)
+        /// <param name="contextAccessor">The HTTP context accessor.</param>
+        public UserService(IUserRepository userRepository, IHttpContextAccessor contextAccessor)
         {
             _userRepository = userRepository;
+            _contextAccessor = contextAccessor;
         }
 
         /// <inheritdoc/>
-        public User Get(int id)
+        public UserResponse Get(int id)
         {
             var user = _userRepository.Get(id);
+            IdentityClaimHelper.ClaimUser(user.Email, _contextAccessor);
 
             if (user is null)
             {
                 throw new EntityNotFoundException(id, "User");
             }
 
-            return user;
+            return new UserResponse()
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                Role = user.Role
+            };
         }
 
         /// <inheritdoc/>
-        /// <exception cref="ArgumentNullException">If user parameter is null.</exception>
-        /// <exception cref="InvalidRequestDataException">If any invalid user property is given.</exception>
+        /// <exception cref="InvalidRequestDataException">Password is either not given or invalid.</exception>
         public void Update(int id, string password)
         {
             Get(id);
@@ -47,8 +56,8 @@ namespace GroceryAppAPI.Services
                 throw new InvalidRequestDataException("Password is either not given or invalid.");
             }
 
-            var hashedPssword = EncodingHelper.HashPassword(password);
-            _userRepository.Update(id, hashedPssword);
+            var hashedPassword = EncodingHelper.HashPassword(password);
+            _userRepository.Update(id, hashedPassword);
         }
     }
 }

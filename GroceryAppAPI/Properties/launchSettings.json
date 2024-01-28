@@ -13,7 +13,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "swagger",
+      "launchUrl": "http://groceryapp.api.com/HelloWorld",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

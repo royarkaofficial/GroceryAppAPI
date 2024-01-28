@@ -1,4 +1,4 @@
-﻿using GroceryAppAPI.Models;
+﻿using GroceryAppAPI.Models.DbModels;
 
 namespace GroceryAppAPI.Repository.Interfaces
 {

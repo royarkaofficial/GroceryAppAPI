@@ -1,5 +1,5 @@
 ﻿using GroceryAppAPI.Configurations;
-using GroceryAppAPI.Models;
+using GroceryAppAPI.Models.DbModels;
 using GroceryAppAPI.Repository.Interfaces;
 using Microsoft.Extensions.Options;
 
@@ -58,9 +58,9 @@ namespace GroceryAppAPI.Repository
         /// <inheritdoc/>
         public int Add(User user)
         {
-            const string query = @"INSERT INTO [Users] ([FirstName], [LastName], [Email], [Password], [Role])
+            const string query = @"INSERT INTO [Users] ([FirstName], [LastName], [Email], [Password], [Gender], [Role])
                                    OUTPUT INSERTED.Id
-                                   VALUES (@FirstName, @LastName, @Email, @Password, @Role)";
+                                   VALUES (@FirstName, @LastName, @Email, @Password, @Gender, @Role)";
 
             return Add(query, user);
         }
