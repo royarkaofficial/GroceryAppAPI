@@ -10,12 +10,10 @@ namespace GroceryAppAPI.Controllers
     public class AuthenticationController : BaseController
     {
         private readonly IAuthenticationService _authenticationService;
-        private readonly IConfiguration _configuration;
 
-        public AuthenticationController(IAuthenticationService authenticationService, IConfiguration configuration)
+        public AuthenticationController(IAuthenticationService authenticationService)
         {
             _authenticationService = authenticationService;
-            _configuration = configuration;
         }
 
         [AllowAnonymous]

@@ -52,6 +52,15 @@ namespace GroceryAppAPI.Repository
         }
 
         /// <inheritdoc/>
+        public void Update(int id, string passwordHash)
+        {
+            const string query = @"UPDATE [Users]
+                                   SET [Password] = @Password";
+            var parameters = new { Password = passwordHash };
+            Update(query, parameters);
+        }
+
+        /// <inheritdoc/>
         public int Add(User user)
         {
             const string query = @"INSERT INTO [Users] ([FirstName], [LastName], [Email], [Password], [Address], [Gender], [Role])

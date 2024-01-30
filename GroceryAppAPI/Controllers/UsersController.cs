@@ -1,5 +1,6 @@
 ﻿using GroceryAppAPI.Attributes;
 using GroceryAppAPI.Models;
+using GroceryAppAPI.Models.Request;
 using GroceryAppAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +17,14 @@ namespace GroceryAppAPI.Controllers
         public UsersController(IUserService userService)
         {
             _userService = userService;
+        }
+
+        [AllowAnonymous]
+        [HttpPut("password")]
+        public IActionResult ForgotPassword([FromBody] ResetPasswordRequest resetPasswordRequest)
+        {
+            _userService.UpdatePassword(resetPasswordRequest);
+            return Ok(new { Message = "Password reset successfull." });
         }
 
         [Authorize]

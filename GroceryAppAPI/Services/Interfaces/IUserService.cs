@@ -1,4 +1,5 @@
-﻿using GroceryAppAPI.Models.Response;
+﻿using GroceryAppAPI.Models.Request;
+using GroceryAppAPI.Models.Response;
 
 namespace GroceryAppAPI.Services.Interfaces
 {
@@ -20,5 +21,11 @@ namespace GroceryAppAPI.Services.Interfaces
         /// <param name="id">The identifier.</param>
         /// <param name="properties">The properties.</param>
         public void Update(int id, string properties);
+
+        /// <summary>
+        /// Updates the password.
+        /// </summary>
+        /// <param name="resetPasswordRequest">The reset password request.</param>
+        public void UpdatePassword(ResetPasswordRequest resetPasswordRequest);
     }
 }

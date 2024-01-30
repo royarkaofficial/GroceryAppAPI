@@ -2,6 +2,7 @@
 using GroceryAppAPI.Exceptions;
 using GroceryAppAPI.Helpers;
 using GroceryAppAPI.Models.DbModels;
+using GroceryAppAPI.Models.Request;
 using GroceryAppAPI.Models.Response;
 using GroceryAppAPI.Repository.Interfaces;
 using GroceryAppAPI.Services.Interfaces;
@@ -84,6 +85,18 @@ namespace GroceryAppAPI.Services
                 var query = string.Join(", ", setStatements);
                 _userRepository.Update(query, user);
             }
+        }
+
+        /// <inheritdoc/>
+        public void UpdatePassword(ResetPasswordRequest resetPasswordRequest)
+        {
+            if (resetPasswordRequest is null) { throw new InvalidRequestDataException("Reset request is either not given or invalid."); }
+            if (string.IsNullOrWhiteSpace(resetPasswordRequest.Email)) { throw new InvalidRequestDataException("Email is either not given or invalid."); }
+            if (string.IsNullOrWhiteSpace(resetPasswordRequest.Password)) { throw new InvalidRequestDataException("Password is either not given or invalid."); }
+            var user = _userRepository.Get(resetPasswordRequest.Email);
+            if (user is null) { throw new EntityNotFoundException($"User with the given email '{resetPasswordRequest.Email}' does not exist."); }
+            var passwordHash = EncodingHelper.HashPassword(resetPasswordRequest.Password);
+            _userRepository.Update(user.Id, passwordHash);
         }
     }
 }
