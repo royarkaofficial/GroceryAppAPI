@@ -1,6 +1,4 @@
-﻿using GroceryAppAPI.Enumerations;
-
-namespace GroceryAppAPI.Models.DbModels
+﻿namespace GroceryAppAPI.Models.DbModels
 {
     /// <summary>
     /// Represents a payment.
@@ -22,6 +20,6 @@ namespace GroceryAppAPI.Models.DbModels
         /// <value>
         /// The payment type.
         /// </value>
-        public PaymentType PaymentType { get; set; }
+        public int PaymentType { get; set; }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using GroceryAppAPI.Enumerations;
 using GroceryAppAPI.Exceptions;
 using GroceryAppAPI.Helpers;
+using GroceryAppAPI.Models.DbModels;
 using GroceryAppAPI.Models.Response;
 using GroceryAppAPI.Repository.Interfaces;
 using GroceryAppAPI.Services.Interfaces;
+using Newtonsoft.Json.Linq;
 
 namespace GroceryAppAPI.Services
 {
@@ -37,18 +39,51 @@ namespace GroceryAppAPI.Services
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
+                Address = user.Address,
+                Gender = (Gender)user.Gender,
                 Role = (Role)user.Role
             };
         }
 
         /// <inheritdoc/>
         /// <exception cref="InvalidRequestDataException">Password is either not given or invalid.</exception>
-        public void Update(int id, string password)
+        public void Update(int id, string properties)
         {
             Get(id);
-            if (string.IsNullOrWhiteSpace(password)) { throw new InvalidRequestDataException("Password is either not given or invalid."); }
-            var hashedPassword = EncodingHelper.HashPassword(password);
-            _userRepository.Update(id, hashedPassword);
+            
+            if (!string.IsNullOrWhiteSpace(properties))
+            {
+                var jsonProperties = JObject.Parse(properties);
+                var setStatements = new List<string>();
+                var user = new User() { Id = id };
+
+                foreach (var property in jsonProperties.Properties())
+                {
+                    var name = property.Name.ToUpperInvariant();
+                    var value = property.Value.ToString();
+
+                    switch (name)
+                    {
+                        case "FIRSTNAME":
+                            if (string.IsNullOrWhiteSpace(value)) { throw new InvalidRequestDataException("FirstName is either not given or invalid."); }
+                            else { setStatements.Add("[FirstName] = @FirstName"); user.FirstName = value; }
+                            break;
+                        case "LASTNAME":
+                            if (string.IsNullOrWhiteSpace(value)) { throw new InvalidRequestDataException("LastName is either not given or invalid."); }
+                            else { setStatements.Add("[LastName] = @LastName"); user.LastName = value; }
+                            break;
+                        case "ADDRESS":
+                            if (string.IsNullOrWhiteSpace(value)) { throw new InvalidRequestDataException("Address is either not given or invalid."); }
+                            else { setStatements.Add("[Address] = @Address"); user.Address = value; }
+                            break;
+                        default:
+                            throw new InvalidRequestDataException($"User does not have any property like '{name}'");
+                    }
+                }
+
+                var query = string.Join(", ", setStatements);
+                _userRepository.Update(query, user);
+            }
         }
     }
 }

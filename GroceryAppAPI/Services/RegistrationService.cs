@@ -3,7 +3,6 @@ using GroceryAppAPI.Exceptions;
 using GroceryAppAPI.Helpers;
 using GroceryAppAPI.Models.DbModels;
 using GroceryAppAPI.Models.Request;
-using GroceryAppAPI.Models.Response;
 using GroceryAppAPI.Repository.Interfaces;
 using GroceryAppAPI.Services.Interfaces;
 
@@ -26,7 +25,7 @@ namespace GroceryAppAPI.Services
         }
 
         /// <inheritdoc/>
-        public RegistrationResponse Register(RegistrationRequest registrationRequest)
+        public void Register(RegistrationRequest registrationRequest)
         {
             Validate(registrationRequest);
             registrationRequest.Password = EncodingHelper.HashPassword(registrationRequest.Password);
@@ -39,8 +38,7 @@ namespace GroceryAppAPI.Services
                 Gender = (int)registrationRequest.Gender,
                 Role = (int)registrationRequest.Role
             };
-            var id = _userRepository.Add(user);
-            return new RegistrationResponse() { UserId = id };
+            _userRepository.Add(user);
         }
 
         /// <summary>
@@ -54,6 +52,7 @@ namespace GroceryAppAPI.Services
             if (string.IsNullOrWhiteSpace(registrationRequest.LastName)) { throw new InvalidRequestDataException("LastName is either not given or invalid."); }
             if (string.IsNullOrWhiteSpace(registrationRequest.Email)) { throw new InvalidRequestDataException("Email is either not given or invalid."); }
             if (string.IsNullOrWhiteSpace(registrationRequest.Password)) { throw new InvalidRequestDataException("Password is either not given or invalid."); }
+            if (string.IsNullOrWhiteSpace(registrationRequest.Address)) { throw new InvalidRequestDataException("Address is either not given or invalid."); }
             if (!Enum.IsDefined(typeof(Gender), registrationRequest.Gender)) { throw new InvalidRequestDataException("Gender is either not given or invalid."); }
             if (!Enum.IsDefined(typeof(Role), registrationRequest.Role)) { throw new InvalidRequestDataException("Role is either not given or invalid."); }
             var existingUser = _userRepository.Get(registrationRequest.Email);

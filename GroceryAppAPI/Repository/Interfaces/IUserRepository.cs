@@ -24,9 +24,9 @@ namespace GroceryAppAPI.Repository.Interfaces
         /// <summary>
         /// Updates the specified user.
         /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <param name="password">The password.</param>
-        public void Update(int id, string password);
+        /// <param name="conditions">The conditions.</param>
+        /// <param name="user">The user.</param>
+        public void Update(string conditions, User user);
 
         /// <summary>
         /// Adds the specified user. 

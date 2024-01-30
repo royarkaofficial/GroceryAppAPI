@@ -33,6 +33,22 @@ namespace GroceryAppAPI.Models.Response
         public string Email { get; set; }
 
         /// <summary>
+        /// Gets or sets the address.
+        /// </summary>
+        /// <value>
+        /// The address.
+        /// </value>
+        public string Address { get; set; }
+
+        /// <summary>
+        /// Gets or sets the gender.
+        /// </summary>
+        /// <value>
+        /// The gender.
+        /// </value>
+        public Gender Gender { get; set; }
+
+        /// <summary>
         /// Gets or sets the role.
         /// </summary>
         /// <value>

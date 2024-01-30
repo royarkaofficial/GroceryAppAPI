@@ -40,6 +40,14 @@ namespace GroceryAppAPI.Models.Request
         public string Password { get; set; }
 
         /// <summary>
+        /// Gets or sets the address.
+        /// </summary>
+        /// <value>
+        /// The address.
+        /// </value>
+        public string Address { get; set; }
+
+        /// <summary>
         /// Gets or sets the gender.
         /// </summary>
         /// <value>

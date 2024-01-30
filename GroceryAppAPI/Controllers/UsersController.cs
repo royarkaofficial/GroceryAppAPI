@@ -27,11 +27,11 @@ namespace GroceryAppAPI.Controllers
         }
 
         [Authorize]
-        [HttpPut("{id:int}")]
-        public IActionResult Update([FromRoute] int id, [FromBody] string password)
+        [HttpPatch("{id:int}")]
+        public IActionResult Update([FromRoute] int id, [FromBody] string properties)
         {
-            _userService.Update(id, password);
-            return Ok(new {Message = "Password updated successfully."});
+            _userService.Update(id, properties);
+            return Ok(new {Message = "User details updated successfully."});
         }
     }
 }

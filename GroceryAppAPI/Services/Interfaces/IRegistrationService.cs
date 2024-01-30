@@ -1,5 +1,4 @@
 ﻿using GroceryAppAPI.Models.Request;
-using GroceryAppAPI.Models.Response;
 
 namespace GroceryAppAPI.Services.Interfaces
 {
@@ -13,6 +12,6 @@ namespace GroceryAppAPI.Services.Interfaces
         /// </summary>
         /// <param name="registrationRequest">The registration request.</param>
         /// <returns>The registration response.</returns>
-        public RegistrationResponse Register(RegistrationRequest registrationRequest);
+        public void Register(RegistrationRequest registrationRequest);
     }
 }

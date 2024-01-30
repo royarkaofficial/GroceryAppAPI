@@ -34,7 +34,7 @@ namespace GroceryAppAPITests.Mocks
                 return users.FirstOrDefault(user => user.Id == id);
             });
 
-            UserRepositoryMock.Setup(repo => repo.Update(It.IsAny<int>(), It.IsAny<string>()));
+            UserRepositoryMock.Setup(repo => repo.Update(It.IsAny<string>(), It.IsAny<User>()));
         }
     }
 }

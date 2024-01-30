@@ -29,7 +29,7 @@ namespace GroceryAppAPI.Services
         public int Add(PaymentRequest paymentRequest)
         {
             Validate(paymentRequest);
-            var payment = new Payment() { Amount = paymentRequest.Amount, PaymentType = paymentRequest.PaymentType };
+            var payment = new Payment() { Amount = paymentRequest.Amount, PaymentType = (int)paymentRequest.PaymentType };
             return _paymentRepository.Add(payment);
         }
 

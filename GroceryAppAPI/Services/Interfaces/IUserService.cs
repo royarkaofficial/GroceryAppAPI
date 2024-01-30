@@ -15,10 +15,10 @@ namespace GroceryAppAPI.Services.Interfaces
         public UserResponse Get(int id);
 
         /// <summary>
-        /// Updates a specified user.
+        /// Updates the details of a specified user.
         /// </summary>
         /// <param name="id">The identifier.</param>
-        /// <param name="password">The password.</param>
-        public void Update(int id, string password);
+        /// <param name="properties">The properties.</param>
+        public void Update(int id, string properties);
     }
 }

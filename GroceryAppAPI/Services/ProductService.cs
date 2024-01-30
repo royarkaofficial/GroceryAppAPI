@@ -76,7 +76,7 @@ namespace GroceryAppAPI.Services
             {
                 var jsonProperties = JObject.Parse(properties);
                 var setStatements = new List<string>();
-                var product = new Product();
+                var product = new Product() { Id = id };
                 foreach (var propertyInfo in jsonProperties.Properties())
                 {
                     var name = propertyInfo.Name;
@@ -119,7 +119,6 @@ namespace GroceryAppAPI.Services
                     }
                 }
                 var query = string.Join(", ", setStatements);
-                product.Id = id;
                 _productRepository.Update(query, product);
             }
         }

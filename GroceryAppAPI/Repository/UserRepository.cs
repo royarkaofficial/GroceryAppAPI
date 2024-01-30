@@ -43,21 +43,20 @@ namespace GroceryAppAPI.Repository
         }
 
         /// <inheritdoc/>
-        public void Update(int id, string password)
+        public void Update(string conditions, User user)
         {
-            const string query = @"UPDATE [Users]
-                                   SET [Password] = @Password
-                                   WHERE [Id] = @Id";
-            var parameters = new { Id = id, Password =  password };
-            Update(query, parameters);
+            string query = @$"UPDATE [Users]
+                              SET {conditions}
+                              WHERE [Id] = @Id";
+            Update(query, user);
         }
 
         /// <inheritdoc/>
         public int Add(User user)
         {
-            const string query = @"INSERT INTO [Users] ([FirstName], [LastName], [Email], [Password], [Gender], [Role])
+            const string query = @"INSERT INTO [Users] ([FirstName], [LastName], [Email], [Password], [Address], [Gender], [Role])
                                    OUTPUT INSERTED.Id
-                                   VALUES (@FirstName, @LastName, @Email, @Password, @Gender, @Role)";
+                                   VALUES (@FirstName, @LastName, @Email, @Password, @Address, @Gender, @Role)";
             return Add(query, user);
         }
     }

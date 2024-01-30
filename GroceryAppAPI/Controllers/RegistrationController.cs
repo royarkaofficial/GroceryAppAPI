@@ -21,8 +21,8 @@ namespace GroceryAppAPI.Controllers
         [HttpPost]
         public IActionResult Registration([FromBody] RegistrationRequest registrationRequest)
         {
-            var registrationResponse = _registrationService.Register(registrationRequest);
-            return Ok(new { data = registrationResponse });
+            _registrationService.Register(registrationRequest);
+            return Ok(new { Message = "User registered successfully." });
         }
     }
 }
