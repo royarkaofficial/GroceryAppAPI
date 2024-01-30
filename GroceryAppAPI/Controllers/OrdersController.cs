@@ -1,6 +1,7 @@
 ﻿using GroceryAppAPI.Attributes;
-using GroceryAppAPI.Models;
+using GroceryAppAPI.Models.Request;
 using GroceryAppAPI.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GroceryAppAPI.Controllers
@@ -17,6 +18,7 @@ namespace GroceryAppAPI.Controllers
             _orderService = orderService;
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Get([FromRoute] int userId)
         {
@@ -24,12 +26,12 @@ namespace GroceryAppAPI.Controllers
             return Ok(orders);
         }
 
-        [HttpPost("payments")]
-        public IActionResult Payment([FromRoute] int id,[FromRoute] int userId, [FromBody] PaymentRequest paymentRequest)
+        [Authorize]
+        [HttpPost("place")]
+        public IActionResult Payment([FromRoute] int userId, [FromBody] OrderPlacementRequest placementRequest)
         {
-            paymentRequest.Order.UserId = userId;
-            var (orderId, paymentId) = _orderService.Pay(id, paymentRequest);
-            return Ok(new { OrderId = orderId, PaymentId = paymentId });
+            var placementResponse = _orderService.Place(userId, placementRequest);
+            return Ok(new { data = placementResponse });
         }
     }
 }

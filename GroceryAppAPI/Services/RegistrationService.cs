@@ -2,10 +2,10 @@
 using GroceryAppAPI.Exceptions;
 using GroceryAppAPI.Helpers;
 using GroceryAppAPI.Models.DbModels;
+using GroceryAppAPI.Models.Request;
 using GroceryAppAPI.Models.Response;
 using GroceryAppAPI.Repository.Interfaces;
 using GroceryAppAPI.Services.Interfaces;
-using RegistrationRequest = GroceryAppAPI.Models.Request.RegistrationRequest;
 
 namespace GroceryAppAPI.Services
 {
@@ -30,7 +30,6 @@ namespace GroceryAppAPI.Services
         {
             Validate(registrationRequest);
             registrationRequest.Password = EncodingHelper.HashPassword(registrationRequest.Password);
-
             var user = new User()
             {
                 FirstName = registrationRequest.FirstName,
@@ -40,13 +39,8 @@ namespace GroceryAppAPI.Services
                 Gender = (int)registrationRequest.Gender,
                 Role = (int)registrationRequest.Role
             };
-
             var id = _userRepository.Add(user);
-
-            return new RegistrationResponse()
-            {
-                UserId = id
-            };
+            return new RegistrationResponse() { UserId = id };
         }
 
         /// <summary>
@@ -55,47 +49,15 @@ namespace GroceryAppAPI.Services
         /// <param name="registrationRequest">The registration request.</param>
         private void Validate(RegistrationRequest registrationRequest)
         {
-            if (registrationRequest is null)
-            {
-                throw new ArgumentNullException("User is either not given or invalid.");
-            }
-
-            if (string.IsNullOrWhiteSpace(registrationRequest.FirstName))
-            {
-                throw new InvalidRequestDataException("FirstName is either not given or invalid.");
-            }
-
-            if (string.IsNullOrWhiteSpace(registrationRequest.LastName))
-            {
-                throw new InvalidRequestDataException("LastName is either not given or invalid.");
-            }
-
-            if (string.IsNullOrWhiteSpace(registrationRequest.Email))
-            {
-                throw new InvalidRequestDataException("Email is either not given or invalid.");
-            }
-
-            if (string.IsNullOrWhiteSpace(registrationRequest.Password))
-            {
-                throw new InvalidRequestDataException("Password is either not given or invalid.");
-            }
-
-            if (!Enum.IsDefined(typeof(Gender), registrationRequest.Gender))
-            {
-                throw new InvalidRequestDataException("Gender is either not given or invalid.");
-            }
-
-            if (!Enum.IsDefined(typeof(Role), registrationRequest.Role))
-            {
-                throw new InvalidRequestDataException("Role is either not given or invalid.");
-            }
-
+            if (registrationRequest is null) { throw new ArgumentNullException("User is either not given or invalid."); }
+            if (string.IsNullOrWhiteSpace(registrationRequest.FirstName)) { throw new InvalidRequestDataException("FirstName is either not given or invalid."); }
+            if (string.IsNullOrWhiteSpace(registrationRequest.LastName)) { throw new InvalidRequestDataException("LastName is either not given or invalid."); }
+            if (string.IsNullOrWhiteSpace(registrationRequest.Email)) { throw new InvalidRequestDataException("Email is either not given or invalid."); }
+            if (string.IsNullOrWhiteSpace(registrationRequest.Password)) { throw new InvalidRequestDataException("Password is either not given or invalid."); }
+            if (!Enum.IsDefined(typeof(Gender), registrationRequest.Gender)) { throw new InvalidRequestDataException("Gender is either not given or invalid."); }
+            if (!Enum.IsDefined(typeof(Role), registrationRequest.Role)) { throw new InvalidRequestDataException("Role is either not given or invalid."); }
             var existingUser = _userRepository.Get(registrationRequest.Email);
-
-            if (existingUser != null)
-            {
-                throw new InvalidRequestException("An user is already registered with the same email.");
-            }
+            if (existingUser != null) { throw new InvalidRequestException("An user is already registered with the same email."); }
         }
     }
 }

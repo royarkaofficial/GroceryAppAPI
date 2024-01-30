@@ -1,6 +1,7 @@
 ﻿using GroceryAppAPI.Enumerations;
 using GroceryAppAPI.Exceptions;
-using GroceryAppAPI.Models;
+using GroceryAppAPI.Models.DbModels;
+using GroceryAppAPI.Models.Request;
 using GroceryAppAPI.Repository.Interfaces;
 using GroceryAppAPI.Services.Interfaces;
 
@@ -9,7 +10,7 @@ namespace GroceryAppAPI.Services
     /// <summary>
     /// Implements payment related functionalities.
     /// </summary>
-    /// <seealso cref="GroceryAppAPI.Services.Interfaces.IPaymentService" />
+    /// <seealso cref="IPaymentService" />
     public class PaymentService : IPaymentService
     {
         private readonly IPaymentRepository _paymentRepository;
@@ -25,48 +26,24 @@ namespace GroceryAppAPI.Services
         }
 
         /// <inheritdoc/>
-        public int Add(Payment payment)
+        public int Add(PaymentRequest paymentRequest)
         {
-            Validate(payment);
-
+            Validate(paymentRequest);
+            var payment = new Payment() { Amount = paymentRequest.Amount, PaymentType = paymentRequest.PaymentType };
             return _paymentRepository.Add(payment);
-        }
-
-        /// <inheritdoc/>
-        public Payment Get(int id)
-        {
-            var payment = _paymentRepository.Get(id);
-
-            if (payment is null)
-            {
-                throw new EntityNotFoundException(id, "Payment");
-            }
-
-            return payment;
         }
 
         /// <summary>
         /// Validates a payment.
         /// </summary>
-        /// <param name="payment">The payment.</param>
+        /// <param name="paymentRequest">The payment.</param>
         /// <exception cref="ArgumentNullException">If payment parameter is null.</exception>
-        /// <exception cref="GroceryAppAPI.Exceptions.InvalidRequestDataException">If any invalid payment property is given.</exception>
-        public void Validate(Payment payment)
+        /// <exception cref="InvalidRequestDataException">If any invalid payment property is given.</exception>
+        public void Validate(PaymentRequest paymentRequest)
         {
-            if (payment is null)
-            {
-                throw new ArgumentNullException("");
-            }
-
-            if (payment.Amount <= 0)
-            {
-                throw new InvalidRequestDataException("Amount is either not given or invalid.");
-            }
-
-            if (!Enum.IsDefined(typeof(PaymentType), payment.PaymentType))
-            {
-                throw new InvalidRequestDataException("PaymentType is either not given or invalid.");
-            }
+            if (paymentRequest is null) { throw new ArgumentNullException("Payment is either not given or invalid."); }
+            if (paymentRequest.Amount <= 0) { throw new InvalidRequestDataException("Amount is either not given or invalid."); }
+            if (!Enum.IsDefined(typeof(PaymentType), paymentRequest.PaymentType)) { throw new InvalidRequestDataException("PaymentType is either not given or invalid."); }
         }
     }
 }

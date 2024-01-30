@@ -1,4 +1,5 @@
-﻿using GroceryAppAPI.Models;
+﻿using GroceryAppAPI.Models.Request;
+using GroceryAppAPI.Models.Response;
 
 namespace GroceryAppAPI.Services.Interfaces
 {
@@ -12,14 +13,15 @@ namespace GroceryAppAPI.Services.Interfaces
         /// </summary>
         /// <param name="userId">The user identifier.</param>
         /// <returns>The cart.</returns>
-        public Models.Response.Cart Get(int userId);
+        public CartResponse Get(int userId);
 
         /// <summary>
         /// Adds the specified cart.
         /// </summary>
-        /// <param name="cart">The cart.</param>
+        /// <param name="userId">The user identifier.</param>
+        /// <param name="cartRequest">The cart request.</param>
         /// <returns>The newly inserted identifier.</returns>
-        public int Add(Cart cart);
+        public int Add(int userId, CartRequest cartRequest);
 
         /// <summary>
         /// Deletes the specified cart.
@@ -32,7 +34,8 @@ namespace GroceryAppAPI.Services.Interfaces
         /// Updates the specified cart.
         /// </summary>
         /// <param name="id">The identifier.</param>
-        /// <param name="cart">The cart.</param>
-        public void Update(int id, Cart cart);
+        /// <param name="cartRequest">The cart request.</param>
+        /// <param name="userId">The user identifier.</param>
+        public void Update(int id, int userId, CartRequest cartRequest);
     }
 }

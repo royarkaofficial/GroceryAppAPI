@@ -1,4 +1,5 @@
-﻿using GroceryAppAPI.Models;
+﻿using GroceryAppAPI.Models.DbModels;
+using GroceryAppAPI.Models.Request;
 
 namespace GroceryAppAPI.Services.Interfaces
 {
@@ -8,17 +9,10 @@ namespace GroceryAppAPI.Services.Interfaces
     public interface IPaymentService
     {
         /// <summary>
-        /// Gets the specified payment.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <returns>The payment.</returns>
-        public Payment Get(int id);
-
-        /// <summary>
         /// Adds the specified payment.
         /// </summary>
-        /// <param name="payment">The payment.</param>
+        /// <param name="paymentRequest">The payment request.</param>
         /// <returns>The newly inserted identifier.</returns>
-        public int Add(Payment payment);
+        public int Add(PaymentRequest paymentRequest);
     }
 }

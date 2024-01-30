@@ -35,33 +35,14 @@ namespace GroceryAppAPI.Services
         /// <inheritdoc/>
         public LoginResponse Login(LoginRequest loginRequest)
         {
-            if (string.IsNullOrWhiteSpace(loginRequest.Email))
-            {
-                throw new InvalidRequestDataException("Username is either not given or invalid.");
-            }
-
-            if (string.IsNullOrWhiteSpace(loginRequest.Password))
-            {
-                throw new InvalidRequestDataException("Password is either not given or invalid.");
-            }
-
+            if (string.IsNullOrWhiteSpace(loginRequest.Email)) { throw new InvalidRequestDataException("Username is either not given or invalid."); }
+            if (string.IsNullOrWhiteSpace(loginRequest.Password)) { throw new InvalidRequestDataException("Password is either not given or invalid."); }
             var user = _userRepository.Get(loginRequest.Email);
-
-            if (user is null)
-            {
-                throw new EntityNotFoundException("User with the given username not found.");
-            }
-
+            if (user is null) { throw new EntityNotFoundException("User with the given username not found."); }
             var actualHash = user.Password;
             var expectedHash = EncodingHelper.HashPassword(loginRequest.Password);
-
-            if (actualHash != expectedHash)
-            {
-                throw new InvalidRequestException("Password is incorrect.");
-            }
-
+            if (actualHash != expectedHash) { throw new InvalidRequestException("Password is incorrect."); }
             var accessToken = GenerateAccessToken(user);
-
             return new LoginResponse()
             {
                 UserId = user.Id,
@@ -80,20 +61,17 @@ namespace GroceryAppAPI.Services
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["AppSettings:Authentication:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
             var userRole = (Role)user.Role;
-
             var claims = new []
             {
                 new Claim(ClaimTypes.NameIdentifier, $"{user.FirstName} {user.LastName}"),
                 new Claim(ClaimTypes.Role, userRole.ToString()),
                 new Claim(ClaimTypes.Email, user.Email)
             };
-
             var token = new JwtSecurityToken(_configuration["AppSettings:Authentication:Issuer"],
                 _configuration["AppSettings:Authentication:Audience"],
                 claims,
                 expires: DateTime.Now.AddHours(1),
                 signingCredentials: credentials);
-
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }

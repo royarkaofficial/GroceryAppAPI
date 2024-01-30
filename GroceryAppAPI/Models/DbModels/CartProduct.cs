@@ -1,7 +1,7 @@
 ﻿namespace GroceryAppAPI.Models.DbModels
 {
     /// <summary>
-    /// Repreents a cart product mapping.
+    /// Represents a cart product mapping.
     /// </summary>
     /// <seealso cref="DbModels.BaseEntity" />
     public class CartProduct : BaseEntity

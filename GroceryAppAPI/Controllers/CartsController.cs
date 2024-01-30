@@ -1,8 +1,7 @@
 ﻿using GroceryAppAPI.Attributes;
-using GroceryAppAPI.Models;
-using GroceryAppAPI.Services;
+using GroceryAppAPI.Models.Request;
 using GroceryAppAPI.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GroceryAppAPI.Controllers
@@ -19,35 +18,32 @@ namespace GroceryAppAPI.Controllers
             _cartService = cartService;
         }
 
+        [Authorize]
         [HttpPost]
-        public IActionResult Post([FromRoute] int userId, [FromBody] Cart cart)
+        public IActionResult Post([FromRoute] int userId, [FromBody] CartRequest cartRequest)
         {
-            cart.UserId = userId;
-            var id = _cartService.Add(cart);
-            return Ok(new { Id = id });
+            var id = _cartService.Add(userId, cartRequest);
+            return Ok(new { data = new { Id = id } });
         }
 
+        [Authorize]
         [HttpGet]
         public IActionResult Get([FromRoute] int userId)
         {
             var cart = _cartService.Get(userId);
-
-            if (cart is null)
-            {
-                return Ok(new { Message = "User does not have any cart." });
-            }
-
+            if (cart is null) { return Ok(new { Message = "User does not have any cart." }); }
             return Ok(cart);
         }
 
+        [Authorize]
         [HttpPut("{id:int}")]
-        public IActionResult Put([FromRoute] int id, [FromRoute] int userId, [FromBody] Cart cart)
+        public IActionResult Put([FromRoute] int id, [FromRoute] int userId, [FromBody] CartRequest cartRequest)
         {
-            cart.UserId = userId;
-            _cartService.Update(id, cart);
+            _cartService.Update(id, userId, cartRequest);
             return Ok(new { Message = "Cart updated successfully." });
         }
 
+        [Authorize]
         [HttpDelete("{id:int}")]
         public IActionResult Delete([FromRoute] int id, [FromRoute] int userId)
         {

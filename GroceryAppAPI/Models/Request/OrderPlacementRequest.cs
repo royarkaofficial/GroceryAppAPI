@@ -1,9 +1,9 @@
-﻿namespace GroceryAppAPI.Models
+﻿namespace GroceryAppAPI.Models.Request
 {
     /// <summary>
-    /// Represents a payment request for an order.
+    /// Represents an order placement request.
     /// </summary>
-    public class PaymentRequest
+    public class OrderPlacementRequest
     {
         /// <summary>
         /// Gets or sets the payment.
@@ -11,7 +11,7 @@
         /// <value>
         /// The payment.
         /// </value>
-        public Payment Payment { get; set; }
+        public PaymentRequest PaymentRequest { get; set; }
 
         /// <summary>
         /// Gets or sets the order.
@@ -19,6 +19,6 @@
         /// <value>
         /// The order.
         /// </value>
-        public Order Order { get; set; }
+        public OrderRequest OrderRequest { get; set; }
     }
 }

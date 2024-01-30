@@ -1,5 +1,4 @@
-﻿using GroceryAppAPI.Models.DbModels;
-using GroceryAppAPI.Models.Request;
+﻿using GroceryAppAPI.Models.Request;
 using GroceryAppAPI.Models.Response;
 
 namespace GroceryAppAPI.Services.Interfaces

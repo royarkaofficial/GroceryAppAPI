@@ -28,7 +28,6 @@ namespace GroceryAppAPI.Repository
                                    WHERE [CartId] = @CartId
                                    AND [ProductId] = @ProductId";
             var parameters = new { CartId = cartId, ProductId = productId };
-
             Update(query, parameters);
         }
 
@@ -39,7 +38,6 @@ namespace GroceryAppAPI.Repository
                                    FROM [Carts_Products]
                                    WHERE [CartId] = @CartId";
             var parameters = new { CartId = cartId };
-
             return GetAll(query, parameters);
         }
 
@@ -49,7 +47,6 @@ namespace GroceryAppAPI.Repository
             const string query = @"INSERT INTO [Carts_Products] ([CartId], [ProductId])
                                    OUTPUT INSERTED.Id
                                    VALUES (@CartId, @ProductId)";
-
             Add(query, cartProduct);
         }
 
@@ -59,7 +56,6 @@ namespace GroceryAppAPI.Repository
             const string query = @"DELETE FROM [Carts_Products]
                                    WHERE [CartId] = @CartId";
             var parameters = new { CartId = cartId };
-
             Delete(query, parameters);
         }
     }

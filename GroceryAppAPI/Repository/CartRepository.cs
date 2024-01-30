@@ -1,5 +1,5 @@
 ﻿using GroceryAppAPI.Configurations;
-using GroceryAppAPI.Models;
+using GroceryAppAPI.Models.DbModels;
 using GroceryAppAPI.Repository.Interfaces;
 using Microsoft.Extensions.Options;
 
@@ -28,7 +28,6 @@ namespace GroceryAppAPI.Repository
             const string query = @"INSERT INTO [Carts] ([UserId])
                                    OUTPUT INSERTED.Id
                                    VALUES (@UserId)";
-
             return Add(query, cart);
         }
 
@@ -38,7 +37,6 @@ namespace GroceryAppAPI.Repository
             const string query = @"DELETE FROM [Carts] 
                                    WHERE [Id] = @Id";
             var parameters = new { Id = id };
-
             Update(query, parameters);
         }
 
@@ -49,7 +47,6 @@ namespace GroceryAppAPI.Repository
                                    FROM [Carts]
                                    WHERE [Id] = @Id";
             var parameters = new { Id = id };
-
             return GetAll(query, parameters).FirstOrDefault();
         }
 
@@ -60,7 +57,6 @@ namespace GroceryAppAPI.Repository
                              FROM [Carts]
                              WHERE [UserId] = @UserId";
             var parameters = new { UserId = userId };
-
             return GetAll(query, parameters).FirstOrDefault();
         }
     }

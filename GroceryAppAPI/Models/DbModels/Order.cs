@@ -1,11 +1,9 @@
-﻿using GroceryAppAPI.Models.DbModels;
-
-namespace GroceryAppAPI.Models
+﻿namespace GroceryAppAPI.Models.DbModels
 {
     /// <summary>
     /// Represents an order.
     /// </summary>
-    /// <seealso cref="DbModels.BaseEntity" />
+    /// <seealso cref="BaseEntity" />
     public class Order : BaseEntity
     {
         /// <summary>
@@ -14,7 +12,7 @@ namespace GroceryAppAPI.Models
         /// <value>
         /// The user identifier.
         /// </value>
-        public int UserId {  get; set; }
+        public int UserId { get; set; }
 
         /// <summary>
         /// Gets or sets the payment identifier.
@@ -31,14 +29,5 @@ namespace GroceryAppAPI.Models
         /// The ordered at.
         /// </value>
         public DateTime OrderedAt { get; set; }
-
-        /// <summary>
-        /// Gets or sets the product ids.
-        /// </summary>
-        /// <value>
-        /// The product ids.
-        /// </value>
-        public IEnumerable<int> ProductIds { get; set; }
-
     }
 }

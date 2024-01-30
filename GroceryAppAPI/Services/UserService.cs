@@ -31,12 +31,7 @@ namespace GroceryAppAPI.Services
         {
             var user = _userRepository.Get(id);
             IdentityClaimHelper.ClaimUser(user.Email, _contextAccessor);
-
-            if (user is null)
-            {
-                throw new EntityNotFoundException(id, "User");
-            }
-
+            if (user is null) { throw new EntityNotFoundException(id, "User"); }
             return new UserResponse()
             {
                 FirstName = user.FirstName,
@@ -51,12 +46,7 @@ namespace GroceryAppAPI.Services
         public void Update(int id, string password)
         {
             Get(id);
-
-            if (string.IsNullOrWhiteSpace(password))
-            {
-                throw new InvalidRequestDataException("Password is either not given or invalid.");
-            }
-
+            if (string.IsNullOrWhiteSpace(password)) { throw new InvalidRequestDataException("Password is either not given or invalid."); }
             var hashedPassword = EncodingHelper.HashPassword(password);
             _userRepository.Update(id, hashedPassword);
         }

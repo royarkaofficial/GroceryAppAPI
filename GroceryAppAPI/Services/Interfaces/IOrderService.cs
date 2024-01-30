@@ -1,4 +1,5 @@
-﻿using GroceryAppAPI.Models;
+﻿using GroceryAppAPI.Models.Request;
+using GroceryAppAPI.Models.Response;
 
 namespace GroceryAppAPI.Services.Interfaces
 {
@@ -12,21 +13,14 @@ namespace GroceryAppAPI.Services.Interfaces
         /// </summary>
         /// <param name="userId">The user identifier.</param>
         /// <returns>The orders.</returns>
-        public IEnumerable<Order> GetAll(int userId);
+        public IEnumerable<OrderResponse> GetAll(int userId);
 
         /// <summary>
-        /// Adds the specified order.
+        /// Places the specified order.
         /// </summary>
-        /// <param name="order">The order.</param>
-        /// <returns>The newly inserted identifier.</returns>
-        public int AddOrder(Order order);
-
-        /// <summary>
-        /// Adds payment for the specified order.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
+        /// <param name="userId">The user identifier.</param>
         /// <param name="paymentRequest">The payment request.</param>
         /// <returns>The newly inserted order and payment identifier.</returns>
-        public (int, int) Pay(int id, PaymentRequest paymentRequest);
+        public OrderPlacementResponse Place(int userId, OrderPlacementRequest paymentRequest);
     }
 }

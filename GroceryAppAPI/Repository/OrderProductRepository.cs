@@ -27,7 +27,6 @@ namespace GroceryAppAPI.Repository
             const string query = @"INSERT INTO [Orders_Products] ([OrderId], [ProductId])
                                    OUTPUT INSERTED.Id
                                    VALUES (@OrderId, @ProductId)";
-            
             return Add(query, orderProduct);
         }
 
@@ -38,7 +37,6 @@ namespace GroceryAppAPI.Repository
                                    FROM [Orders_Products]
                                    WHERE [OrderId] = @OrderId";
             var parameters = new { OrderId = orderId };
-
             return GetAll(query, parameters);
         }
 
@@ -48,7 +46,6 @@ namespace GroceryAppAPI.Repository
             const string query = @"DELETE FROM [Orders_Products] 
                                    WHERE [OrderId] = @OrderId";
             var parameters = new {OrderId = orderId};
-
             Delete(query, parameters);
         }
     }

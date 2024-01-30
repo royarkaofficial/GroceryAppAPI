@@ -29,7 +29,6 @@ namespace GroceryAppAPI.Repository
                                    FROM [Users]
                                    WHERE [Id] = @Id";
             var parameters = new { Id = id };
-
             return Get(query, parameters);
         }
 
@@ -40,7 +39,6 @@ namespace GroceryAppAPI.Repository
                                    FROM [Users]
                                    WHERE [Email] = @Email";
             var parameters = new { Email = email };
-
             return GetAll(query, parameters).FirstOrDefault();
         }
 
@@ -51,7 +49,6 @@ namespace GroceryAppAPI.Repository
                                    SET [Password] = @Password
                                    WHERE [Id] = @Id";
             var parameters = new { Id = id, Password =  password };
-
             Update(query, parameters);
         }
 
@@ -61,7 +58,6 @@ namespace GroceryAppAPI.Repository
             const string query = @"INSERT INTO [Users] ([FirstName], [LastName], [Email], [Password], [Gender], [Role])
                                    OUTPUT INSERTED.Id
                                    VALUES (@FirstName, @LastName, @Email, @Password, @Gender, @Role)";
-
             return Add(query, user);
         }
     }

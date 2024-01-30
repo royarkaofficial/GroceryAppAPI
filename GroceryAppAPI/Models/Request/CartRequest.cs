@@ -1,10 +1,11 @@
-﻿namespace GroceryAppAPI.Models.DbModels
+﻿using GroceryAppAPI.Enumerations;
+
+namespace GroceryAppAPI.Models.Request
 {
     /// <summary>
-    /// Represents an order product mapping.
+    /// Represents a cart request.
     /// </summary>
-    /// <seealso cref="DbModels.BaseEntity" />
-    public class OrderProduct : BaseEntity
+    public class CartRequest
     {
         /// <summary>
         /// Gets or sets the product identifier.
@@ -15,11 +16,11 @@
         public int ProductId { get; set; }
 
         /// <summary>
-        /// Gets or sets the order identifier.
+        /// Gets or sets the operation type.
         /// </summary>
         /// <value>
-        /// The order identifier.
+        /// The operation type.
         /// </value>
-        public int OrderId { get; set; }
+        public CartOperationType OperationType { get; set; }
     }
 }

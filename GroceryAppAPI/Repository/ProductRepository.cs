@@ -2,7 +2,6 @@
 using GroceryAppAPI.Enumerations;
 using GroceryAppAPI.Models.DbModels;
 using GroceryAppAPI.Repository.Interfaces;
-using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
 
 namespace GroceryAppAPI.Repository
@@ -37,7 +36,6 @@ namespace GroceryAppAPI.Repository
                 ImageUrl = product.ImageUrl,
                 Status = product.Status
             };
-
             return Add(query, parameters);
         }
 
@@ -47,7 +45,6 @@ namespace GroceryAppAPI.Repository
             const string query = @"DELETE FROM [Products] 
                                    WHERE [Id] = @Id";
             var parameters = new { Id = id };
-
             Delete(query, parameters);
         }
 
@@ -58,7 +55,6 @@ namespace GroceryAppAPI.Repository
                                    FROM [Products]
                                    WHERE [Id] = @Id";
             var parameters = new { Id = id };
-
             return Get(query, parameters);
         }
 
@@ -67,7 +63,6 @@ namespace GroceryAppAPI.Repository
         {
             const string query = @"SELECT *
                                    FROM [Products]";
-
             return GetAll(query);
         }
 
@@ -77,7 +72,6 @@ namespace GroceryAppAPI.Repository
             string query = @$"UPDATE [Products] 
                                    SET {conditions}
                                    WHERE [Id] = @Id";
-
             Update(query, product);
         }
 
@@ -88,7 +82,6 @@ namespace GroceryAppAPI.Repository
                                    SET [Status] = @Status
                                    WHERE [Id] = @Id";
             var parameters = new { Id = id, Status = (int)ProductStatus.Removed };
-
             Update(query, parameters);
         }
     }

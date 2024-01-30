@@ -1,20 +1,17 @@
-﻿using GroceryAppAPI.Models.DbModels;
-
-namespace GroceryAppAPI.Models.Response
+﻿namespace GroceryAppAPI.Models.Response
 {
     /// <summary>
-    /// Represents a cart response.
+    /// Represents the cart response.
     /// </summary>
-    /// <seealso cref="DbModels.BaseEntity" />
-    public class Cart : BaseEntity
+    public class CartResponse
     {
         /// <summary>
-        /// Gets or sets the user identifier.
+        /// Gets or sets the cart identifier.
         /// </summary>
         /// <value>
-        /// The user identifier.
+        /// The cart identifier.
         /// </value>
-        public int UserId { get; set; }
+        public int CartId { get; set; }
 
         /// <summary>
         /// Gets or sets the product ids.
