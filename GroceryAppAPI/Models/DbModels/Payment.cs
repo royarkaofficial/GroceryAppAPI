@@ -1,25 +1,9 @@
 ﻿namespace GroceryAppAPI.Models.DbModels
 {
-    /// <summary>
-    /// Represents a payment.
-    /// </summary>
-    /// <seealso cref="BaseEntity" />
+    // Represents a paymenttype and Amount.
     public class Payment : BaseEntity
     {
-        /// <summary>
-        /// Gets or sets the amount.
-        /// </summary>
-        /// <value>
-        /// The amount.
-        /// </value>
         public int Amount { get; set; }
-
-        /// <summary>
-        /// Gets or sets the payment type.
-        /// </summary>
-        /// <value>
-        /// The payment type.
-        /// </value>
         public int PaymentType { get; set; }
     }
 }

@@ -6,37 +6,26 @@ using GroceryAppAPI.Services;
 
 namespace GroceryAppAPI
 {
-    /// <summary>
-    /// Configures application before running tests.
-    /// </summary>
     public class TestStartup
     {
-        /// <summary>
-        /// Gets or sets the configuration.
-        /// </summary>
-        /// <value>
-        /// The configuration.
-        /// </value>
         public IConfiguration Configuration { get; set; }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TestStartup"/> class.
-        /// </summary>
-        /// <param name="configuration">The configuration.</param>
+        // Constructor to initialize configuration
         public TestStartup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        /// <summary>
-        /// Configures the services.
-        /// </summary>
-        /// <param name="services">The services.</param>
+        // Configuration of services for dependency injection
         public void ConfigureServices(IServiceCollection services)
         {
             var appSettingsConfiguration = Configuration.GetSection("AppSettings");
             var connectionStringConfiguration = appSettingsConfiguration.GetSection("ConnectionString");
+
+            // Configure ConnectionString options from app settings
             services.Configure<ConnectionString>(connectionStringConfiguration);
+
+            // Registering repositories
             services.AddTransient<ICartProductRepository, CartProductRepository>();
             services.AddTransient<IOrderProductRepository, OrderProductRepository>();
             services.AddTransient<ICartRepository, CartRepository>();
@@ -44,6 +33,8 @@ namespace GroceryAppAPI
             services.AddTransient<IPaymentRepository, PaymentRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+
+            // Registering services
             services.AddTransient<IPaymentService, PaymentService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IRegistrationService, RegistrationService>();
@@ -51,17 +42,16 @@ namespace GroceryAppAPI
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<ICartService, CartService>();
             services.AddTransient<IOrderService, OrderService>();
+
+            // Adding controllers and Swagger documentation
             services.AddControllers();
             services.AddSwaggerGen();
         }
 
-        /// <summary>
-        /// Configures the specified application.
-        /// </summary>
-        /// <param name="app">The application info.</param>
-        /// <param name="env">The running environment info.</param>
+        // Configuration of the HTTP request pipeline
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // Enable development-specific features if in the development environment
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -69,7 +59,10 @@ namespace GroceryAppAPI
                 app.UseSwaggerUI();
             }
 
+            // Redirect HTTP requests to HTTPS
             app.UseHttpsRedirection();
+
+            // Enable routing and endpoint mapping
             app.UseRouting();
             app.UseEndpoints(endpoints => endpoints.MapControllers());
         }

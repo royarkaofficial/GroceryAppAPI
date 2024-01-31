@@ -10,31 +10,28 @@ using Newtonsoft.Json.Linq;
 
 namespace GroceryAppAPI.Services
 {
-    /// <summary>
-    /// Implements business logic related to user entity.
-    /// </summary>
+    // Implementation of the IUserService interface for managing user-related operations
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
         private readonly IHttpContextAccessor _contextAccessor;
 
-        /// <summary>
-        /// Initializes a new instance of <see cref="UserService"/> class.
-        /// </summary>
-        /// <param name="userRepository">The user repository.</param>
-        /// <param name="contextAccessor">The HTTP context accessor.</param>
+        // Constructor with dependency injection for IUserRepository and IHttpContextAccessor
         public UserService(IUserRepository userRepository, IHttpContextAccessor contextAccessor)
         {
             _userRepository = userRepository;
             _contextAccessor = contextAccessor;
         }
 
-        /// <inheritdoc/>
+        // Get user details by ID and update identity claims
         public UserResponse Get(int id)
         {
             var user = _userRepository.Get(id);
             IdentityClaimHelper.ClaimUser(user.Email, _contextAccessor);
+
             if (user is null) { throw new EntityNotFoundException(id, "User"); }
+
+            // Map user details to UserResponse model
             return new UserResponse()
             {
                 FirstName = user.FirstName,
@@ -46,14 +43,15 @@ namespace GroceryAppAPI.Services
             };
         }
 
-        /// <inheritdoc/>
-        /// <exception cref="InvalidRequestDataException">Password is either not given or invalid.</exception>
+        // Update user properties based on JSON string of key-value pairs
         public void Update(int id, string properties)
         {
+            // Retrieve user by ID
             Get(id);
-            
+
             if (!string.IsNullOrWhiteSpace(properties))
             {
+                // Parse JSON properties
                 var jsonProperties = JObject.Parse(properties);
                 var setStatements = new List<string>();
                 var user = new User() { Id = id };
@@ -63,6 +61,7 @@ namespace GroceryAppAPI.Services
                     var name = property.Name.ToUpperInvariant();
                     var value = property.Value.ToString();
 
+                    // Update user properties based on JSON key-value pairs
                     switch (name)
                     {
                         case "FIRSTNAME":
@@ -82,19 +81,25 @@ namespace GroceryAppAPI.Services
                     }
                 }
 
+                // Build and execute the update query
                 var query = string.Join(", ", setStatements);
                 _userRepository.Update(query, user);
             }
         }
 
-        /// <inheritdoc/>
+        // Update user password based on ResetPasswordRequest
         public void UpdatePassword(ResetPasswordRequest resetPasswordRequest)
         {
+            // Validate reset password request
             if (resetPasswordRequest is null) { throw new InvalidRequestDataException("Reset request is either not given or invalid."); }
             if (string.IsNullOrWhiteSpace(resetPasswordRequest.Email)) { throw new InvalidRequestDataException("Email is either not given or invalid."); }
             if (string.IsNullOrWhiteSpace(resetPasswordRequest.Password)) { throw new InvalidRequestDataException("Password is either not given or invalid."); }
+
+            // Retrieve user by email
             var user = _userRepository.Get(resetPasswordRequest.Email);
             if (user is null) { throw new EntityNotFoundException($"User with the given email '{resetPasswordRequest.Email}' does not exist."); }
+
+            // Hash the new password and update the user's password
             var passwordHash = EncodingHelper.HashPassword(resetPasswordRequest.Password);
             _userRepository.Update(user.Id, passwordHash);
         }

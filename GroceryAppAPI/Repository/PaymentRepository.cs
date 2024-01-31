@@ -5,23 +5,12 @@ using Microsoft.Extensions.Options;
 
 namespace GroceryAppAPI.Repository
 {
-    /// <summary>
-    /// Implements database utilities for <see cref="Payment"/> entity.
-    /// </summary>
-    /// <seealso cref="BaseRepository{Payment}" />
-    /// <seealso cref="IPaymentRepository" />
     public class PaymentRepository : BaseRepository<Payment>, IPaymentRepository
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentRepository"/> class.
-        /// </summary>
-        /// <param name="connectionString">The connection string.</param>
         public PaymentRepository(IOptions<ConnectionString> connectionString)
            : base(connectionString.Value.DefaultConnection)
         {
         }
-
-        /// <inheritdoc/>
         public int Add(Payment payment)
         {
             const string query = @"INSERT INTO [Payments] ([Amount], [PaymentType])
@@ -29,8 +18,6 @@ namespace GroceryAppAPI.Repository
                                    VALUES (@Amount, @PaymentType)";
             return Add(query, payment);
         }
-
-        /// <inheritdoc/>
         public Payment Get(int id)
         {
             const string query = @"SELECT * FROM 

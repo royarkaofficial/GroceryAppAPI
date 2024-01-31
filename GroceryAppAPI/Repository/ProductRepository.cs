@@ -6,23 +6,12 @@ using Microsoft.Extensions.Options;
 
 namespace GroceryAppAPI.Repository
 {
-    /// <summary>
-    /// Implements database utilities for <see cref="Product"/> enttity.
-    /// </summary>
-    /// <seealso cref="BaseRepository{Product}" />
-    /// <seealso cref="IProductRepository" />
     public class ProductRepository : BaseRepository<Product>, IProductRepository
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ProductRepository"/> class.
-        /// </summary>
-        /// <param name="connectionString">The connection string.</param>
         public ProductRepository(IOptions<ConnectionString> connectionString)
             : base(connectionString.Value.DefaultConnection) 
         {
         }
-
-        /// <inheritdoc/>
         public int Add(Product product)
         {
             const string query = @"INSERT INTO [Products] ([Name], [Price], [Stock], [ImageUrl], [Status])
@@ -38,8 +27,6 @@ namespace GroceryAppAPI.Repository
             };
             return Add(query, parameters);
         }
-
-        /// <inheritdoc/>
         public void Delete(int id)
         {
             const string query = @"DELETE FROM [Products] 
@@ -47,8 +34,6 @@ namespace GroceryAppAPI.Repository
             var parameters = new { Id = id };
             Delete(query, parameters);
         }
-
-        /// <inheritdoc/>
         public Product Get(int id)
         {
             const string query = @"SELECT * 
@@ -57,16 +42,12 @@ namespace GroceryAppAPI.Repository
             var parameters = new { Id = id };
             return Get(query, parameters);
         }
-
-        /// <inheritdoc/>
         public IEnumerable<Product> GetAll()
         {
             const string query = @"SELECT *
                                    FROM [Products]";
             return GetAll(query);
         }
-
-        /// <inheritdoc/>
         public void Update(string conditions, Product product)
         {
             string query = @$"UPDATE [Products] 
@@ -74,8 +55,6 @@ namespace GroceryAppAPI.Repository
                                    WHERE [Id] = @Id";
             Update(query, product);
         }
-
-        /// <inheritdoc/>
         public void UpdateStatusAsRemoved(int id)
         {
             const string query = @"UPDATE [Products]

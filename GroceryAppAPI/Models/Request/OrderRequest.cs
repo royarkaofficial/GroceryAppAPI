@@ -1,16 +1,8 @@
 ﻿namespace GroceryAppAPI.Models.Request
 {
-    /// <summary>
-    /// Represents an order request.
-    /// </summary>
+    // Represents an order request.
     public class OrderRequest
     {
-        /// <summary>
-        /// Gets or sets the product identifiers.
-        /// </summary>
-        /// <value>
-        /// The product identifiers.
-        /// </value>
-        public IEnumerable<int> ProductIds { get; set; }
+        public IEnumerable<int>? ProductIds { get; set; }
     }
 }

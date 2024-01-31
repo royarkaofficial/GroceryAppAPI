@@ -5,23 +5,16 @@ using Microsoft.Extensions.Options;
 
 namespace GroceryAppAPI.Repository
 {
-    /// <summary>
-    /// Implements database operations for cart product mapping (represented by <see cref="CartProduct"/>).
-    /// </summary>
-    /// <seealso cref="BaseRepository{CartProduct}" />
-    /// <seealso cref="ICartProductRepository" />
+    // Repository for handling CartProduct-related database operations
     public class CartProductRepository : BaseRepository<CartProduct>, ICartProductRepository
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CartProductRepository"/> class.
-        /// </summary>
-        /// <param name="connectionString">The connection string.</param>
+        // Constructor with dependency injection for connection string options
         public CartProductRepository(IOptions<ConnectionString> connectionString)
             : base(connectionString.Value.DefaultConnection)
         {
         }
 
-        /// <inheritdoc/>
+        // Delete a specific CartProduct by CartId and ProductId
         public void Delete(int cartId, int productId)
         {
             const string query = @"DELETE FROM [Carts_Products] 
@@ -31,7 +24,7 @@ namespace GroceryAppAPI.Repository
             Update(query, parameters);
         }
 
-        /// <inheritdoc/>
+        // Get all CartProducts for a specific Cart by CartId
         public IEnumerable<CartProduct> GetAll(int cartId)
         {
             const string query = @"SELECT *
@@ -41,7 +34,7 @@ namespace GroceryAppAPI.Repository
             return GetAll(query, parameters);
         }
 
-        /// <inheritdoc/>
+        // Add a new CartProduct to the database
         public void Add(CartProduct cartProduct)
         {
             const string query = @"INSERT INTO [Carts_Products] ([CartId], [ProductId])
@@ -50,7 +43,7 @@ namespace GroceryAppAPI.Repository
             Add(query, cartProduct);
         }
 
-        /// <inheritdoc/>
+        // Delete all CartProducts for a specific Cart by CartId
         public void Delete(int cartId)
         {
             const string query = @"DELETE FROM [Carts_Products]

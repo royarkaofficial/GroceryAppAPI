@@ -12,7 +12,6 @@ namespace GroceryAppAPI.Controllers
     public class CartsController : ControllerBase
     {
         private readonly ICartService _cartService;
-
         public CartsController(ICartService cartService)
         {
             _cartService = cartService;
