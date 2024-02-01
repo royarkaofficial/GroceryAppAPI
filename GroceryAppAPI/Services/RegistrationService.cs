@@ -35,6 +35,7 @@ namespace GroceryAppAPI.Services
                 LastName = registrationRequest.LastName,
                 Email = registrationRequest.Email,
                 Password = registrationRequest.Password,
+                Address = registrationRequest.Address,
                 Gender = (int)registrationRequest.Gender,
                 Role = (int)registrationRequest.Role
             };
