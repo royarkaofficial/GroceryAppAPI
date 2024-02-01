@@ -3,8 +3,10 @@ using GroceryAppAPI.Models.Response;
 
 namespace GroceryAppAPI.Services.Interfaces
 {
+    // Interface for an authentication service
     public interface IAuthenticationService
     {
-        public LoginResponse Login(LoginRequest loginRequest);
+        // Method to handle user login and return a response
+        LoginResponse Login(LoginRequest loginRequest);
     }
 }

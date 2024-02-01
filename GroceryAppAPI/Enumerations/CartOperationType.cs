@@ -5,7 +5,6 @@
     {
         // Insert a product
         Add = 1,
-
         // Delete a product
         Delete = 2
     }

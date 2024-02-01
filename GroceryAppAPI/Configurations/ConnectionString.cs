@@ -1,16 +1,8 @@
 ﻿namespace GroceryAppAPI.Configurations
 {
-    /// <summary>
-    /// Represents connection string configuration.
-    /// </summary>
+    // Represents connection string configuration.
     public class ConnectionString
     {
-        /// <summary>
-        /// Gets or sets the default connection string.
-        /// </summary>
-        /// <value>
-        /// The default connection string.
-        /// </value>
-        public string DefaultConnection {  get; set; }
+        public string? DefaultConnection {  get; set; }
     }
 }

@@ -5,12 +5,16 @@ using Microsoft.Extensions.Options;
 
 namespace GroceryAppAPI.Repository
 {
+    // Repository for managing operations related to payments
     public class PaymentRepository : BaseRepository<Payment>, IPaymentRepository
     {
+        // Constructor to set the database connection using dependency injection
         public PaymentRepository(IOptions<ConnectionString> connectionString)
-           : base(connectionString.Value.DefaultConnection)
+            : base(connectionString.Value.DefaultConnection)
         {
         }
+
+        // Method to add a new payment to the database
         public int Add(Payment payment)
         {
             const string query = @"INSERT INTO [Payments] ([Amount], [PaymentType])
@@ -18,6 +22,8 @@ namespace GroceryAppAPI.Repository
                                    VALUES (@Amount, @PaymentType)";
             return Add(query, payment);
         }
+
+        // Method to get a payment from the database by ID
         public Payment Get(int id)
         {
             const string query = @"SELECT * FROM 

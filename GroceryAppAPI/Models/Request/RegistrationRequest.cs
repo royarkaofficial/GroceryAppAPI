@@ -1,5 +1,4 @@
 ﻿using GroceryAppAPI.Enumerations;
-
 namespace GroceryAppAPI.Models.Request
 {
     // Represents a registration request.
