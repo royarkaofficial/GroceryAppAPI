@@ -6,23 +6,16 @@ using Microsoft.Extensions.Options;
 
 namespace GroceryAppAPI.Repository
 {
-    /// <summary>
-    /// Implements database utilities for <see cref="Product"/> enttity.
-    /// </summary>
-    /// <seealso cref="BaseRepository{Product}" />
-    /// <seealso cref="IProductRepository" />
+    // Repository for managing operations related to products
     public class ProductRepository : BaseRepository<Product>, IProductRepository
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ProductRepository"/> class.
-        /// </summary>
-        /// <param name="connectionString">The connection string.</param>
+        // Constructor to set the database connection using dependency injection
         public ProductRepository(IOptions<ConnectionString> connectionString)
-            : base(connectionString.Value.DefaultConnection) 
+            : base(connectionString.Value.DefaultConnection)
         {
         }
 
-        /// <inheritdoc/>
+        // Method to add a new product to the database
         public int Add(Product product)
         {
             const string query = @"INSERT INTO [Products] ([Name], [Price], [Stock], [ImageUrl], [Status])
@@ -39,7 +32,7 @@ namespace GroceryAppAPI.Repository
             return Add(query, parameters);
         }
 
-        /// <inheritdoc/>
+        // Method to delete a product from the database by ID
         public void Delete(int id)
         {
             const string query = @"DELETE FROM [Products] 
@@ -48,7 +41,7 @@ namespace GroceryAppAPI.Repository
             Delete(query, parameters);
         }
 
-        /// <inheritdoc/>
+        // Method to get a product from the database by ID
         public Product Get(int id)
         {
             const string query = @"SELECT * 
@@ -58,7 +51,7 @@ namespace GroceryAppAPI.Repository
             return Get(query, parameters);
         }
 
-        /// <inheritdoc/>
+        // Method to get all products from the database
         public IEnumerable<Product> GetAll()
         {
             const string query = @"SELECT *
@@ -66,7 +59,7 @@ namespace GroceryAppAPI.Repository
             return GetAll(query);
         }
 
-        /// <inheritdoc/>
+        // Method to update a product in the database based on specified conditions
         public void Update(string conditions, Product product)
         {
             string query = @$"UPDATE [Products] 
@@ -75,7 +68,7 @@ namespace GroceryAppAPI.Repository
             Update(query, product);
         }
 
-        /// <inheritdoc/>
+        // Method to update the status of a product to "Removed" in the database by ID
         public void UpdateStatusAsRemoved(int id)
         {
             const string query = @"UPDATE [Products]

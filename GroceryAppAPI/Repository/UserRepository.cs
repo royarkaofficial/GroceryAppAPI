@@ -5,24 +5,16 @@ using Microsoft.Extensions.Options;
 
 namespace GroceryAppAPI.Repository
 {
-    /// <summary>
-    /// Implements database utilities for <see cref="User"/> entity.
-    /// </summary>
-    /// <seealso cref="BaseRepository{User}" />
-    /// <seealso cref="IUserRepository" />
+    // Repository for managing operations related to users
     public class UserRepository : BaseRepository<User>, IUserRepository
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UserRepository"/> class.
-        /// </summary>
-        /// <param name="connectionString">The connection string.</param>
+        // Constructor to set the database connection using dependency injection
         public UserRepository(IOptions<ConnectionString> connectionString)
             : base(connectionString.Value.DefaultConnection)
-
         {
         }
 
-        /// <inheritdoc/>
+        // Method to get a user from the database by ID
         public User Get(int id)
         {
             const string query = @"SELECT *
@@ -32,7 +24,7 @@ namespace GroceryAppAPI.Repository
             return Get(query, parameters);
         }
 
-        /// <inheritdoc/>
+        // Method to get a user from the database by email
         public User Get(string email)
         {
             const string query = @"SELECT *
@@ -42,7 +34,7 @@ namespace GroceryAppAPI.Repository
             return GetAll(query, parameters).FirstOrDefault();
         }
 
-        /// <inheritdoc/>
+        // Method to update a user in the database based on specified conditions
         public void Update(string conditions, User user)
         {
             string query = @$"UPDATE [Users]
@@ -51,16 +43,17 @@ namespace GroceryAppAPI.Repository
             Update(query, user);
         }
 
-        /// <inheritdoc/>
+        // Method to update the password of a user in the database by ID
         public void Update(int id, string passwordHash)
         {
             const string query = @"UPDATE [Users]
-                                   SET [Password] = @Password";
-            var parameters = new { Password = passwordHash };
+                                   SET [Password] = @Password
+                                   WHERE [Id] = @Id";
+            var parameters = new { Id = id, Password = passwordHash };
             Update(query, parameters);
         }
 
-        /// <inheritdoc/>
+        // Method to add a new user to the database
         public int Add(User user)
         {
             const string query = @"INSERT INTO [Users] ([FirstName], [LastName], [Email], [Password], [Address], [Gender], [Role])

@@ -3,39 +3,19 @@ using GroceryAppAPI.Models.Response;
 
 namespace GroceryAppAPI.Services.Interfaces
 {
-    /// <summary>
-    /// Abstracts cart related functionalities.
-    /// </summary>
+    // Interface for a shopping cart service
     public interface ICartService
     {
-        /// <summary>
-        /// Gets the specified cart.
-        /// </summary>
-        /// <param name="userId">The user identifier.</param>
-        /// <returns>The cart.</returns>
-        public CartResponse Get(int userId);
+        // Method to get a user's shopping cart by userId
+        CartResponse Get(int userId);
 
-        /// <summary>
-        /// Adds the specified cart.
-        /// </summary>
-        /// <param name="userId">The user identifier.</param>
-        /// <param name="cartRequest">The cart request.</param>
-        /// <returns>The newly inserted identifier.</returns>
-        public int Add(int userId, CartRequest cartRequest);
+        // Method to add a new cart for a user and return the cart's ID
+        int Add(int userId, CartRequest cartRequest);
 
-        /// <summary>
-        /// Deletes the specified cart.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <param name="userId">The user identifier.</param>
-        public void Delete(int id, int userId);
+        // Method to delete a cart by ID for a specific user
+        void Delete(int id, int userId);
 
-        /// <summary>
-        /// Updates the specified cart.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <param name="cartRequest">The cart request.</param>
-        /// <param name="userId">The user identifier.</param>
-        public void Update(int id, int userId, CartRequest cartRequest);
+        // Method to update a cart by ID for a specific user
+        void Update(int id, int userId, CartRequest cartRequest);
     }
 }

@@ -1,18 +1,11 @@
 ﻿namespace GroceryAppAPI.Enumerations
 {
-    /// <summary>
-    /// Specifies different cart operation types.
-    /// </summary>
+    // Specifies different cart operations
     public enum CartOperationType
     {
-        /// <summary>
-        /// Specifies a product to insert.
-        /// </summary>
+        // Insert a product
         Add = 1,
-
-        /// <summary>
-        /// Specifies a product to delete.
-        /// </summary>
+        // Delete a product
         Delete = 2
     }
 }

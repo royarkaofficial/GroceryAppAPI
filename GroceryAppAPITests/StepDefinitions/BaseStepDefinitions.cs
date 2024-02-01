@@ -5,19 +5,11 @@ using System.Text;
 
 namespace GroceryAppAPITests.StepDefinitions
 {
-    /// <summary>
-    /// Base class for all other step definitions.
-    /// </summary>
     public class BaseStepDefinitions
     {
         private HttpClient _client;
         private HttpResponseMessage _response;
         private readonly WebApplicationFactory<TestStartup> _applicationFactory;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BaseStepDefinitions"/> class.
-        /// </summary>
-        /// <param name="applicationFactory">The application factory.</param>
         public BaseStepDefinitions(WebApplicationFactory<TestStartup> applicationFactory)
         {
             _applicationFactory = applicationFactory;
@@ -68,23 +60,11 @@ namespace GroceryAppAPITests.StepDefinitions
             var responseBody = await _response.Content.ReadAsStringAsync();
             Assert.AreEqual(expectedBody, responseBody);
         }
-
-        /// <summary>
-        /// Gets the URI.
-        /// </summary>
-        /// <param name="endpoint">The endpoint.</param>
-        /// <returns>The URI.</returns>
         private Uri GetUri(string endpoint)
         {
             endpoint = $"/{endpoint}";
             return new Uri(endpoint, UriKind.Relative);
         }
-
-        /// <summary>
-        /// Gets the request body.
-        /// </summary>
-        /// <param name="payload">The payload.</param>
-        /// <returns>The request body.</returns>
         private StringContent GetRequestBody(string payload)
         {
             return new StringContent(payload, Encoding.UTF8, "application/json");

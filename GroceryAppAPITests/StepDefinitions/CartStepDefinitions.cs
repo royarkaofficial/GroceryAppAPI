@@ -1,20 +1,11 @@
 using GroceryAppAPITests.Mocks;
 using Microsoft.Extensions.DependencyInjection;
-
 namespace GroceryAppAPITests.StepDefinitions
 {
-    /// <summary>
-    /// Defines step definitions for Cart feature.
-    /// </summary>
-    /// <seealso cref="BaseStepDefinitions" />
     [Binding]
     [Scope(Feature = "Cart")]
     public class CartStepDefinitions : BaseStepDefinitions
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CartStepDefinitions"/> class.
-        /// </summary>
-        /// <param name="applicationFactory">The application factory.</param>
         public CartStepDefinitions(CustomWebApplicationFactory applicationFactory)
             : base(applicationFactory.WithWebHostBuilder(builder =>
             {
@@ -28,10 +19,6 @@ namespace GroceryAppAPITests.StepDefinitions
             }))
         {
         }
-
-        /// <summary>
-        /// Prepares and sets mocks.
-        /// </summary>
         [BeforeScenario]
         public void SetMocks() => CartMock.SetMocks();
     }

@@ -5,23 +5,16 @@ using Microsoft.Extensions.Options;
 
 namespace GroceryAppAPI.Repository
 {
-    /// <summary>
-    /// Implements database utilities for order product mapping (represented by <see cref="OrderProduct"/>).
-    /// </summary>
-    /// <seealso cref="BaseRepository{OrderProduct}" />
-    /// <seealso cref="IOrderProductRepository" />
+    // Repository for managing operations related to order products
     public class OrderProductRepository : BaseRepository<OrderProduct>, IOrderProductRepository
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="OrderProductRepository"/> class.
-        /// </summary>
-        /// <param name="connectionString">The connection string.</param>
+        // Constructor to set the database connection using dependency injection
         public OrderProductRepository(IOptions<ConnectionString> connectionString)
             : base(connectionString.Value.DefaultConnection)
         {
         }
 
-        /// <inheritdoc/>
+        // Method to add a new order product to the database
         public int Add(OrderProduct orderProduct)
         {
             const string query = @"INSERT INTO [Orders_Products] ([OrderId], [ProductId])
@@ -30,7 +23,7 @@ namespace GroceryAppAPI.Repository
             return Add(query, orderProduct);
         }
 
-        /// <inheritdoc/>
+        // Method to get all order products from the database by order ID
         public IEnumerable<OrderProduct> GetAll(int orderId)
         {
             const string query = @"SELECT *
@@ -40,12 +33,12 @@ namespace GroceryAppAPI.Repository
             return GetAll(query, parameters);
         }
 
-        /// <inheritdoc/>
+        // Method to delete all order products from the database by order ID
         public void Delete(int orderId)
         {
             const string query = @"DELETE FROM [Orders_Products] 
                                    WHERE [OrderId] = @OrderId";
-            var parameters = new {OrderId = orderId};
+            var parameters = new { OrderId = orderId };
             Delete(query, parameters);
         }
     }

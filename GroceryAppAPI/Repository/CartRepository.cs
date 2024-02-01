@@ -2,27 +2,20 @@
 using GroceryAppAPI.Models.DbModels;
 using GroceryAppAPI.Repository.Interfaces;
 using Microsoft.Extensions.Options;
+using System.Linq;
 
 namespace GroceryAppAPI.Repository
 {
-    /// <summary>
-    /// Implements database utilities for <see cref="Cart"/> entity.
-    /// </summary>
-    /// <seealso cref="BaseRepository{Cart}" />
-    /// <seealso cref="ICartRepository" />
+    // Repository for managing operations related to user shopping carts
     public class CartRepository : BaseRepository<Cart>, ICartRepository
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CartRepository"/> class.
-        /// </summary>
-        /// <param name="connectionString">The connection string.</param>
+        // Constructor to set the database connection using dependency injection
         public CartRepository(IOptions<ConnectionString> connectionString)
             : base(connectionString.Value.DefaultConnection)
-
         {
         }
 
-        /// <inheritdoc/>
+        // Method to add a new cart to the database
         public int Add(Cart cart)
         {
             const string query = @"INSERT INTO [Carts] ([UserId])
@@ -31,7 +24,7 @@ namespace GroceryAppAPI.Repository
             return Add(query, cart);
         }
 
-        /// <inheritdoc/>
+        // Method to delete a cart from the database by ID
         public void Delete(int id)
         {
             const string query = @"DELETE FROM [Carts] 
@@ -40,7 +33,7 @@ namespace GroceryAppAPI.Repository
             Update(query, parameters);
         }
 
-        /// <inheritdoc/>
+        // Method to get a cart from the database by ID
         public Cart Get(int id)
         {
             const string query = @"SELECT * 
@@ -50,7 +43,7 @@ namespace GroceryAppAPI.Repository
             return GetAll(query, parameters).FirstOrDefault();
         }
 
-        /// <inheritdoc/>
+        // Method to get a user's cart from the database by user ID
         public Cart GetByUser(int userId)
         {
             string query = @"SELECT * 

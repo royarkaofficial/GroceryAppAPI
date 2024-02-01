@@ -3,29 +3,16 @@ using GroceryAppAPI.Models.Response;
 
 namespace GroceryAppAPI.Services.Interfaces
 {
-    /// <summary>
-    /// Abstract business logic for user entity.
-    /// </summary>
+    // Interface for a user service
     public interface IUserService
     {
-        /// <summary>
-        /// Gets a specified user.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <returns>The user response.</returns>
-        public UserResponse Get(int id);
+        // Method to get a user by ID
+        UserResponse Get(int id);
 
-        /// <summary>
-        /// Updates the details of a specified user.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <param name="properties">The properties.</param>
-        public void Update(int id, string properties);
+        // Method to update user details by ID based on specified properties
+        void Update(int id, string properties);
 
-        /// <summary>
-        /// Updates the password.
-        /// </summary>
-        /// <param name="resetPasswordRequest">The reset password request.</param>
-        public void UpdatePassword(ResetPasswordRequest resetPasswordRequest);
+        // Method to update user password based on the provided reset password request
+        void UpdatePassword(ResetPasswordRequest resetPasswordRequest);
     }
 }

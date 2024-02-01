@@ -2,16 +2,10 @@
 
 namespace GroceryAppAPI.Services.Interfaces
 {
-    /// <summary>
-    /// Abstracts registration related functionalities.
-    /// </summary>
+    // Interface for a registration service
     public interface IRegistrationService
     {
-        /// <summary>
-        /// Registers an user.
-        /// </summary>
-        /// <param name="registrationRequest">The registration request.</param>
-        /// <returns>The registration response.</returns>
-        public void Register(RegistrationRequest registrationRequest);
+        // Method to register a new user based on the provided registration request
+        void Register(RegistrationRequest registrationRequest);
     }
 }

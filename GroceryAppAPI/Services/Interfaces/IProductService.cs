@@ -1,37 +1,22 @@
 ﻿using GroceryAppAPI.Models.Request;
 using GroceryAppAPI.Models.Response;
+using System.Collections.Generic;
 
 namespace GroceryAppAPI.Services.Interfaces
 {
-    /// <summary>
-    /// Abstracts product related functionalities.
-    /// </summary>
+    // Interface for a product service
     public interface IProductService
     {
-        /// <summary>
-        /// Gets all the products.
-        /// </summary>
-        /// <returns>The products.</returns>
-        public IEnumerable<ProductResponse> GetAll();
+        // Method to get all products
+        IEnumerable<ProductResponse> GetAll();
 
-        /// <summary>
-        /// Adds a specified product.
-        /// </summary>
-        /// <param name="productRequest">The product request.</param>
-        /// <returns>The newly inserted identifier.</returns>
-        public int Add(ProductRequest productRequest);
+        // Method to add a new product and return the product ID
+        int Add(ProductRequest productRequest);
 
-        /// <summary>
-        /// Updates a specified product.
-        /// </summary>
-        /// <param name="id">The properties.</param>
-        /// <param name="productRequest">The product request.</param>
-        public void Update(int id, string properties);
+        // Method to update a product by ID based on specified properties
+        void Update(int id, string properties);
 
-        /// <summary>
-        /// Deletes a specified product.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        public void Delete(int id);
+        // Method to delete a product by ID
+        void Delete(int id);
     }
 }

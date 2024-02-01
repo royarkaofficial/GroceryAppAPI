@@ -6,9 +6,6 @@ using Newtonsoft.Json;
 
 namespace GroceryAppAPITests.Mocks
 {
-    /// <summary>
-    /// Mocks the repositories used by <see cref="CartService"/>.
-    /// </summary>
     public static class CartMock
     {
         private static string BasePath = Environment.CurrentDirectory + "/TestData/";
@@ -16,10 +13,6 @@ namespace GroceryAppAPITests.Mocks
         public static Mock<ICartProductRepository> CartProductRepositoryMock = new Mock<ICartProductRepository>();
         public static Mock<IProductRepository> ProductRepositoryMock = new Mock<IProductRepository>();
         public static Mock<IUserRepository> UserRepositoryMock = new Mock<IUserRepository>();
-
-        /// <summary>
-        /// Sets the mocks.
-        /// </summary>
         public static void SetMocks()
         {
             MockCartRepository();
@@ -27,10 +20,6 @@ namespace GroceryAppAPITests.Mocks
             MockProductRepository();
             MockUserRepository();
         }
-
-        /// <summary>
-        /// Mocks the implementation of <see cref="ICartRepository"/>.
-        /// </summary>
         private static void MockCartRepository()
         {
             CartRepositoryMock.Setup(repo => repo.Get(It.IsAny<int>())).Returns((int id) =>
@@ -50,10 +39,6 @@ namespace GroceryAppAPITests.Mocks
             CartRepositoryMock.Setup(repo => repo.Add(It.IsAny<Cart>())).Returns(3);
             CartRepositoryMock.Setup(repo => repo.Delete(It.IsAny<int>()));
         }
-
-        /// <summary>
-        /// Mocks the implementation of <see cref="ICartProductRepository"/>.
-        /// </summary>
         private static void MockCartProductRepository()
         {
             CartProductRepositoryMock.Setup(repo => repo.GetAll(It.IsAny<int>())).Returns((int cartId) =>
@@ -66,10 +51,6 @@ namespace GroceryAppAPITests.Mocks
             CartProductRepositoryMock.Setup(repo => repo.Add(It.IsAny<CartProduct>()));
             CartProductRepositoryMock.Setup(repo => repo.Delete(It.IsAny<int>()));
         }
-
-        /// <summary>
-        /// Mocks the implementation of <see cref="IProductRepository"/>.
-        /// </summary>
         private static void MockProductRepository()
         {
             ProductRepositoryMock.Setup(repo => repo.Get(It.IsAny<int>())).Returns((int id) =>
@@ -79,10 +60,6 @@ namespace GroceryAppAPITests.Mocks
                 return products.FirstOrDefault(p => p.Id == id);
             });
         }
-
-        /// <summary>
-        /// Mocks the implementation of <see cref="IUserRepository"/>.
-        /// </summary>
         private static void MockUserRepository()
         {
             UserRepositoryMock.Setup(repo => repo.Get(It.IsAny<int>())).Returns((int id) =>

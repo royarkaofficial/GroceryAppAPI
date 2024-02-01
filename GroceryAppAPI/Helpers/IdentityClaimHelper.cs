@@ -3,28 +3,24 @@ using System.Security.Claims;
 
 namespace GroceryAppAPI.Helpers
 {
-    /// <summary>
-    /// A helper class for claiming identity.
-    /// </summary>
+    // This helper class provides methods for handling identity claims.
     public static class IdentityClaimHelper
     {
-        /// <summary>
-        /// Claims the identity of the user.
-        /// </summary>
-        /// <param name="email">The email.</param>
-        /// <param name="contextAccessor">The context accessor.</param>
-        /// <returns></returns>
-        /// <exception cref="InvalidRequestException">User is denied to access the specified resouce.</exception>
         public static bool ClaimUser(string email, IHttpContextAccessor contextAccessor)
         {
+            // Retrieve the claims associated with the current user identity.
             var identity = contextAccessor.HttpContext.User.Claims;
+
+            // Find the claim with the specified email.
             var identityClaim = identity.FirstOrDefault(id => id.Type == ClaimTypes.Email && id.Value == email);
 
+            // If the claim is not found, throw an exception indicating denial of access.
             if (identityClaim is null)
             {
-                throw new InvalidRequestException("User is denied to access the specified resouce.");
+                throw new InvalidRequestException("User is denied access to the specified resource.");
             }
 
+            // User successfully claimed.
             return true;
         }
     }

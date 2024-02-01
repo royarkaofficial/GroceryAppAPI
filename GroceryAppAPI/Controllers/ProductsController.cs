@@ -6,47 +6,65 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GroceryAppAPI.Controllers
 {
+    // Controller for managing products
     [Route("[controller]")]
     [ApiController]
-    [CommonExceptionFilter]
+    [CommonExceptionFilter] // Apply the CommonExceptionFilterAttribute to handle common exceptions
     public class ProductsController : ControllerBase
     {
         private readonly IProductService _productService;
 
+        // Constructor to inject the product service dependency
         public ProductsController(IProductService productService)
         {
             _productService = productService;
         }
 
-        [Authorize(Roles = "Admin")]
+        // Endpoint to add a new product (requires "Admin" role)
+        [Authorize(Roles = "Admin")] // Requires authorization with the "Admin" role
         [HttpPost]
         public IActionResult Post([FromBody] ProductRequest product)
         {
+            // Call the product service to add a new product
             var id = _productService.Add(product);
-            return Ok(new { data = new {Id = id} });
+
+            // Return Ok result with the newly created product's ID
+            return Ok(new { data = new { Id = id } });
         }
 
-        [Authorize]
+        // Endpoint to get all products (requires authorization)
+        [Authorize] // Requires authorization
         [HttpGet]
         public IActionResult GetAll()
         {
+            // Call the product service to get all products
             var products = _productService.GetAll();
+
+            // Return Ok result with the list of products
             return Ok(new { data = products });
         }
 
-        [Authorize(Roles = "Admin")]
+        // Endpoint to update specific properties of a product (requires "Admin" role)
+        [Authorize(Roles = "Admin")] // Requires authorization with the "Admin" role
         [HttpPatch("{id:int}")]
-        public IActionResult Patch([FromRoute] int id, [FromBody] string properties) 
+        public IActionResult Patch([FromRoute] int id, [FromBody] string properties)
         {
+            // Call the product service to update specific properties of the product
             _productService.Update(id, properties);
-            return Ok(new {Message = "Product updated successfully."});    
+
+            // Return Ok result with a success message
+            return Ok(new { Message = "Product updated successfully." });
         }
 
-        [Authorize(Roles = "Admin")]
+        // Endpoint to delete a product (requires "Admin" role)
+        [Authorize(Roles = "Admin")] // Requires authorization with the "Admin" role
         [HttpDelete("{id:int}")]
         public IActionResult Delete([FromRoute] int id)
         {
+            // Call the product service to delete the product
             _productService.Delete(id);
+
+            // Return Ok result with a success message
             return Ok(new { Message = "Product deleted successfully." });
         }
     }

@@ -5,24 +5,16 @@ using Microsoft.Extensions.Options;
 
 namespace GroceryAppAPI.Repository
 {
-    /// <summary>
-    /// Implements database utilities for <see cref="Order"/> entity.
-    /// </summary>
-    /// <seealso cref="BaseRepository{Order}" />
-    /// <seealso cref="IOrderRepository" />
+    // Repository for managing operations related to orders
     public class OrderRepository : BaseRepository<Order>, IOrderRepository
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="OrderRepository"/> class.
-        /// </summary>
-        /// <param name="connectionString">The connection string.</param>
+        // Constructor to set the database connection using dependency injection
         public OrderRepository(IOptions<ConnectionString> connectionString)
             : base(connectionString.Value.DefaultConnection)
-
         {
         }
 
-        /// <inheritdoc/>
+        // Method to add a new order to the database
         public int Add(Order order)
         {
             const string query = @"INSERT INTO [Orders] ([UserId], [OrderedAt])
@@ -31,7 +23,7 @@ namespace GroceryAppAPI.Repository
             return Add(query, order);
         }
 
-        /// <inheritdoc/>
+        // Method to delete an order from the database by ID
         public void Delete(int id)
         {
             const string query = @"DELETE FROM [Orders]
@@ -40,7 +32,7 @@ namespace GroceryAppAPI.Repository
             Delete(query, parameters);
         }
 
-        /// <inheritdoc/>
+        // Method to get all orders from the database by user ID with a specified payment ID
         public IEnumerable<Order> GetAll(int userId)
         {
             const string query = @"SELECT *
@@ -51,13 +43,13 @@ namespace GroceryAppAPI.Repository
             return GetAll(query, parameters);
         }
 
-        /// <inheritdoc/>
+        // Method to update the payment ID for an order in the database by ID
         public void Update(int id, int paymentId)
         {
             const string query = @"UPDATE [Orders]
                                    SET [PaymentId] = @PaymentId
                                    WHERE [Id] = @Id";
-            var parameters = new {Id = id, PaymentId = paymentId };
+            var parameters = new { Id = id, PaymentId = paymentId };
             Update(query, parameters);
         }
     }
