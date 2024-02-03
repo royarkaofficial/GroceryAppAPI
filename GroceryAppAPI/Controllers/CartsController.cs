@@ -47,7 +47,7 @@ namespace GroceryAppAPI.Controllers
             }
 
             // Return Ok result with the user's cart
-            return Ok(cart);
+            return Ok(new { data = cart });
         }
 
         // Endpoint to update a user's cart
