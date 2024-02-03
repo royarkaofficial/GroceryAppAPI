@@ -58,6 +58,7 @@ namespace GroceryAppAPI.Services
             {
                 productResponses.Add(new ProductResponse()
                 {
+                    Id = product.Id,
                     Name = product.Name,
                     Price = product.Price,
                     Stock = product.Stock,
