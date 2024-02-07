@@ -40,7 +40,7 @@ namespace GroceryAppAPI.Repository
             string query = @$"UPDATE [Users]
                               SET {conditions}
                               WHERE [Id] = @Id";
-            Update(query, user);
+            Update(query, (object)user);
         }
 
         // Method to update the password of a user in the database by ID
