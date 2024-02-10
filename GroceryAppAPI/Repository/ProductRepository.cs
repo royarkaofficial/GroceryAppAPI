@@ -65,7 +65,7 @@ namespace GroceryAppAPI.Repository
             string query = @$"UPDATE [Products] 
                                    SET {conditions}
                                    WHERE [Id] = @Id";
-            Update(query, product);
+            Update(query, (object)product);
         }
 
         // Method to update the status of a product to "Removed" in the database by ID
