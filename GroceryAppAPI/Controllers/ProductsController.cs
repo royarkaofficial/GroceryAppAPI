@@ -44,6 +44,14 @@ namespace GroceryAppAPI.Controllers
             return Ok(new { data = products });
         }
 
+        [Authorize]
+        [HttpGet("{id:int}")]
+        public IActionResult Get(int id)
+        {
+            var response = _productService.Get(id);
+            return Ok(new { data = response });
+        }
+
         // Endpoint to update specific properties of a product (requires "Admin" role)
         [Authorize(Roles = "Admin")] // Requires authorization with the "Admin" role
         [HttpPatch("{id:int}")]

@@ -7,6 +7,8 @@ namespace GroceryAppAPI.Services.Interfaces
     // Interface for a product service
     public interface IProductService
     {
+        ProductResponse Get(int id);
+
         // Method to get all products
         IEnumerable<ProductResponse> GetAll();
 

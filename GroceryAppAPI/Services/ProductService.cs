@@ -45,6 +45,22 @@ namespace GroceryAppAPI.Services
             _productRepository.UpdateStatusAsRemoved(id);
         }
 
+        public ProductResponse Get(int id)
+        {
+            var product = _productRepository.Get(id);
+            var productResponse = new ProductResponse()
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Price = product.Price,
+                Stock = product.Stock,
+                ImageUrl = product.ImageUrl,
+                Status = (ProductStatus)product.Status
+            };
+
+            return productResponse;
+        }
+
         // Get all existing products with their details
         public IEnumerable<ProductResponse> GetAll()
         {
