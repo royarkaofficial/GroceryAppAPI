@@ -1,6 +1,7 @@
 ﻿using GroceryAppAPI.Enumerations;
 using GroceryAppAPI.Exceptions;
 using GroceryAppAPI.Helpers;
+using GroceryAppAPI.Helpers.Interfaces;
 using GroceryAppAPI.Models.DbModels;
 using GroceryAppAPI.Models.Request;
 using GroceryAppAPI.Models.Response;
@@ -17,13 +18,13 @@ namespace GroceryAppAPI.Services
     public class AuthenticationService : IAuthenticationService
     {
         private readonly IUserRepository _userRepository;
-        private readonly IConfiguration _configuration;
+        private readonly IJwtTokenHelper _jwtTokenHelper;
 
         // Constructor with dependency injection for IUserRepository and IConfiguration
-        public AuthenticationService(IUserRepository userRepository, IConfiguration configuration)
+        public AuthenticationService(IUserRepository userRepository, IJwtTokenHelper jwtTokenHelper)
         {
             _userRepository = userRepository;
-            _configuration = configuration;
+            _jwtTokenHelper = jwtTokenHelper;
         }
 
         // Method for user login
@@ -43,39 +44,13 @@ namespace GroceryAppAPI.Services
             if (actualHash != expectedHash) { throw new InvalidRequestException("Password is incorrect."); }
 
             // Generate and return access token
-            var accessToken = GenerateAccessToken(user);
+            var accessToken = _jwtTokenHelper.GenerateAccessToken(user);
             return new LoginResponse()
             {
                 UserId = user.Id,
                 AccessToken = accessToken,
                 Role = (Role)user.Role
             };
-        }
-
-        // Method to generate JWT access token
-        private string GenerateAccessToken(User user)
-        {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["AppSettings:Authentication:Key"]));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-            var userRole = (Role)user.Role;
-
-            // Define claims for the token
-            var claims = new[]
-            {
-                new Claim(ClaimTypes.NameIdentifier, $"{user.FirstName} {user.LastName}"),
-                new Claim(ClaimTypes.Role, userRole.ToString()),
-                new Claim(ClaimTypes.Email, user.Email)
-            };
-
-            // Create and configure the JWT token
-            var token = new JwtSecurityToken(_configuration["AppSettings:Authentication:Issuer"],
-                _configuration["AppSettings:Authentication:Audience"],
-                claims,
-                expires: DateTime.Now.AddHours(1),
-                signingCredentials: credentials);
-
-            // Write and return the token as a string
-            return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }
 }
