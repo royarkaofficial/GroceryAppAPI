@@ -97,7 +97,7 @@ namespace GroceryAppAPI.Services
 
             // Retrieve user by email
             var user = _userRepository.Get(resetPasswordRequest.Email);
-            if (user is null) { throw new EntityNotFoundException($"User with the given email '{resetPasswordRequest.Email}' does not exist."); }
+            if (user is null) { throw new EntityNotFoundException($"User with the given email {resetPasswordRequest.Email} does not exist."); }
 
             // Hash the new password and update the user's password
             var passwordHash = EncodingHelper.HashPassword(resetPasswordRequest.Password);

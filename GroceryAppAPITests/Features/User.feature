@@ -27,13 +27,13 @@ And the response body should be '{"message":"Password updated successfully."}'
 
 @password-updation-failed
 Scenario:password updation failed due to invalid user
-When the user sends PUT request to the 'users/10' endpoint with the data '"Test456"'
+When the user sends PUT request to the 'users/password' endpoint with the data '{"email":"testuser23@app.com", "password":"Abc123"}'
 Then the response status code should be 400
-And the response body should be '{"message":"User with id 10 is not found."}'
+And the response body should be '{"message":"User with the given email testuser23@app.com does not exist."}'
 
 @password-updation-failed
 Scenario:password updation failed due to blank password
-When the user sends PUT request to the 'users/1' endpoint with the data '""'
+When the user sends PUT request to the 'users/password' endpoint with the data '{"email":"testuser2@app.com", "password":""}'
 Then the response status code should be 400
 And the response body should be '{"message":"Password is either not given or invalid."}'
 

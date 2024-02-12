@@ -15,6 +15,8 @@ namespace GroceryAppAPI
 {
     public class TestStartup
     {
+        private object services;
+
         public IConfiguration Configuration { get; }
 
         // Constructor to initialize configuration
@@ -57,19 +59,11 @@ namespace GroceryAppAPI
             services.AddSingleton<IJwtTokenHelper, JwtTokenHelper>();
 
             // Configuring JWT authentication
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            services.AddAuthentication(options =>
             {
-                options.TokenValidationParameters = new TokenValidationParameters()
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = Configuration["AppSettings:Authentication:Issuer"],
-                    ValidAudience = Configuration["AppSettings:Authentication:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["AppSettings:Authentication:Key"]))
-                };
-            });
+                options.DefaultAuthenticateScheme = "Test Scheme";
+                options.DefaultChallengeScheme = "Test Scheme";
+            }).AddTestAuth(o => { });
 
             // Adding controllers and Swagger documentation
             services.AddControllers();

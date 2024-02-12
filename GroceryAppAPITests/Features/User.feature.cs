@@ -253,13 +253,15 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 30
-testRunner.When("the user sends PUT request to the \'users/10\' endpoint with the data \'\"Test456\"\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("the user sends PUT request to the \'users/password\' endpoint with the data \'{\"emai" +
+                        "l\":\"testuser23@app.com\", \"password\":\"Abc123\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 31
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 32
-testRunner.And("the response body should be \'{\"message\":\"User with id 10 is not found.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the response body should be \'{\"message\":\"User with the given email testuser23@app" +
+                        ".com does not exist.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -298,7 +300,8 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 36
-testRunner.When("the user sends PUT request to the \'users/1\' endpoint with the data \'\"\"\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("the user sends PUT request to the \'users/password\' endpoint with the data \'{\"emai" +
+                        "l\":\"testuser2@app.com\", \"password\":\"\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 37
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
