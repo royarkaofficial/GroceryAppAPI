@@ -6,6 +6,8 @@ using GroceryAppAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using GroceryAppAPI.Helpers.Interfaces;
+using GroceryAppAPI.Helpers;
 
 namespace GroceryAppAPI
 {
@@ -48,6 +50,9 @@ namespace GroceryAppAPI
 
             // Adding HttpContextAccessor as a singleton
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            // Adding Jwt token helper
+            services.AddSingleton<IJwtTokenHelper, JwtTokenHelper>();
 
             // Configuring JWT authentication
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
