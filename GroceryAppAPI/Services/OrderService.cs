@@ -1,5 +1,6 @@
 ﻿using GroceryAppAPI.Exceptions;
 using GroceryAppAPI.Helpers;
+using GroceryAppAPI.Helpers.Interfaces;
 using GroceryAppAPI.Models.DbModels;
 using GroceryAppAPI.Models.Request;
 using GroceryAppAPI.Models.Response;
@@ -16,17 +17,17 @@ namespace GroceryAppAPI.Services
         private readonly IPaymentService _paymentService;
         private readonly IProductRepository _productRepository;
         private readonly IOrderProductRepository _orderProductRepository;
-        private readonly IHttpContextAccessor _contextAccessor;
+        private readonly IAuthenticationHelper _authenticationHelper;
 
         // Constructor with dependency injection for repositories, services, and context accessor
-        public OrderService(IOrderRepository orderRepository, IUserService userService, IPaymentService paymentService, IProductRepository productRepository, IOrderProductRepository orderProductRepository, IHttpContextAccessor contextAccessor)
+        public OrderService(IOrderRepository orderRepository, IUserService userService, IPaymentService paymentService, IProductRepository productRepository, IOrderProductRepository orderProductRepository, IAuthenticationHelper authenticationHelper)
         {
             _orderRepository = orderRepository;
             _userService = userService;
             _paymentService = paymentService;
             _productRepository = productRepository;
             _orderProductRepository = orderProductRepository;
-            _contextAccessor = contextAccessor;
+            _authenticationHelper = authenticationHelper;
         }
 
         // Get all orders for a specific user
@@ -34,7 +35,7 @@ namespace GroceryAppAPI.Services
         {
             var user = _userService.Get(userId);
             if (user is null) { throw new InvalidRequestDataException("UserId is either not given or invalid."); }
-            IdentityClaimHelper.ClaimUser(user.Email, _contextAccessor);
+            _authenticationHelper.ClaimUser(user.Email);
 
             // Retrieve all orders for the user
             var orders = _orderRepository.GetAll(userId);

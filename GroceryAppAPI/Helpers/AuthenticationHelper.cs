@@ -1,4 +1,5 @@
 ﻿using GroceryAppAPI.Enumerations;
+using GroceryAppAPI.Exceptions;
 using GroceryAppAPI.Helpers.Interfaces;
 using GroceryAppAPI.Models.DbModels;
 using Microsoft.IdentityModel.Tokens;
@@ -8,13 +9,15 @@ using System.Text;
 
 namespace GroceryAppAPI.Helpers
 {
-    public class JwtTokenHelper : IJwtTokenHelper
+    public class AuthenticationHelper : IAuthenticationHelper
     {
         private readonly IConfiguration _configuration;
+        private readonly IHttpContextAccessor _contextAccessor;
 
-        public JwtTokenHelper(IConfiguration configuration)
+        public AuthenticationHelper(IConfiguration configuration, IHttpContextAccessor contextAccessor)
         {
             _configuration = configuration;
+            _contextAccessor = contextAccessor;
         }
 
         public string GenerateAccessToken(User user)
@@ -40,6 +43,24 @@ namespace GroceryAppAPI.Helpers
 
             // Write and return the token as a string
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        public bool ClaimUser(string email)
+        {
+            // Retrieve the claims associated with the current user identity.
+            var identity = _contextAccessor.HttpContext.User.Claims;
+
+            // Find the claim with the specified email.
+            var identityClaim = identity.FirstOrDefault(id => id.Type == ClaimTypes.Email && id.Value == email);
+
+            // If the claim is not found, throw an exception indicating denial of access.
+            if (identityClaim is null)
+            {
+                throw new InvalidRequestException("User is denied access to the specified resource.");
+            }
+
+            // User successfully claimed.
+            return true;
         }
     }
 }

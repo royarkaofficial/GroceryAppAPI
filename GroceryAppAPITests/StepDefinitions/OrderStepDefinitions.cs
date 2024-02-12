@@ -17,6 +17,7 @@ namespace GroceryAppAPITests.StepDefinitions
                     services.AddTransient(_ => OrderMock.PaymentRepositoryMock.Object);
                     services.AddTransient(_ => OrderMock.ProductRepositoryMock.Object);
                     services.AddTransient(_ => OrderMock.OrderProductRepositoryMock.Object);
+                    services.AddSingleton(_ => OrderMock.AuthenticationHelperMock.Object);
                 });
             }))
         {

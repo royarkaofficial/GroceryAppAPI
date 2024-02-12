@@ -51,8 +51,8 @@ namespace GroceryAppAPI
             // Adding HttpContextAccessor as a singleton
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            // Adding Jwt token helper
-            services.AddSingleton<IJwtTokenHelper, JwtTokenHelper>();
+            // Adding authentication helper
+            services.AddSingleton<IAuthenticationHelper, AuthenticationHelper>();
 
             // Configuring JWT authentication
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>

@@ -1,4 +1,5 @@
-﻿using GroceryAppAPI.Models.DbModels;
+﻿using GroceryAppAPI.Helpers.Interfaces;
+using GroceryAppAPI.Models.DbModels;
 using GroceryAppAPI.Repository.Interfaces;
 using GroceryAppAPI.Services;
 using Moq;
@@ -13,6 +14,7 @@ namespace GroceryAppAPITests.Mocks
     {
         private static string BasePath = Environment.CurrentDirectory + "/TestData/";
         public static Mock<IUserRepository> UserRepositoryMock = new Mock<IUserRepository>();
+        public static Mock<IAuthenticationHelper> AuthenticationHelperMock = new Mock<IAuthenticationHelper>();
 
         /// <summary>
         /// Sets the mocks.
@@ -20,6 +22,7 @@ namespace GroceryAppAPITests.Mocks
         public static void SetMocks()
         {
             MockUserRepository();
+            MockAuthenticationHelper();
         }
 
         /// <summary>
@@ -35,6 +38,11 @@ namespace GroceryAppAPITests.Mocks
             });
 
             UserRepositoryMock.Setup(repo => repo.Update(It.IsAny<string>(), It.IsAny<User>()));
+        }
+
+        private static void MockAuthenticationHelper()
+        {
+            AuthenticationHelperMock.Setup(helper => helper.ClaimUser(It.IsAny<string>())).Returns(true);
         }
     }
 }

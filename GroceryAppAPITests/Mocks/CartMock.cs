@@ -1,4 +1,5 @@
-﻿using GroceryAppAPI.Models.DbModels;
+﻿using GroceryAppAPI.Helpers.Interfaces;
+using GroceryAppAPI.Models.DbModels;
 using GroceryAppAPI.Repository.Interfaces;
 using GroceryAppAPI.Services;
 using Moq;
@@ -13,12 +14,14 @@ namespace GroceryAppAPITests.Mocks
         public static Mock<ICartProductRepository> CartProductRepositoryMock = new Mock<ICartProductRepository>();
         public static Mock<IProductRepository> ProductRepositoryMock = new Mock<IProductRepository>();
         public static Mock<IUserRepository> UserRepositoryMock = new Mock<IUserRepository>();
+        public static readonly Mock<IAuthenticationHelper> AuthenticationHelperMock = new Mock<IAuthenticationHelper>();
         public static void SetMocks()
         {
             MockCartRepository();
             MockCartProductRepository();
             MockProductRepository();
             MockUserRepository();
+            MockAuthenticationHelper();
         }
         private static void MockCartRepository()
         {
@@ -68,6 +71,11 @@ namespace GroceryAppAPITests.Mocks
                 var users = JsonConvert.DeserializeObject<IEnumerable<User>>(fileContent);
                 return users.FirstOrDefault(user => user.Id == id);
             });
+        }
+
+        private static void MockAuthenticationHelper()
+        {
+            AuthenticationHelperMock.Setup(helper => helper.ClaimUser(It.IsAny<string>())).Returns(true);
         }
     }
 }

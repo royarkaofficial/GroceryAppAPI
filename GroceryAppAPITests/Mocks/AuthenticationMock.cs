@@ -1,7 +1,6 @@
 ﻿using GroceryAppAPI.Helpers.Interfaces;
 using GroceryAppAPI.Models.DbModels;
 using GroceryAppAPI.Repository.Interfaces;
-using GroceryAppAPI.Services;
 using Moq;
 using Newtonsoft.Json;
 
@@ -11,11 +10,11 @@ namespace GroceryAppAPITests.Mocks
     {
         private static string BasePath = Environment.CurrentDirectory + "/TestData/";
         public static Mock<IUserRepository> UserRepositoryMock = new Mock<IUserRepository>();
-        public static Mock<IJwtTokenHelper> JwtTokenHelperMock = new Mock<IJwtTokenHelper>();
+        public static Mock<IAuthenticationHelper> AuthenticationHelperMock = new Mock<IAuthenticationHelper>();
         public static void SetMocks()
         {
             MockUserRepository();
-            MockJwtTokenHelper();
+            MockAuthenticationHelper();
         }
         private static void MockUserRepository()
         {
@@ -27,9 +26,9 @@ namespace GroceryAppAPITests.Mocks
             });
         }
 
-        private static void MockJwtTokenHelper()
+        private static void MockAuthenticationHelper()
         {
-            JwtTokenHelperMock.Setup(helper => helper.GenerateAccessToken(It.IsAny<User>())).Returns("Mock_Access_Token");
+            AuthenticationHelperMock.Setup(helper => helper.GenerateAccessToken(It.IsAny<User>())).Returns("Mock_Access_Token");
         }
     }
 }

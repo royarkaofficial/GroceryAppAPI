@@ -13,6 +13,7 @@ namespace GroceryAppAPITests.StepDefinitions
                 builder.ConfigureServices(services =>
                 {
                     services.AddTransient(_ => UserMock.UserRepositoryMock.Object);
+                    services.AddSingleton(_ => UserMock.AuthenticationHelperMock.Object);
                 });
             }))
         {

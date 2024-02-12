@@ -1,6 +1,7 @@
 ﻿using GroceryAppAPI.Enumerations;
 using GroceryAppAPI.Exceptions;
 using GroceryAppAPI.Helpers;
+using GroceryAppAPI.Helpers.Interfaces;
 using GroceryAppAPI.Models.DbModels;
 using GroceryAppAPI.Models.Request;
 using GroceryAppAPI.Models.Response;
@@ -16,16 +17,16 @@ namespace GroceryAppAPI.Services
         private readonly ICartProductRepository _cartProductRepository;
         private readonly IUserService _userService;
         private readonly IProductRepository _productRepository;
-        private readonly IHttpContextAccessor _contextAccessor;
+        private readonly IAuthenticationHelper _authenticationHelper;
 
         // Constructor with dependency injection for repositories, services, and context accessor
-        public CartService(ICartRepository cartRepository, ICartProductRepository cartProductRepository, IUserService userService, IProductRepository productRepository, IHttpContextAccessor contextAccessor)
+        public CartService(ICartRepository cartRepository, ICartProductRepository cartProductRepository, IUserService userService, IProductRepository productRepository, IAuthenticationHelper authenticationHelper)
         {
             _cartRepository = cartRepository;
             _cartProductRepository = cartProductRepository;
             _userService = userService;
             _productRepository = productRepository;
-            _contextAccessor = contextAccessor;
+            _authenticationHelper = authenticationHelper;
         }
 
         // Add a product to the user's cart
@@ -33,7 +34,7 @@ namespace GroceryAppAPI.Services
         {
             if (cartRequest is null) { throw new ArgumentNullException("Cart is either not given or invalid."); }
             var user = _userService.Get(userId);
-            IdentityClaimHelper.ClaimUser(user.Email, _contextAccessor);
+            _authenticationHelper.ClaimUser(user.Email);
 
             // Check if the user already has a cart
             var existingCart = _cartRepository.GetByUser(userId);
@@ -71,7 +72,7 @@ namespace GroceryAppAPI.Services
         public void Delete(int id, int userId)
         {
             var user = _userService.Get(userId);
-            IdentityClaimHelper.ClaimUser(user.Email, _contextAccessor);
+            _authenticationHelper.ClaimUser(user.Email);
 
             // Delete cart products and the cart itself
             _cartProductRepository.Delete(id);
@@ -83,7 +84,7 @@ namespace GroceryAppAPI.Services
         {
             if (cartRequest is null) { throw new ArgumentNullException("Cart is either null or invalid."); }
             var user = _userService.Get(userId);
-            IdentityClaimHelper.ClaimUser(user.Email, _contextAccessor);
+            _authenticationHelper.ClaimUser(user.Email);
 
             // Retrieve the existing cart
             var existingCart = _cartRepository.Get(id);

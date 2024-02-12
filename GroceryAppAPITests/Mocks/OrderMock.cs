@@ -1,4 +1,5 @@
-﻿using GroceryAppAPI.Models.DbModels;
+﻿using GroceryAppAPI.Helpers.Interfaces;
+using GroceryAppAPI.Models.DbModels;
 using GroceryAppAPI.Repository.Interfaces;
 using GroceryAppAPI.Services;
 using Moq;
@@ -14,6 +15,7 @@ namespace GroceryAppAPITests.Mocks
         public static Mock<IPaymentRepository> PaymentRepositoryMock = new Mock<IPaymentRepository>();
         public static Mock<IProductRepository> ProductRepositoryMock = new Mock<IProductRepository>();
         public static Mock<IOrderProductRepository> OrderProductRepositoryMock = new Mock<IOrderProductRepository>();
+        public static Mock<IAuthenticationHelper> AuthenticationHelperMock = new Mock<IAuthenticationHelper>();
         public static void SetMocks()
         {
             MockOrderRepository();
@@ -21,6 +23,7 @@ namespace GroceryAppAPITests.Mocks
             MockPaymentRepository();
             MockProductRepository();
             MockOrderProductRepository();
+            MockAuthenticationHelper();
         }
         private static void MockOrderRepository()
         {
@@ -67,6 +70,11 @@ namespace GroceryAppAPITests.Mocks
             });
             OrderProductRepositoryMock.Setup(repo => repo.Add(It.IsAny<OrderProduct>()));
             OrderProductRepositoryMock.Setup(repo => repo.Delete(It.IsAny<int>()));
+        }
+
+        private static void MockAuthenticationHelper()
+        {
+            AuthenticationHelperMock.Setup(helper => helper.ClaimUser(It.IsAny<string>())).Returns(true);
         }
     }
 }

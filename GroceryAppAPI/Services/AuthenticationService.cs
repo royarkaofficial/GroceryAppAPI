@@ -18,10 +18,10 @@ namespace GroceryAppAPI.Services
     public class AuthenticationService : IAuthenticationService
     {
         private readonly IUserRepository _userRepository;
-        private readonly IJwtTokenHelper _jwtTokenHelper;
+        private readonly IAuthenticationHelper _jwtTokenHelper;
 
         // Constructor with dependency injection for IUserRepository and IConfiguration
-        public AuthenticationService(IUserRepository userRepository, IJwtTokenHelper jwtTokenHelper)
+        public AuthenticationService(IUserRepository userRepository, IAuthenticationHelper jwtTokenHelper)
         {
             _userRepository = userRepository;
             _jwtTokenHelper = jwtTokenHelper;

@@ -1,6 +1,7 @@
 ﻿using GroceryAppAPI.Enumerations;
 using GroceryAppAPI.Exceptions;
 using GroceryAppAPI.Helpers;
+using GroceryAppAPI.Helpers.Interfaces;
 using GroceryAppAPI.Models.DbModels;
 using GroceryAppAPI.Models.Request;
 using GroceryAppAPI.Models.Response;
@@ -14,22 +15,21 @@ namespace GroceryAppAPI.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
-        private readonly IHttpContextAccessor _contextAccessor;
+        private readonly IAuthenticationHelper _authenticationHelper;
 
         // Constructor with dependency injection for IUserRepository and IHttpContextAccessor
-        public UserService(IUserRepository userRepository, IHttpContextAccessor contextAccessor)
+        public UserService(IUserRepository userRepository, IAuthenticationHelper authenticationHelper)
         {
             _userRepository = userRepository;
-            _contextAccessor = contextAccessor;
+            _authenticationHelper = authenticationHelper;
         }
 
         // Get user details by ID and update identity claims
         public UserResponse Get(int id)
         {
             var user = _userRepository.Get(id);
-            IdentityClaimHelper.ClaimUser(user.Email, _contextAccessor);
-
             if (user is null) { throw new EntityNotFoundException(id, "User"); }
+            _authenticationHelper.ClaimUser(user.Email);
 
             // Map user details to UserResponse model
             return new UserResponse()
