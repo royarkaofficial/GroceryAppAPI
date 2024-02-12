@@ -62,12 +62,33 @@ namespace GroceryAppAPI.Services
         }
 
         // Get all existing products with their details
-        public IEnumerable<ProductResponse> GetAll()
+        public IEnumerable<ProductResponse> GetAll(ProductFilter filter)
         {
             var productResponses = new List<ProductResponse>();
+            var condition = string.Empty;
+            object parameters = null;
+
+            if (filter != null && !string.IsNullOrEmpty(filter.ProductIds))
+            {
+                parameters = new
+                {
+                    ProductIds = filter.ProductIds.Split(',').Select(x =>
+                    {
+                        if (int.TryParse(x, out var id))
+                        {
+                            return id;
+                        }
+                        else
+                        {
+                            throw new InvalidRequestDataException("Atleast one of the given productIds are invalid.");
+                        }
+                    })
+                };
+                condition += "\nWHERE [Id] IN @ProductIds";
+            }
 
             // Retrieve all products from the repository
-            var products = _productRepository.GetAll();
+            var products = _productRepository.GetAll(condition, parameters);
 
             // Map each product to its response format
             foreach (var product in products)

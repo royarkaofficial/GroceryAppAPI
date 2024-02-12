@@ -35,10 +35,10 @@ namespace GroceryAppAPI.Controllers
         // Endpoint to get all products (requires authorization)
         [Authorize] // Requires authorization
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetAll([FromQuery] ProductFilter filter)
         {
             // Call the product service to get all products
-            var products = _productService.GetAll();
+            var products = _productService.GetAll(filter);
 
             // Return Ok result with the list of products
             return Ok(new { data = products });

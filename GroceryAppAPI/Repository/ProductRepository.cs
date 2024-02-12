@@ -1,6 +1,7 @@
 ﻿using GroceryAppAPI.Configurations;
 using GroceryAppAPI.Enumerations;
 using GroceryAppAPI.Models.DbModels;
+using GroceryAppAPI.Models.Request;
 using GroceryAppAPI.Repository.Interfaces;
 using Microsoft.Extensions.Options;
 
@@ -52,11 +53,12 @@ namespace GroceryAppAPI.Repository
         }
 
         // Method to get all products from the database
-        public IEnumerable<Product> GetAll()
+        public IEnumerable<Product> GetAll(string conditions, object parameters)
         {
-            const string query = @"SELECT *
-                                   FROM [Products]";
-            return GetAll(query);
+            string query = $@"SELECT *
+                              FROM [Products]
+                              {conditions}";
+            return base.GetAll(query, parameters);
         }
 
         // Method to update a product in the database based on specified conditions

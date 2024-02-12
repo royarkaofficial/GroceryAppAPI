@@ -10,7 +10,7 @@ namespace GroceryAppAPI.Services.Interfaces
         ProductResponse Get(int id);
 
         // Method to get all products
-        IEnumerable<ProductResponse> GetAll();
+        IEnumerable<ProductResponse> GetAll(ProductFilter filter);
 
         // Method to add a new product and return the product ID
         int Add(ProductRequest productRequest);

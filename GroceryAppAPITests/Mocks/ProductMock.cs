@@ -1,4 +1,5 @@
 ﻿using GroceryAppAPI.Models.DbModels;
+using GroceryAppAPI.Models.Request;
 using GroceryAppAPI.Repository.Interfaces;
 using GroceryAppAPI.Services;
 using Moq;
@@ -23,7 +24,7 @@ namespace GroceryAppAPITests.Mocks
                 return products.FirstOrDefault(p => p.Id == id);
             });
 
-            ProductRepositoryMock.Setup(repo => repo.GetAll()).Returns(() =>
+            ProductRepositoryMock.Setup(repo => repo.GetAll(It.IsAny<string>(), It.IsAny<ProductFilter>())).Returns(() =>
             {
                 var fileContent = File.ReadAllText(BasePath + "products.json");
                 var products = JsonConvert.DeserializeObject<IEnumerable<Product>>(fileContent);
