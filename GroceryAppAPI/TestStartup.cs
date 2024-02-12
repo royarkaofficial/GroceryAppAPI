@@ -3,12 +3,17 @@ using GroceryAppAPI.Repository.Interfaces;
 using GroceryAppAPI.Repository;
 using GroceryAppAPI.Services.Interfaces;
 using GroceryAppAPI.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace GroceryAppAPI
 {
     public class TestStartup
     {
-        public IConfiguration Configuration { get; set; }
+        public IConfiguration Configuration { get; }
 
         // Constructor to initialize configuration
         public TestStartup(IConfiguration configuration)
@@ -43,6 +48,21 @@ namespace GroceryAppAPI
             services.AddTransient<ICartService, CartService>();
             services.AddTransient<IOrderService, OrderService>();
 
+            // Configuring JWT authentication
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters()
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = Configuration["AppSettings:Authentication:Issuer"],
+                    ValidAudience = Configuration["AppSettings:Authentication:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["AppSettings:Authentication:Key"]))
+                };
+            });
+
             // Adding controllers and Swagger documentation
             services.AddControllers();
             services.AddSwaggerGen();
@@ -62,8 +82,11 @@ namespace GroceryAppAPI
             // Redirect HTTP requests to HTTPS
             app.UseHttpsRedirection();
 
-            // Enable routing and endpoint mapping
+            // Enable authentication, routing, authorization, CORS, and endpoint mapping
+            app.UseAuthentication();
             app.UseRouting();
+            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            app.UseAuthorization();
             app.UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }
