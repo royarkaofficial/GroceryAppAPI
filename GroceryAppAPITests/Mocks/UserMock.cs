@@ -37,6 +37,13 @@ namespace GroceryAppAPITests.Mocks
                 return users.FirstOrDefault(user => user.Id == id);
             });
 
+            UserRepositoryMock.Setup(repo => repo.Get(It.IsAny<string>())).Returns((string email) =>
+            {
+                var fileContent = File.ReadAllText(BasePath + "users.json");
+                var users = JsonConvert.DeserializeObject<IEnumerable<User>>(fileContent);
+                return users.FirstOrDefault(user => user.Email == email);
+            });
+
             UserRepositoryMock.Setup(repo => repo.Update(It.IsAny<string>(), It.IsAny<User>()));
         }
 

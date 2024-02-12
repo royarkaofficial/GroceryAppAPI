@@ -122,9 +122,8 @@ testRunner.When("the user sends GET request to the \'users/1\' endpoint", ((stri
 testRunner.Then("the response status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 14
-testRunner.And("the response body should be \'{\"firstName\":\"Test\",\"lastName\":\"User\",\"email\":\"testu" +
-                        "ser@app.com\",\"password\":\"7NcYcNGWMxapfjrDQIyYNa2M8PPBvHA1J8MCZVNPda4=\",\"role\":2," +
-                        "\"id\":1}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the response body should be \'{\"data\":{\"firstName\":\"Test\",\"lastName\":\"User\",\"email" +
+                        "\":\"testuser@app.com\",\"address\":\"Serampore\",\"gender\":1,\"role\":2}}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -208,13 +207,14 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 24
-testRunner.When("the user sends PUT request to the \'users/1\' endpoint with the data \'\"Test456\"\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("the user sends PUT request to the \'users/password\' endpoint with the data \'{\"emai" +
+                        "l\":\"testuser2@app.com\", \"password\":\"Abc123\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 25
 testRunner.Then("the response status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 26
-testRunner.And("the response body should be \'{\"message\":\"Password updated successfully.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the response body should be \'{\"message\":\"Password reset successful.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

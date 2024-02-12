@@ -14,8 +14,7 @@ Given I am a registered user
 Scenario:All the products retrieved successfully
 When the user sends GET request to the 'products' endpoint
 Then the response status code should be 200
-And the response body should be '[{"name":"Product 1","price":1000,"stock":50,"imageUrl":"www.productimages.com/1","status":1,"id":1},{"name":"Product 2","price":2000,"stock":80,"imageUrl":"www.productimages.com/2","status":1,"id":2},{"name":"Product 3","price":4000,"stock":90,"imageUrl":"www.productimages.com/3","status":1,"id":3}]'
-
+And the response body should be '{"data":[{"id":1,"name":"Product 1","price":1000,"stock":50,"imageUrl":"www.productimages.com/1","status":1},{"id":2,"name":"Product 2","price":2000,"stock":80,"imageUrl":"www.productimages.com/2","status":1}]}'
 @product-added-successfully
 Scenario:Product added successfully
 When the user sends POST request to the 'products' endpoint with the data '{"name":"Product 3","price":3000,"stock":70,"imageUrl":"www.productimages.com/3"}'

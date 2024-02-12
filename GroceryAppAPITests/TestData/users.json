@@ -5,6 +5,8 @@
     "lastName": "User",
     "email": "testuser@app.com",
     "password": "7NcYcNGWMxapfjrDQIyYNa2M8PPBvHA1J8MCZVNPda4=",
+    "address": "Serampore",
+    "gender": 1,
     "role": 2
   },
   {
@@ -13,6 +15,8 @@
     "lastName": "User 2",
     "email": "testuser2@app.com",
     "password": "7NcYcNGWMxapfjrDQIyYNa2M8PPBvHA1J8MCZVNPda4=",
+    "address": "Serampore",
+    "gender": 1,
     "role": 2
   }
 ]

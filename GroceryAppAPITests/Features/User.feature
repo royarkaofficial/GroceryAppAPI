@@ -11,7 +11,7 @@ Given I am a registered user
 Scenario:User retrieved successfully
 When the user sends GET request to the 'users/1' endpoint
 Then the response status code should be 200
-And the response body should be '{"firstName":"Test","lastName":"User","email":"testuser@app.com","password":"7NcYcNGWMxapfjrDQIyYNa2M8PPBvHA1J8MCZVNPda4=","role":2,"id":1}'
+And the response body should be '{"data":{"firstName":"Test","lastName":"User","email":"testuser@app.com","address":"Serampore","gender":1,"role":2}}'
 
 @user-details-not-found
 Scenario:User does not exist
@@ -21,9 +21,9 @@ And the response body should be '{"message":"User with id 10 is not found."}'
 
 @password-updated-successfully
 Scenario:User updates the password successfully
-When the user sends PUT request to the 'users/1' endpoint with the data '"Test456"'
+When the user sends PUT request to the 'users/password' endpoint with the data '{"email":"testuser2@app.com", "password":"Abc123"}'
 Then the response status code should be 200
-And the response body should be '{"message":"Password updated successfully."}'
+And the response body should be '{"message":"Password reset successful."}'
 
 @password-updation-failed
 Scenario:password updation failed due to invalid user

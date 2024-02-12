@@ -24,7 +24,7 @@ namespace GroceryAppAPITests.Mocks
                 return products.FirstOrDefault(p => p.Id == id);
             });
 
-            ProductRepositoryMock.Setup(repo => repo.GetAll(It.IsAny<string>(), It.IsAny<ProductFilter>())).Returns(() =>
+            ProductRepositoryMock.Setup(repo => repo.GetAll(It.IsAny<string>(), It.IsAny<object>())).Returns(() =>
             {
                 var fileContent = File.ReadAllText(BasePath + "products.json");
                 var products = JsonConvert.DeserializeObject<IEnumerable<Product>>(fileContent);
