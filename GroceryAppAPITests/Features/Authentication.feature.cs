@@ -122,7 +122,8 @@ testRunner.When("the user sends POST request to the \'authentication/login\' end
 testRunner.Then("the response status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 12
-testRunner.And(@"the response body should be '{""data"":{""userId"":1,""accessToken"":""eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IlRlc3QgVXNlciIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlVzZXIiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJ0ZXN0dXNlckBhcHAuY29tIiwiZXhwIjoxNzA3NzU2ODAzLCJpc3MiOiJodHRwOi8vZ3JvY2VyeWFwcC5hcGkuY29tLyIsImF1ZCI6Imh0dHA6Ly9ncm9jZXJ5YXBwLmFwaS5jb20vIn0.Gq0A_9GuTnJY35_lySrkThH2ZjAkkShicKnN0T8hKyQ"",""role"":2}}'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the response body should be \'{\"data\":{\"userId\":1,\"accessToken\":\"Mock_Access_Token" +
+                        "\",\"role\":2}}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

@@ -116,8 +116,8 @@ this.FeatureBackground();
 #line hidden
 #line 10
 testRunner.When("the user sends POST request to the \'registration\' endpoint with the data \'{\"first" +
-                        "Name\":\"Arkadeep\",\"lastName\":\"Roy\",\"email\":\"roy@gmail.com\",\"password\":\"Arka123\"}\'" +
-                        "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+                        "Name\":\"Arkadeep\",\"lastName\":\"Roy\",\"email\":\"roy@gmail.com\",\"password\":\"Arka123\",\"" +
+                        "address\":\"Serampore\",\"Gender\":1,\"Role\":1}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 11
 testRunner.Then("the response status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -163,7 +163,8 @@ this.FeatureBackground();
 #line hidden
 #line 16
 testRunner.When("the user sends POST request to the \'registration\' endpoint with the data \'{\"first" +
-                        "Name\":\" \",\"lastName\":\"Roy\",\"email\":\"roy1@gmail.com\",\"password\":\"Arka123\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+                        "Name\":\" \",\"lastName\":\"Roy\",\"email\":\"roy1@gmail.com\",\"password\":\"Arka123\", \"addre" +
+                        "ss\":\"Serampore\",\"Gender\":1,\"Role\":1}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 17
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -210,7 +211,8 @@ this.FeatureBackground();
 #line hidden
 #line 22
 testRunner.When("the user sends POST request to the \'registration\' endpoint with the data \'{\"first" +
-                        "Name\":\"Arkadeep\",\"lastName\":\" \",\"email\":\"roy2@gmail.com\",\"password\":\"Arka123\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+                        "Name\":\"Arkadeep\",\"lastName\":\" \",\"email\":\"roy2@gmail.com\",\"password\":\"Arka123\",\"a" +
+                        "ddress\":\"Serampore\",\"Gender\":1,\"Role\":1}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 23
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -257,7 +259,8 @@ this.FeatureBackground();
 #line hidden
 #line 28
 testRunner.When("the user sends POST request to the \'registration\' endpoint with the data \'{\"first" +
-                        "Name\":\"Arkadeep\",\"lastName\":\"Roy\",\"email\":\" \",\"password\":\"Arka123\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+                        "Name\":\"Arkadeep\",\"lastName\":\"Roy\",\"email\":\" \",\"password\":\"Arka123\",\"address\":\"Se" +
+                        "rampore\",\"Gender\":1,\"Role\":1}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 29
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -304,7 +307,8 @@ this.FeatureBackground();
 #line hidden
 #line 34
 testRunner.When("the user sends POST request to the \'registration\' endpoint with the data \'{\"first" +
-                        "Name\":\"Arkadeep\",\"lastName\":\"Roy\",\"email\":\"roy3@gmail.com\",\"password\":\"\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+                        "Name\":\"Arkadeep\",\"lastName\":\"Roy\",\"email\":\"roy3@gmail.com\",\"password\":\"\",\"addres" +
+                        "s\":\"Serampore\",\"Gender\":1,\"Role\":1}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 35
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -312,6 +316,149 @@ testRunner.Then("the response status code should be 400", ((string)(null)), ((Te
 #line 36
 testRunner.And("the response body should be \'{\"message\":\"Password is either not given or invalid." +
                         "\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User registration fails due to blank address")]
+        [NUnit.Framework.CategoryAttribute("invalid-registration")]
+        public virtual void UserRegistrationFailsDueToBlankAddress()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "invalid-registration"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User registration fails due to blank address", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 39
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 5
+this.FeatureBackground();
+#line hidden
+#line 40
+testRunner.When("the user sends POST request to the \'registration\' endpoint with the data \'{\"first" +
+                        "Name\":\"Arkadeep\",\"lastName\":\"Roy\",\"email\":\"roy3@gmail.com\",\"password\":\"Arka123\"," +
+                        "\"address\":\"\",\"Gender\":1,\"Role\":1}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 41
+testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 42
+testRunner.And("the response body should be \'{\"message\":\"Address is either not given or invalid.\"" +
+                        "}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User registration fails due to invalid gender")]
+        [NUnit.Framework.CategoryAttribute("invalid-registration")]
+        public virtual void UserRegistrationFailsDueToInvalidGender()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "invalid-registration"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User registration fails due to invalid gender", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 45
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 5
+this.FeatureBackground();
+#line hidden
+#line 46
+testRunner.When("the user sends POST request to the \'registration\' endpoint with the data \'{\"first" +
+                        "Name\":\"Arkadeep\",\"lastName\":\"Roy\",\"email\":\"roy3@gmail.com\",\"password\":\"Arka123\"," +
+                        "\"address\":\"Serampore\",\"Gender\":3,\"Role\":1}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 47
+testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 48
+testRunner.And("the response body should be \'{\"message\":\"Gender is either not given or invalid.\"}" +
+                        "\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("User registration fails due to invalid role")]
+        [NUnit.Framework.CategoryAttribute("invalid-registration")]
+        public virtual void UserRegistrationFailsDueToInvalidRole()
+        {
+            string[] tagsOfScenario = new string[] {
+                    "invalid-registration"};
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User registration fails due to invalid role", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 51
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 5
+this.FeatureBackground();
+#line hidden
+#line 52
+testRunner.When("the user sends POST request to the \'registration\' endpoint with the data \'{\"first" +
+                        "Name\":\"Arkadeep\",\"lastName\":\"Roy\",\"email\":\"roy3@gmail.com\",\"password\":\"Arka123\"," +
+                        "\"address\":\"Serampore\",\"Gender\":1,\"Role\":3}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 53
+testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+#line 54
+testRunner.And("the response body should be \'{\"message\":\"Role is either not given or invalid.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
