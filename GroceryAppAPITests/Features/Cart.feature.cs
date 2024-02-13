@@ -122,7 +122,7 @@ testRunner.When("the user sends GET request to the \'users/1/carts\' endpoint", 
 testRunner.Then("the response status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 15
-testRunner.And("the response body should be \'{\"userId\":1,\"productIds\":[1,2],\"id\":1}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the response body should be \'{\"data\":{\"cartId\":1,\"productIds\":[1,2]}}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -258,7 +258,7 @@ testRunner.When("the user sends POST request to the \'users/2/carts\' endpoint w
 testRunner.Then("the response status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 33
-testRunner.And("the response body should be \'{\"id\":3}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the response body should be \'{\"data\":{\"id\":3}}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -666,14 +666,14 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 85
-testRunner.When("the user sends PUT request to the \'users/1/carts/2\' endpoint with the data \'{\"use" +
+testRunner.When("the user sends PUT request to the \'users/1/carts/4\' endpoint with the data \'{\"use" +
                         "rId\":1,\"productId\":3,\"OperationType\":1}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 86
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 87
-testRunner.And("the response body should be \'{\"message\":\"Cart does not belong to the user.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the response body should be \'{\"message\":\"Cart with id 4 is not found.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -802,13 +802,13 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 103
-testRunner.When("the user sends DELETE request to the \'users/1/carts/2\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("the user sends DELETE request to the \'users/15/carts/2\' endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 104
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 105
-testRunner.And("the response body should be \'{\"message\":\"Cart does not belong to the user.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the response body should be \'{\"message\":\"User with id 15 is not found.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

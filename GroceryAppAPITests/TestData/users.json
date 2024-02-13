@@ -18,5 +18,15 @@
     "address": "Serampore",
     "gender": 1,
     "role": 2
+  },
+  {
+    "id": 3,
+    "firstName": "Test",
+    "lastName": "User 3",
+    "email": "testuser3@app.com",
+    "password": "7NcYcNGWMxapfjrDQIyYNa2M8PPBvHA1J8MCZVNPda4=",
+    "address": "Serampore",
+    "gender": 1,
+    "role": 1
   }
 ]

@@ -10,6 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using GroceryAppAPI.Helpers.Interfaces;
 using GroceryAppAPI.Helpers;
+using Microsoft.AspNetCore.Authorization.Policy;
 
 namespace GroceryAppAPI
 {
@@ -57,6 +58,8 @@ namespace GroceryAppAPI
 
             // Adding Jwt token helper
             services.AddSingleton<IAuthenticationHelper, AuthenticationHelper>();
+
+            services.AddSingleton<IPolicyEvaluator, TestPolicyEvaluatorHelper>();
 
             // Configuring JWT authentication
             services.AddAuthentication(options =>

@@ -122,9 +122,8 @@ testRunner.When("the user sends GET request to the \'users/1/orders\' endpoint",
 testRunner.Then("the response status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 14
-testRunner.And("the response body should be \'[{\"userId\":1,\"paymentId\":1,\"orderedAt\":\"2024-01-15T0" +
-                        "0:00:00\",\"productIds\":[1,2],\"id\":1},{\"userId\":1,\"paymentId\":2,\"orderedAt\":\"2024-" +
-                        "01-20T00:00:00\",\"productIds\":[1],\"id\":2}]\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the response body should be \'{\"data\":[{\"orderId\":1,\"productIds\":[1,2]},{\"orderId\"" +
+                        ":2,\"productIds\":[1]}]}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -208,15 +207,15 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 24
-testRunner.When("the user sends POST request to the \'users/1/orders/payments\' endpoint with the da" +
-                        "ta \'{\"payment\":{\"amount\":3000,\"paymentType\":1},\"order\":{ \"userId\":1,\"productIds\"" +
+testRunner.When("the user sends POST request to the \'users/1/orders/place\' endpoint with the data " +
+                        "\'{\"paymentRequest\":{\"amount\":3000,\"paymentType\":1},\"orderRequest\":{ \"productIds\"" +
                         ":[1,2]}}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 25
 testRunner.Then("the response status code should be 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 26
-testRunner.And("the response body should be \'{\"orderId\":3,\"paymentId\":3}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the response body should be \'{\"data\":{\"orderId\":3,\"paymentId\":3}}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -255,15 +254,15 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 30
-testRunner.When("the user sends POST request to the \'users/11/orders/payments\' endpoint with the d" +
-                        "ata \'{\"payment\":{\"amount\":3000,\"paymentType\":1},\"order\":{ \"userId\":11,\"productId" +
-                        "s\":[1,2]}}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("the user sends POST request to the \'users/20/orders/place\' endpoint with the data" +
+                        " \'{\"paymentRequest\":{\"amount\":3000,\"paymentType\":1},\"orderRequest\":{ \"productIds" +
+                        "\":[1,2]}}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 31
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 32
-testRunner.And("the response body should be \'{\"message\":\"User with id 11 is not found.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the response body should be \'{\"message\":\"User with id 20 is not found.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -302,15 +301,16 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 36
-testRunner.When("the user sends POST request to the \'users/1/orders/payments\' endpoint with the da" +
-                        "ta \'{\"payment\":{\"amount\":3000,\"paymentType\":1},\"order\":{ \"userId\":1,\"productIds\"" +
-                        ":[0]}}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("the user sends POST request to the \'users/1/orders/place\' endpoint with the data " +
+                        "\'{\"paymentRequest\":{\"amount\":3000,\"paymentType\":3},\"orderRequest\":{ \"productIds\"" +
+                        ":[]}}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 37
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 38
-testRunner.And("the response body should be \'{\"message\":\"Product with id 0 is not found.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the response body should be \'{\"message\":\"ProductIds are either not given or inval" +
+                        "id.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -349,16 +349,16 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 42
-testRunner.When("the user sends POST request to the \'users/1/orders/payments\' endpoint with the da" +
-                        "ta \'{\"payment\":{\"amount\":3000,\"paymentType\":1},\"order\":{ \"userId\":1,\"productIds\"" +
-                        ":[]}}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("the user sends POST request to the \'users/1/orders/place\' endpoint with the data " +
+                        "\'{\"payment\":{\"amount\":3000,\"paymentType\":1},\"order\":{ \"userId\":1,\"productIds\":[]" +
+                        "}}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 43
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 44
-testRunner.And("the response body should be \'{\"message\":\"ProductIds are either not given or inval" +
-                        "id.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+testRunner.And("the response body should be \'{\"message\":\"Payment details are either not given or " +
+                        "invalid.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -397,9 +397,9 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 48
-testRunner.When("the user sends POST request to the \'users/1/orders/payments\' endpoint with the da" +
-                        "ta \'{\"payment\":{\"amount\":3000,\"paymentType\":10},\"order\":{ \"userId\":1,\"productIds" +
-                        "\":[1, 2]}}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("the user sends POST request to the \'users/1/orders/place\' endpoint with the data " +
+                        "\'{\"paymentRequest\":{\"amount\":3000,\"paymentType\":7},\"orderRequest\":{ \"productIds\"" +
+                        ":[1,2]}}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 49
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
@@ -445,17 +445,17 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 54
-testRunner.When("the user sends POST request to the \'users/1/orders/payments\' endpoint with the da" +
-                        "ta \'{\"payment\":{\"amount\":2000,\"paymentType\":1},\"order\":{ \"userId\":1,\"productIds\"" +
-                        ":[1, 2]}}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+testRunner.When("the user sends POST request to the \'users/1/orders/place\' endpoint with the data " +
+                        "\'{\"paymentRequest\":{\"amount\":0,\"paymentType\":2},\"orderRequest\":{ \"productIds\":[1" +
+                        ",2]}}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 55
 testRunner.Then("the response status code should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 56
 testRunner.And("the response body should be \'{\"message\":\"Payment failed for the order. Order cann" +
-                        "ot be placed. Payment amount is less than total amonut of the purchased items.\"}" +
-                        "\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+                        "ot be placed. Payment amount is less than the total amount of the purchased item" +
+                        "s.\"}\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();

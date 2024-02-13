@@ -70,7 +70,7 @@ namespace GroceryAppAPI.Services
 
                 // Add the payment and retrieve its ID
                 paymentId = _paymentService.Add(paymentRequest.PaymentRequest);
-            }
+             }
             catch (Exception ex)
             {
                 // Rollback if payment fails, delete associated order and order products
@@ -90,7 +90,7 @@ namespace GroceryAppAPI.Services
         private int AddOrder(int userId, OrderRequest orderRequest)
         {
             if (orderRequest is null) { throw new ArgumentNullException("Order is either null or invalid."); }
-
+            _userService.Get(userId);
             // Validate the order request
             Validate(orderRequest);
 
