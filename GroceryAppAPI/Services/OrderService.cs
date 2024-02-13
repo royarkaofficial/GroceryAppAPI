@@ -46,7 +46,7 @@ namespace GroceryAppAPI.Services
             {
                 var orderProducts = _orderProductRepository.GetAll(order.Id);
                 var productIds = orderProducts.Select(op => op.ProductId);
-                orderResponses.Add(new OrderResponse() { OrderId = order.Id, ProductIds = productIds });
+                orderResponses.Add(new OrderResponse() { OrderId = order.Id, ProductIds = productIds, OrderedAt = order.OrderedAt });
             }
             return orderResponses;
         }

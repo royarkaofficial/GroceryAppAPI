@@ -5,5 +5,7 @@
     {
         public int OrderId { get; set; }
         public IEnumerable<int>? ProductIds { get; set; }
+
+        public DateTime OrderedAt { get; set; }
     }
 }
