@@ -1,5 +1,6 @@
 ﻿using GroceryAppAPI;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Newtonsoft.Json;
 using NUnit.Framework;
 using System.Text;
 
@@ -40,6 +41,12 @@ namespace GroceryAppAPITests.StepDefinitions
         public async Task WhenTheUserSendsPUTRequestToTheEndpointWithTheData(string endpoint, string payload)
         {
             _response = await _client.PutAsync(GetUri(endpoint), GetRequestBody(payload));
+        }
+
+        [When(@"the user sends PATCH request to the '([^']*)' endpoint with the data '([^']*)'")]
+        public async Task WhenTheUserSendsPATCHRequestToTheEndpointWithTheData(string endpoint, string payload)
+        {
+            _response = await _client.PatchAsync(GetUri(endpoint), GetRequestBody(payload));
         }
 
         [When(@"the user sends DELETE request to the '([^']*)' endpoint")]

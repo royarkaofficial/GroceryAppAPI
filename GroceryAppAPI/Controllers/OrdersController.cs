@@ -29,7 +29,7 @@ namespace GroceryAppAPI.Controllers
             var orders = _orderService.GetAll(userId);
 
             // Return Ok result with the list of orders
-            return Ok(orders);
+            return Ok(new { data = orders });
         }
 
         // Endpoint to place a new order for a user

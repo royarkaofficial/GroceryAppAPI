@@ -12,7 +12,7 @@ Given I am a registered user
 Scenario:Cart retrieved successfully
 When the user sends GET request to the 'users/1/carts' endpoint
 Then the response status code should be 200
-And the response body should be '{"userId":1,"productIds":[1,2],"id":1}'
+And the response body should be '{"data":{"cartId":1,"productIds":[1,2]}}'
 
 @no-cart
 Scenario:User does not have any cart
@@ -30,7 +30,7 @@ And the response body should be '{"message":"User with id 12 is not found."}'
 Scenario:User creates cart successfully
 When the user sends POST request to the 'users/2/carts' endpoint with the data '{"userId":1,"productId":1,"operationType":1}'
 Then the response status code should be 200
-And the response body should be '{"id":3}'
+And the response body should be '{"data":{"id":3}}'
 
 @cart-creation-failed
 Scenario:Cart creation failed due to user not found
@@ -82,9 +82,9 @@ And the response body should be '{"message":"OperationType is either not given o
 
 @cart-updation-failed
 Scenario:Cart updation failed due to it does not belong to the user
-When the user sends PUT request to the 'users/1/carts/2' endpoint with the data '{"userId":1,"productId":3,"OperationType":1}'
+When the user sends PUT request to the 'users/1/carts/4' endpoint with the data '{"userId":1,"productId":3,"OperationType":1}'
 Then the response status code should be 400
-And the response body should be '{"message":"Cart does not belong to the user."}'
+And the response body should be '{"message":"Cart with id 4 is not found."}'
 
 @cart-deletion-successfull
 Scenario:Cart deletion successfull
@@ -100,6 +100,6 @@ And the response body should be '{"message":"User with id 20 is not found."}'
 
 @cart-deletion-failed
 Scenario:Cart deletion failed due to cart does not belong to the user
-When the user sends DELETE request to the 'users/1/carts/2' endpoint
+When the user sends DELETE request to the 'users/15/carts/2' endpoint
 Then the response status code should be 400
-And the response body should be '{"message":"Cart does not belong to the user."}'
+And the response body should be '{"message":"User with id 15 is not found."}'
