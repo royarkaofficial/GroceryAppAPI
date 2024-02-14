@@ -7,5 +7,7 @@
         public IEnumerable<int>? ProductIds { get; set; }
 
         public DateTime OrderedAt { get; set; }
+
+        public PaymentResponse Payment { get; set; }
     }
 }

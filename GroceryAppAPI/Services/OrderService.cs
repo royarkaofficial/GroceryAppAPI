@@ -1,4 +1,5 @@
-﻿using GroceryAppAPI.Exceptions;
+﻿using GroceryAppAPI.Enumerations;
+using GroceryAppAPI.Exceptions;
 using GroceryAppAPI.Helpers;
 using GroceryAppAPI.Helpers.Interfaces;
 using GroceryAppAPI.Models.DbModels;
@@ -15,12 +16,13 @@ namespace GroceryAppAPI.Services
         private readonly IOrderRepository _orderRepository;
         private readonly IUserService _userService;
         private readonly IPaymentService _paymentService;
+        private readonly IPaymentRepository _paymentRepository;
         private readonly IProductRepository _productRepository;
         private readonly IOrderProductRepository _orderProductRepository;
         private readonly IAuthenticationHelper _authenticationHelper;
 
         // Constructor with dependency injection for repositories, services, and context accessor
-        public OrderService(IOrderRepository orderRepository, IUserService userService, IPaymentService paymentService, IProductRepository productRepository, IOrderProductRepository orderProductRepository, IAuthenticationHelper authenticationHelper)
+        public OrderService(IOrderRepository orderRepository, IUserService userService, IPaymentService paymentService, IProductRepository productRepository, IOrderProductRepository orderProductRepository, IAuthenticationHelper authenticationHelper, IPaymentRepository paymentRepository)
         {
             _orderRepository = orderRepository;
             _userService = userService;
@@ -28,6 +30,7 @@ namespace GroceryAppAPI.Services
             _productRepository = productRepository;
             _orderProductRepository = orderProductRepository;
             _authenticationHelper = authenticationHelper;
+            _paymentRepository = paymentRepository;
         }
 
         // Get all orders for a specific user
@@ -46,7 +49,13 @@ namespace GroceryAppAPI.Services
             {
                 var orderProducts = _orderProductRepository.GetAll(order.Id);
                 var productIds = orderProducts.Select(op => op.ProductId);
-                orderResponses.Add(new OrderResponse() { Id = order.Id, ProductIds = productIds, OrderedAt = order.OrderedAt });
+                var payment = _paymentRepository.Get(order.PaymentId);
+                var paymentResponse = new PaymentResponse()
+                {
+                    Amount = payment.Amount,
+                    PaymentType = (PaymentType)payment.PaymentType
+                };
+                orderResponses.Add(new OrderResponse() { Id = order.Id, ProductIds = productIds, OrderedAt = order.OrderedAt, Payment = paymentResponse });
             }
             return orderResponses;
         }
